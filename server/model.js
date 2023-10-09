@@ -201,3 +201,11 @@ Like.init(
     }
 )
 
+if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
+    console.log("Syncing to database...")
+    await db.sync()
+    console.log("Finished syncing database!")
+}
+
+//exports here
+export { User, Product, Order, Like, Event }
