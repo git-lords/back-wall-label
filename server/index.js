@@ -16,6 +16,7 @@ const { getAllEvents } = calCtrl;
 
 // Set up app instance
 const app = express();
+const PORT = 4545;
 
 // Set up middleware
 app.use(morgan("dev"));
@@ -51,6 +52,4 @@ app.get("/getAllOrders", getAllOrders);
 app.get("/getAllEvents", getAllEvents);
 
 // Open up door to server
-ViteExpress.listen(app, 4545, () =>
-  console.log("Listening on port 4545. Go to http://localhost:4545")
-);
+ViteExpress.listen(app, `${PORT}`, () => console.log(`Listening on port ${PORT}. Go to http://localhost:${PORT}`))
