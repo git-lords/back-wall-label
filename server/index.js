@@ -2,25 +2,55 @@
 import express from "express";
 import morgan from "morgan";
 import ViteExpress from "vite-express";
-import session from 'express-session'
+import session from "express-session";
+import authCtrl from "./Controllers/authCtrl.js";
+const { login, register, updateUser, logout } = authCtrl;
+import merchCtrl from "./Controllers/merchCtrl.js";
+const { getProduct, getAllProducts } = merchCtrl;
+import bandCtrl from "./Controllers/bandCrtl.js";
+const { getBand, getAllBands } = bandCtrl;
+import userCtrl from "./Controllers/userCtrl.js";
+const { getAllOrders } = userCtrl;
+import calCtrl from "./Controllers/calCtrl.js";
+const { getAllEvents } = calCtrl;
 
-// Set up app instance 
+// Set up app instance
 const app = express();
 
-// Set up middleware 
-app.use(morgan('dev'));
+// Set up middleware
+app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.json());
-app.use(session({
-    secret: 'helloworld',
+app.use(
+  session({
+    secret: "helloworld",
     saveUninitialized: false,
-    resave: false
-}))
+    resave: false,
+  })
+);
 
-// Set up routes/endpoints here 
+// auth endpoints
+app.get("/login", login);
+app.post("/register", register);
+app.put("/updateUser", updateUser);
+app.get("/logout", logout);
 
+// band endpoints
+app.get("/getBand", getBand);
+app.get("/getAllBands", getAllBands);
+
+// merch endpoints
+app.get("/getProduct", getProduct);
+app.get("/getAllProducts", getAllProducts);
+
+// user endpoints
+app.get("/getAllOrders", getAllOrders);
+
+// calendar endpoints
+app.get("/getAllEvents", getAllEvents);
 
 // Open up door to server
-ViteExpress.listen(app, 4545, () => console.log("Listening on port 4545. Go to http://localhost:4545"))
-
+ViteExpress.listen(app, 4545, () =>
+  console.log("Listening on port 4545. Go to http://localhost:4545")
+);
