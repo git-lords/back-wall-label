@@ -13,6 +13,22 @@ import userCtrl from "./Controllers/userCtrl.js";
 const { getAllOrders } = userCtrl;
 import calCtrl from "./Controllers/calCtrl.js";
 const { getAllEvents } = calCtrl;
+import { configDotenv } from "dotenv";
+import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
+import S3ctrl from "./Controllers/S3Ctrl.js";
+const { getImage, getList } = S3ctrl;
+
+// configures dotenv
+configDotenv();
+
+// configure AWS S3 Client
+export const client = new S3Client({
+  region: process.env.region,
+  credentials: {
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+  },
+});
 
 // Set up app instance
 const app = express();
@@ -50,6 +66,10 @@ app.get("/getAllOrders", getAllOrders);
 
 // calendar endpoints
 app.get("/getAllEvents", getAllEvents);
+
+// S3 endpoints
+app.get("/getImage", getImage);
+app.get("/getList", getList);
 
 // Open up door to server
 ViteExpress.listen(app, `${PORT}`, () =>
