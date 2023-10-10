@@ -3,7 +3,7 @@ import url from 'url';
 import connectToDb from './db.js';
 import util from 'util';
 
-const db = await connectToDb('postgresql:///bw-db');
+const db = await connectToDb('postgresql:///backwalldb');
 
 class User extends Model {
     [util.inspect.custom]() {
@@ -170,7 +170,7 @@ Order.init(
         },
     },
     {
-        modelName: 'order';
+        modelName: 'order',
         sequelize: db
     }
 )
