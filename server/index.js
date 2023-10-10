@@ -52,4 +52,6 @@ app.get("/getAllOrders", getAllOrders);
 app.get("/getAllEvents", getAllEvents);
 
 // Open up door to server
-ViteExpress.listen(app, `${PORT}`, () => console.log(`Listening on port ${PORT}. Go to http://localhost:${PORT}`))
+ViteExpress.listen(app, `${PORT}`, () =>
+  console.log(`Listening on port ${PORT}. Go to http://localhost:${PORT}`)
+);
