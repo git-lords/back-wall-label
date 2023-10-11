@@ -7,11 +7,13 @@ import Merch from "./pages/Merch.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import Header from "./elements/Header.jsx";
 import BandInfo from "./pages/BandInfo.jsx";
+import Login from './pages/Login.jsx'
+import './index.css'
 
 export default function App() {
   return (
-    <div>
-      <Header />
+    <div className='dark:text-white dark:bg-zinc-700'>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -25,6 +27,11 @@ export default function App() {
         <Route path="/merch" element={<Merch />} />
 
         <Route path="/gallery" element={<Gallery />} />
+        <Route path='/merch' element={<Merch/>} />
+        
+        <Route path='/gallery' element={<Gallery/>} />
+
+        <Route path='/login' element={<Login/>}/>
       </Routes>
     </div>
   );
