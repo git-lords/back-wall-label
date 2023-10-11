@@ -17,6 +17,11 @@ const BandInfo = () => {
     <div>
       <h1>{bandData.bandName}</h1>
       <p>{bandData.bio}</p>
+      <img
+        src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/mages+leaning+in+flipside+2023.jpg"
+        alt=""
+        style={{ height: "40vh" }}
+      />
     </div>
   );
 };
