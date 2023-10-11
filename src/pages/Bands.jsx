@@ -8,13 +8,12 @@ export default function Bands() {
 
   useEffect(() => {
     axios.get("/getAllBands").then((res) => {
-      console.log(res.data);
       setBands(res.data);
     });
   }, []);
 
   return (
-    <div>
+    <div className="border-4 border-emerald-900 w-full h-screen flex flex-col justify-evenly">
       <h1>Our Bands</h1>
       <BandCard bands={bands} />
     </div>
