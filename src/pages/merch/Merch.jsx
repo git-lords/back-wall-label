@@ -46,6 +46,7 @@ export default function Merch() {
           key={product.productId}
           style={{ border: '1px solid black', height: '100%' }}
         >
+          {console.log(product)}
           <img
             src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png" alt="clothing-product"
             height={150}

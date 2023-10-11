@@ -10,7 +10,7 @@ export const Product = ({ initialDetails }) => {
     const cart = useContext(CartContext)
 
     const productQuantity = cart.getProductQuantity(id)
-    console.log(cart.items)
+    // console.log(cart.items)
     // console.log('Quantity 22222:', productQuantity)
 
     return (

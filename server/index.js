@@ -7,12 +7,16 @@ import Stripe from "stripe";
 
 import authCtrl from "./Controllers/authCtrl.js";
 const { login, register, updateUser, logout } = authCtrl;
+
 import merchCtrl from "./Controllers/merchCtrl.js";
-const { getProduct, getAllProducts } = merchCtrl;
+const { getOneProduct, getAllProducts } = merchCtrl;
+
 import bandCtrl from "./Controllers/bandCrtl.js";
 const { getBand, getAllBands } = bandCtrl;
+
 import userCtrl from "./Controllers/userCtrl.js";
 const { getAllOrders } = userCtrl;
+
 import calCtrl from "./Controllers/calCtrl.js";
 const { getAllEvents } = calCtrl;
 
@@ -102,7 +106,7 @@ app.get("/getBand", getBand);
 app.get("/getAllBands", getAllBands);
 
 // merch endpoints
-app.get("/getProduct", getProduct);
+app.get("/getProduct/:id", getOneProduct);
 app.get("/getAllProducts", getAllProducts);
 
 

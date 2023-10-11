@@ -35,6 +35,8 @@ export function CartProvider({ children }) {
     // [{ id, quantity }]
 
     function getProductQuantity(id) {
+        console.log(id)
+        console.log(cartProducts)
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
         if (quantity === undefined) {
             return 0;
@@ -42,26 +44,70 @@ export function CartProvider({ children }) {
         return quantity;
     }
 
-    function addOneToCart(id) {
+    // loop over array to see if there's already item with id
+    // if there is, update quantity
+    //else, axios request below 
+    //send an axios request to find product by pk
+    // save quantity 
+    // save the data to cartProducts 
+
+    // useEffect(() => {
+    const addOneToCart = async (id) => {
         const quantity = getProductQuantity(id)
-        if (quantity === 0) {
-            setCartProducts(
-                [
-                    ...cartProducts,
-                    {
-                        id: id,
-                        quantity: 1
-                    }
-                ]
-            )
-        } else {
+        if (quantity > 0) {
             setCartProducts(
                 cartProducts.map(
                     product => product.id === id ? { ...product, quantity: product.quantity + 1 } : product
                 )
             )
+        } else {
+            const response = await axios.get(`/getProduct/${id}`)
+            // let productArray = [response.data]
+            // console.log(response.data.productName)
+            const newProduct = {
+                id: id,
+                quantity: 1,
+                name: response.data.productName,
+                price: response.data.price,
+                description: response.data.description,
+                category: response.data.category
+
+            }
+            setCartProducts([...cartProducts, newProduct]);
+            // setCartProducts(
+            //     [
+            //         ...productArray,
+            //         {
+            //             id: id,
+            //             quantity: 1
+            //         }
+            //     ]
+            // )
         }
     }
+    // })
+
+
+    // function addOneToCart(id) {
+    //     const quantity = getProductQuantity(id)
+    //     if (quantity === 0) {
+    //         setCartProducts(
+    //             [
+    //                 ...cartProducts,
+    //                 {
+    //                     id: id,
+    //                     quantity: 1
+    //                 }
+    //             ]
+    //         )
+    //     } else {
+    //         setCartProducts(
+    //             cartProducts.map(
+    //                 product => product.id === id ? { ...product, quantity: product.quantity + 1 } : product
+    //             )
+    //         )
+    //     }
+    // }
 
     function removeOneFromCart(id) {
         const quantity = getProductQuantity(id);
@@ -82,7 +128,7 @@ export function CartProvider({ children }) {
     function deleteFromCart(id) {
         setCartProducts(
             cartProducts => cartProducts.filter(currentProduct => {
-                return currentProduct.id != id;
+                return currentProduct.id !== id;
             })
         )
     }
@@ -96,7 +142,7 @@ export function CartProvider({ children }) {
                     totalCost += productInCart.price * cartItem.quantity;
                 }
             });
-            localStorage.setItem('cart', JSON.stringify(productData))
+            // localStorage.setItem('cart', JSON.stringify(productData))
         }
         // cartProducts.map((cartItem) => {
         //     const productInCart = productData.productId;
@@ -107,7 +153,6 @@ export function CartProvider({ children }) {
 
     const contextValue = {
         items: cartProducts,
-        productData,
         getProductQuantity,
         addOneToCart,
         removeOneFromCart,

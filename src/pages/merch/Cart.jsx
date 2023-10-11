@@ -5,17 +5,7 @@ export const Cart = () => {
 
     const cart = useContext(CartContext);
     const productCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
-    const [cartData, setCartData] = useState(cart.productData);
-    // useEffect(() => {
-    //     const storedCart = localStorage.getItem('cart');
-    //     console.log('CART:', storedCart)
-    //     const cartObj = JSON.parse(storedCart)
-    //     console.log('cartObj:', cartObj)
-    //     if (storedCart) {
-    //         setCartData(cartObj);
-    //     }
-    // }, []);
-    console.log(777777, cartData)
+
 
     return (
         <>
@@ -33,12 +23,12 @@ export const Cart = () => {
                         </thead>
                         <tbody>
                             {cart.items.map((currentProduct, idx) => (
-                                <tr key={idx}>
+                                <tr key={currentProduct.id}>
                                     <td>{currentProduct.name}</td>
                                     <td>{currentProduct.quantity}</td>
                                     <td>${currentProduct.price}</td>
-                                    {/* <td>${currentProduct.price * currentProduct.quantity}</td> */}
-                                    <td><button onClick={() => cart.deleteFromCart(idx)}>Remove items</button></td>
+                                    <td>${currentProduct.price * currentProduct.quantity}</td>
+                                    <td><button onClick={() => cart.deleteFromCart(currentProduct.id)}>Remove items</button></td>
                                 </tr>
                             ))}
                         </tbody>
