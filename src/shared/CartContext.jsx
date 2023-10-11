@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
+//Context ( cart, addToCart, removeCart )
+//Provider - gives app access to all things in your context
+
 export const CartContext = createContext({
     items: [],
     getProductQuantity: () => { },
@@ -14,11 +17,13 @@ export function CartProvider({ children }) {
     const [cartProducts, setCartProducts] = useState([])
     const [productData, setProductData] = useState([])
 
+    //Code for get products
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('getAllProducts')
                 setProductData(response.data)
+                // localStorage.setItem('cart', JSON.stringify(productData))
             } catch (error) {
                 console.error('Error getting products:', error)
             }
@@ -31,10 +36,10 @@ export function CartProvider({ children }) {
 
     function getProductQuantity(id) {
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
-        // console.log('Quantity Context:', quantity)
         if (quantity === undefined) {
             return 0;
         }
+        return quantity;
     }
 
     function addOneToCart(id) {
@@ -84,16 +89,25 @@ export function CartProvider({ children }) {
 
     function getTotalCost() {
         let totalCost = 0;
-
-        cartProducts.map((cartItem) => {
-            const productInCart = productData.productId;
-            totalCost += (productInCart.price * cartItem.quantity)
-        })
+        if (productData) {
+            cartProducts.forEach((cartItem) => {
+                const productInCart = productData.find((product) => product.productId === cartItem.id);
+                if (productInCart) {
+                    totalCost += productInCart.price * cartItem.quantity;
+                }
+            });
+            localStorage.setItem('cart', JSON.stringify(productData))
+        }
+        // cartProducts.map((cartItem) => {
+        //     const productInCart = productData.productId;
+        //     totalCost += (productInCart.price * cartItem.quantity)
+        // })
         return totalCost
     }
 
     const contextValue = {
         items: cartProducts,
+        productData,
         getProductQuantity,
         addOneToCart,
         removeOneFromCart,
@@ -109,8 +123,3 @@ export function CartProvider({ children }) {
 }
 
 export default CartProvider;
-//Code for get products
-
-
-//Context ( cart, addToCart, removeCart )
-//Provider - gives your React app access to all things in your context

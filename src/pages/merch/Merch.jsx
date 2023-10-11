@@ -1,11 +1,13 @@
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
-import { Product } from '../Product.jsx';
+import { Product } from './Product.jsx';
 
 export default function Merch() {
   const [productData, setProductData] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +24,7 @@ export default function Merch() {
 
   return (
     <>
-      <h3>Merch</h3>
+      <h3>Merch <button onClick={() => navigate('/cart')}>Cart</button></h3>
       <div>
         <input placeholder='Search any item here!' />
         {/* <div>
