@@ -1,0 +1,21 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+.page {
+    min-width: 250px;
+    @apply h-screen pt-16 p-2 bg-zinc-200 dark:bg-zinc-900
+}
+.dropDownMenu.active{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropDownMenu.inactive{
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+}

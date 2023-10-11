@@ -4,6 +4,6 @@ import React from 'react'
 
 export default function Gallery() {
   return (
-    <div>Gallery</div>
+    <div className='page'>Gallery</div>
   )
 }
