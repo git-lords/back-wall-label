@@ -9,11 +9,12 @@ import Header from "./elements/Header.jsx";
 import BandInfo from "./pages/BandInfo.jsx";
 import Login from "./pages/Login.jsx";
 import Footer from "./elements/Footer.jsx";
+import Contact from "./pages/Contact.jsx";
 import "./index.css";
 
 export default function App() {
   return (
-    <div className="dark:text-white dark:bg-zinc-700">
+    <div className="dark:text-white dark:bg-zinc-700 h-full w-full">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </div>
