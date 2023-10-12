@@ -13,6 +13,7 @@ import CartProvider from './shared/CartContext.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
 import Login from "./pages/Login.jsx";
+import Footer from "./elements/Footer.jsx";
 import "./index.css";
 
 
@@ -40,6 +41,7 @@ export default function App() {
 
           <Route path="/login" element={<Login />} />
         </Routes>
+        <Footer />
       </CartProvider>
     </div>
   );
