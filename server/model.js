@@ -1,9 +1,10 @@
 import { DataTypes, Model } from "sequelize";
-import url from 'url';
-import connectToDb from './db.js';
-import util from 'util';
+import url from "url";
+import connectToDb from "./db.js";
+import util from "util";
+import Sequelize from "sequelize";
 
-const db = await connectToDb('postgresql:///backwalldb');
+const db = await connectToDb("postgresql:///backwalldb");
 
 class User extends Model {
   [util.inspect.custom]() {
@@ -37,13 +38,12 @@ User.init(
     bandStatus: {
       type: DataTypes.BOOLEAN,
     },
-
   },
   {
-    modelName: 'user',
-    sequelize: db
+    modelName: "user",
+    sequelize: db,
   }
-)
+);
 
 class Product extends Model {
   [util.inspect.custom]() {
@@ -72,16 +72,19 @@ Product.init(
     },
     priceId: {
       type: DataTypes.STRING,
-    }
+    },
+    bandId: {
+      type: DataTypes.INTEGER,
+    },
     // imgUrl: {
     //     type: DataTypes.STRING,
     // },
   },
   {
-    modelName: 'product',
-    sequelize: db
+    modelName: "product",
+    sequelize: db,
   }
-)
+);
 
 class Band extends Model {
   [util.inspect.custom]() {
@@ -101,14 +104,13 @@ Band.init(
     },
     bio: {
       type: DataTypes.STRING,
-    }
-
+    },
   },
   {
-    modelName: 'band',
-    sequelize: db
+    modelName: "band",
+    sequelize: db,
   }
-)
+);
 
 class Event extends Model {
   [util.inspect.custom]() {
@@ -124,19 +126,20 @@ Event.init(
       autoIncrement: true,
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
     },
     location: {
       type: DataTypes.STRING,
     },
     time: {
-      type: DataTypes.TIME
+      type: DataTypes.TIME,
+      defaultValue: Sequelize.NOW,
     },
     description: {
       type: DataTypes.STRING,
     },
     bands: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     links: {
       type: DataTypes.STRING,
@@ -144,13 +147,12 @@ Event.init(
     isSoldOut: {
       type: DataTypes.BOOLEAN,
     },
-
   },
   {
-    modelName: 'event',
-    sequelize: db
+    modelName: "event",
+    sequelize: db,
   }
-)
+);
 
 class Order extends Model {
   [util.inspect.custom]() {
@@ -160,23 +162,23 @@ class Order extends Model {
 
 Order.init(
   {
-    oderId: {
+    orderId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     userId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     productId: {
       type: DataTypes.INTEGER,
     },
   },
   {
-    modelName: 'order',
-    sequelize: db
+    modelName: "order",
+    sequelize: db,
   }
-)
+);
 
 class Like extends Model {
   [util.inspect.custom]() {
@@ -199,16 +201,30 @@ Like.init(
     },
   },
   {
-    modelName: 'like',
-    sequelize: db
+    modelName: "like",
+    sequelize: db,
   }
-)
+);
 
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
-  console.log("Syncing to database...")
-  await db.sync()
-  console.log("Finished syncing database!")
+  console.log("Syncing to database...");
+  await db.sync();
+  console.log("Finished syncing database!");
 }
 
+User.hasMany(Like, { foreignKey: "userId" });
+Like.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Order, { foreignKey: "userId" });
+Order.belongsTo(User, { foreignKey: "userId" });
+Band.hasMany(Like, { foreignKey: "bandId" });
+Like.belongsTo(Band, { foreignKey: "bandId" });
+User.hasMany(Order, { foreignKey: "userId" });
+Order.belongsTo(User, { foreignKey: "userId" });
+Product.hasMany(Order, { foreignKey: "productId" });
+Order.hasMany(Product, { foreignKey: "productId" });
+Band.hasMany(Product, { foreignKey: "bandId" });
+``;
+Product.belongsTo(Band, { foreignKey: "bandId" });
+
 //exports here
-export { User, Product, Order, Like, Event }
+export { User, Product, Band, Order, Like, Event };

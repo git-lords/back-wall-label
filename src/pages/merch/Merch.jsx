@@ -1,64 +1,105 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
-
+import { CartContext } from "../../shared/CartContext";
 import { Product } from './Product.jsx';
 
 export default function Merch() {
-  const [productData, setProductData] = useState([])
+  const [productData, setProductData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('--filter by category--');
 
-  const navigate = useNavigate()
+  const cart = useContext(CartContext);
+  const productCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('getAllProducts')
-        setProductData(response.data)
+        const response = await axios.get('getAllProducts');
+        setProductData(response.data);
       } catch (error) {
-        console.error('Error getting products:', error)
+        console.error('Error getting products:', error);
       }
     };
 
     fetchData();
-  }, [])
+  }, []);
+
+  const filteredProducts = selectedCategory === '--filter by category--'
+    ? productData
+    : productData.filter(product => product.category === selectedCategory);
 
   return (
     <>
-      <h3>Merch <button onClick={() => navigate('/cart')}>Cart</button></h3>
+      <br />
+      <br />
+      <br />
+      {productCount > 0 ? (
+        <h3>Merch <button onClick={() => navigate('/cart')}>Cart ({productCount} items)</button></h3>
+      ) : null}
       <div>
-        <input placeholder='Search any item here!' />
-        {/* <div>
-          <a href=''>link </a>
-          <a href=''>link </a>
-          <a href=''>link </a>
-          <a href=''>link </a>
-        </div>
-        <div>
-          <a href=''>link </a>
-          <a href=''>link </a>
-          <a href=''>link </a>
-          <a href=''>link </a>
-        </div> */}
+        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+          <option value='--filter by category--'>--filter by category--</option>
+          <option value='T-Shirt'>T-Shirt</option>
+          <option value='Hoodie'>Hoodie</option>
+          <option value='Tote'>Tote</option>
+          <option value='Record'>Record</option>
+        </select>
       </div>
 
-      {productData.map((product) => (
-        <div
-          key={product.productId}
-          style={{ border: '1px solid black', height: '100%' }}
-        >
-          <img
-            src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png" alt="clothing-product"
-            height={150}
-            width={150} />
-          <Product
-            initialDetails={{
-              productId: product.productId,
-              productName: product.productName,
-              price: product.price,
-              description: product.description
-            }} />
-        </div>
-      ))}
+      {selectedCategory !== '--filter by category--' ? (
+        <>
+          <h3>Selected Category: {selectedCategory}</h3>
+          {filteredProducts.map((product) => (
+            <div
+              key={product.productId}
+              style={{ border: '1px solid black', height: '100%' }}
+            >
+              <img
+                src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png"
+                alt="clothing-product"
+                height={150}
+                width={150}
+              />
+              <Product
+                initialDetails={{
+                  productId: product.productId,
+                  productName: product.productName,
+                  price: product.price,
+                  description: product.description,
+                  category: product.category
+                }}
+              />
+            </div>
+          ))}
+        </>
+      ) : (
+        <>
+          {productData.map((product) => (
+            <div
+              key={product.productId}
+              style={{ border: '1px solid black', height: '100%' }}
+            >
+              <img
+                src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png"
+                alt="clothing-product"
+                height={150}
+                width={150}
+              />
+              <Product
+                initialDetails={{
+                  productId: product.productId,
+                  productName: product.productName,
+                  price: product.price,
+                  description: product.description,
+                  category: product.category
+                }}
+              />
+            </div>
+          ))}
+        </>
+      )}
     </>
-  )
+  );
 }

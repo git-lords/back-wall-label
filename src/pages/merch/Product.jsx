@@ -5,6 +5,7 @@ export const Product = ({ initialDetails }) => {
     const [productName, setProductName] = useState(initialDetails.productName)
     const [price, setPrice] = useState(initialDetails.price)
     const [description, setDescription] = useState(initialDetails.description)
+    const [category, setCategory] = useState(initialDetails.category)
     const [id, setId] = useState(initialDetails.productId)
 
     const cart = useContext(CartContext)
@@ -14,6 +15,7 @@ export const Product = ({ initialDetails }) => {
     return (
         <>
             <h3> {productName} </h3>
+            <span> {category} </span>
             <span>price: ${price} </span>
             <span> {description} </span>
             {productQuantity > 0 ?

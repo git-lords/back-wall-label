@@ -33,7 +33,7 @@ export const Cart = () => {
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
-                                <th>Total</th>
+                                <th>Items Total</th>
                             </tr>
                         </thead>
                         <tbody>
