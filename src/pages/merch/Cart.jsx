@@ -6,6 +6,21 @@ export const Cart = () => {
     const cart = useContext(CartContext);
     const productCount = cart.items.reduce((sum, product) => sum + product.quantity, 0);
 
+    const checkout = async () => {
+        await fetch('http://localhost:4545/checkout', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items: cart.items })
+        }).then((response) => {
+            return response.json()
+        }).then((response) => {
+            if (response.url) {
+                window.location.assign(response.url)
+            }
+        })
+    }
 
     return (
         <>
@@ -34,7 +49,7 @@ export const Cart = () => {
                         </tbody>
                     </table>
                     <h4> Total: ${cart.getTotalCost().toFixed(2)} </h4>
-                    <button>Check Out</button>
+                    <button onClick={checkout}>Check Out</button>
                 </>
             ) : (
                 <h1>There are no items in the cart</h1>

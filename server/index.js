@@ -59,7 +59,7 @@ app.post("/checkout", async (req, res) => {
   let lineItems = [];
   items.forEach((item) => {
     lineItems.push({
-      price: item.id,
+      price: item.category,
       quantity: item.quantity
     })
   });
@@ -67,8 +67,8 @@ app.post("/checkout", async (req, res) => {
   const stripeSession = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: 'payment',
-    success_url: `http://localhost${PORT}/success`,
-    cancel_url: `http://localhost${PORT}/cancel`
+    success_url: `http://localhost:${PORT}/success`,
+    cancel_url: `http://localhost:${PORT}/cancel`
   });
 
   res.send(JSON.stringify({ url: stripeSession.url }))
