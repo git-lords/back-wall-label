@@ -70,6 +70,9 @@ Product.init(
     description: {
       type: DataTypes.STRING,
     },
+    priceId: {
+      type: DataTypes.STRING,
+    },
     bandId: {
       type: DataTypes.INTEGER,
     },
