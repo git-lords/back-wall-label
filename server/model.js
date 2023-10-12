@@ -136,7 +136,7 @@ Event.init(
       type: DataTypes.STRING,
     },
     bands: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     links: {
       type: DataTypes.STRING,

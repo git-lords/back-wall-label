@@ -80,7 +80,7 @@ await db.sync({ force: true }).then(async () => {
       location: "SLC",
       time: "20:00",
       description: "should be a really nice time",
-      bands: "Moon Owls Mages, others",
+      bands: ["Moon Owls Mages", "others"],
       links: "tickets.com",
       isSoldOut: false,
     },
@@ -89,9 +89,18 @@ await db.sync({ force: true }).then(async () => {
       location: "Seattle",
       time: "20:00",
       description: "should be a really nice time",
-      bands: "Moon Owls Mages, others",
+      bands: ["Moon Owls Mages", "Crush the Monster"],
       links: "tickets.com",
       isSoldOut: false,
+    },
+    {
+      date: "2023-10-31",
+      location: "Boise",
+      time: "20:00",
+      description: "should be a really nice time",
+      bands: ["Crush the Monster", "Others"],
+      links: "tickets.com",
+      isSoldOut: true,
     },
   ];
 
