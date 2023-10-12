@@ -6,11 +6,10 @@ export default {
 
     try {
       const { id } = req.params;
-      // const foundProduct = await Product.findByPk(id);
+
       const foundProduct = await Product.findOne({
         where: { productId: id }
       });
-      // res.status(200).send(foundProduct);
       if (!foundProduct) {
         res.status(400).send("Couldn't find that product!")
       } else {

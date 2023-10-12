@@ -22,7 +22,7 @@ export const Cart = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {cart.items.map((currentProduct, idx) => (
+                            {cart.items.map((currentProduct) => (
                                 <tr key={currentProduct.id}>
                                     <td>{currentProduct.name}</td>
                                     <td>{currentProduct.quantity}</td>

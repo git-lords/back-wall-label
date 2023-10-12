@@ -26,62 +26,6 @@ const PORT = 4545;
 
 const stripe = new Stripe('sk_test_51NuLfSHrrNngtjIfCxtI1TKBLBUWE2SgSrA4bMRDyfwGYwy4mgTPQML4Eraf683ZDB4BgA90tfZg2XicUr0MRj2q00UDXFhrHZ')
 
-const stripeSession = await stripe.checkout.sessions.create({
-  line_items: [
-    {
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: 'T-shirt',
-        },
-        unit_amount: 2000,
-        tax_behavior: 'exclusive'
-      },
-      adjustable_quantity: {
-        enabled: true,
-        minimum: 1,
-        maximum: 20,
-      },
-      quantity: 1,
-    },
-    {
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: 'Hoodie',
-        },
-        unit_amount: 4000,
-        tax_behavior: 'exclusive'
-      },
-      adjustable_quantity: {
-        enabled: true,
-        minimum: 1,
-        maximum: 20,
-      },
-      quantity: 1,
-    },
-    {
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: 'Band Tote',
-        },
-        unit_amount: 2000,
-        tax_behavior: 'exclusive'
-      },
-      adjustable_quantity: {
-        enabled: true,
-        minimum: 1,
-        maximum: 20,
-      },
-      quantity: 1,
-    },
-  ],
-  mode: 'payment',
-  success_url: `http://localhost${PORT}/success`,
-  cancel_url: `http://localhost${PORT}/cancel`
-})
-
 // Set up middleware
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
@@ -108,6 +52,27 @@ app.get("/getAllBands", getAllBands);
 // merch endpoints
 app.get("/getProduct/:id", getOneProduct);
 app.get("/getAllProducts", getAllProducts);
+
+app.post("/checkout", async (req, res) => {
+  console.log(req.body)
+  const items = req.body.items;
+  let lineItems = [];
+  items.forEach((item) => {
+    lineItems.push({
+      price: item.id,
+      quantity: item.quantity
+    })
+  });
+
+  const stripeSession = await stripe.checkout.sessions.create({
+    line_items: lineItems,
+    mode: 'payment',
+    success_url: `http://localhost${PORT}/success`,
+    cancel_url: `http://localhost${PORT}/cancel`
+  });
+
+  res.send(JSON.stringify({ url: stripeSession.url }))
+})
 
 
 // user endpoints

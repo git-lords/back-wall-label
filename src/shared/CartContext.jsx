@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-//Context ( cart, addToCart, removeCart )
-//Provider - gives app access to all things in your context
+//Context ( cart, addToCart, removeCart, deleteCart, getTotal, getQuantity )
+//Provider - gives app access to all things in context
 
 export const CartContext = createContext({
     items: [],
@@ -23,7 +23,6 @@ export function CartProvider({ children }) {
             try {
                 const response = await axios.get('getAllProducts')
                 setProductData(response.data)
-                // localStorage.setItem('cart', JSON.stringify(productData))
             } catch (error) {
                 console.error('Error getting products:', error)
             }
@@ -32,11 +31,7 @@ export function CartProvider({ children }) {
         fetchData();
     }, [])
 
-    // [{ id, quantity }]
-
     function getProductQuantity(id) {
-        console.log(id)
-        console.log(cartProducts)
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
         if (quantity === undefined) {
             return 0;
@@ -44,14 +39,6 @@ export function CartProvider({ children }) {
         return quantity;
     }
 
-    // loop over array to see if there's already item with id
-    // if there is, update quantity
-    //else, axios request below 
-    //send an axios request to find product by pk
-    // save quantity 
-    // save the data to cartProducts 
-
-    // useEffect(() => {
     const addOneToCart = async (id) => {
         const quantity = getProductQuantity(id)
         if (quantity > 0) {
@@ -62,8 +49,7 @@ export function CartProvider({ children }) {
             )
         } else {
             const response = await axios.get(`/getProduct/${id}`)
-            // let productArray = [response.data]
-            // console.log(response.data.productName)
+
             const newProduct = {
                 id: id,
                 quantity: 1,
@@ -74,40 +60,8 @@ export function CartProvider({ children }) {
 
             }
             setCartProducts([...cartProducts, newProduct]);
-            // setCartProducts(
-            //     [
-            //         ...productArray,
-            //         {
-            //             id: id,
-            //             quantity: 1
-            //         }
-            //     ]
-            // )
         }
     }
-    // })
-
-
-    // function addOneToCart(id) {
-    //     const quantity = getProductQuantity(id)
-    //     if (quantity === 0) {
-    //         setCartProducts(
-    //             [
-    //                 ...cartProducts,
-    //                 {
-    //                     id: id,
-    //                     quantity: 1
-    //                 }
-    //             ]
-    //         )
-    //     } else {
-    //         setCartProducts(
-    //             cartProducts.map(
-    //                 product => product.id === id ? { ...product, quantity: product.quantity + 1 } : product
-    //             )
-    //         )
-    //     }
-    // }
 
     function removeOneFromCart(id) {
         const quantity = getProductQuantity(id);
@@ -116,10 +70,8 @@ export function CartProvider({ children }) {
             deleteFromCart(id)
         } else {
             setCartProducts(
-                setCartProducts(
-                    cartProducts.map(
-                        product => product.id === id ? { ...product, quantity: product.quantity - 1 } : product
-                    )
+                cartProducts.map(
+                    product => product.id === id ? { ...product, quantity: product.quantity - 1 } : product
                 )
             )
         }
@@ -142,12 +94,7 @@ export function CartProvider({ children }) {
                     totalCost += productInCart.price * cartItem.quantity;
                 }
             });
-            // localStorage.setItem('cart', JSON.stringify(productData))
         }
-        // cartProducts.map((cartItem) => {
-        //     const productInCart = productData.productId;
-        //     totalCost += (productInCart.price * cartItem.quantity)
-        // })
         return totalCost
     }
 
