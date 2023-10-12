@@ -8,7 +8,6 @@ import Merch from './pages/merch/Merch.jsx'
 import { SuccessPage } from './pages/merch/SuccessPage.jsx'
 import { CancelOrder } from './pages/merch/CancelOrder.jsx'
 import { Cart } from './pages/merch/Cart.jsx'
-import { CheckOut } from './pages/merch/CheckOut.jsx'
 import CartProvider from './shared/CartContext.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
@@ -30,7 +29,6 @@ export default function App() {
 
           <Route path='/merch' element={<Merch />} />
           <Route path='/cart' element={<Cart />} />
-          <Route path='/checkout' element={<CheckOut />} />
           <Route path='/success' element={<SuccessPage />} />
           <Route path='/cancelOrder' element={<CancelOrder />} />
 
