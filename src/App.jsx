@@ -8,10 +8,21 @@ import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
 import Login from './pages/Login.jsx'
 import './index.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
-export default function App({dark}) {
-const [darkMode, setDarkMode] = useState(dark)
+export default function App() {
+let [darkMode, setDarkMode] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+useEffect(()=>{
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+    setDarkMode(true)
+  } else {
+    document.documentElement.classList.remove('dark')
+    setDarkMode(false)
+  }
+},[darkMode])
+
   return (
     <div className='dark:text-white dark:bg-zinc-700'>
       <Header/>
@@ -20,7 +31,7 @@ const [darkMode, setDarkMode] = useState(dark)
 
         <Route path='/bands' element={<Bands/>} />
 
-        <Route path='/calendar' element={<Calendar darkMode={darkMode}/>} />
+        <Route path='/calendar' element={<Calendar darkMode={darkMode} setDarkMode={setDarkMode}/>} />
 
         <Route path='/about' element={<About/>} />
 

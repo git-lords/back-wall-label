@@ -8,6 +8,7 @@
     min-width: 250px;
     @apply h-screen pt-16 p-2 bg-zinc-200 bg-gradient-to-t from-zinc-300 dark:bg-zinc-900 dark:from-zinc-950
 }
+
 .dropDownMenu.active{
     opacity: 1;
     visibility: visible;

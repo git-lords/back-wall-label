@@ -1,7 +1,19 @@
 
 import React from 'react'
+import { useEffect } from 'react'
 
-export default function Calendar({darkMode}) {
+export default function Calendar({darkMode, setDarkMode}) {
+
+  useEffect(()=>{
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+      setDarkMode(true)
+    } else {
+      document.documentElement.classList.remove('dark')
+      setDarkMode(false)
+    }
+  },[darkMode])
+
   return (
     <div className='page flex flex-col justify-center dark:bg-gradient-to-t dark:from-zinc-950'>
       {/* <CalendarAuth/> */}
