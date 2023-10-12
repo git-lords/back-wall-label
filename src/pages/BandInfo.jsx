@@ -3,10 +3,13 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import BandEventCard from "../elements/BandEventCard";
+import BandPhotos from "../elements/BandPhotos";
+import { useNavigate } from "react-router-dom";
 
 const BandInfo = () => {
   const { band } = useParams();
   const [bandData, setBandData] = useState({});
+  const navigate = useNavigate();
 
   let spotifySrc = "";
 
@@ -24,15 +27,15 @@ const BandInfo = () => {
 
   return (
     <>
-      <div className="flex flex-col h-full w-screen pt-20 justify-evenly items-center">
+      <div className="flex flex-col border pt-20 justify-evenly items-center">
         <h1 className="text-7xl p-4">{bandData.bandName}</h1>
         <div
           className="h-96 w-3/4 bg-cover bg-center"
           style={{
             backgroundImage: `url('${
               band === "Moon Owls Mages"
-                ? "https://bw-records-bucket.s3.us-west-1.amazonaws.com/Mage-Goggles-500x500.jpg"
-                : "https://bw-records-bucket.s3.us-west-1.amazonaws.com/crush+the+monster+band+img.jpeg"
+                ? "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg"
+                : "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+sunset.jpg"
             }')`,
           }}
         ></div>
@@ -43,10 +46,16 @@ const BandInfo = () => {
             allowFullScreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            className="rounded-md w-full h-[25rem]"
+            className="w-full h-[25rem]"
           ></iframe>
         </div>
-        <BandEventCard band={band} />
+        <button
+          onClick={() => navigate("/calendar")}
+          className="p-4 border rounded-xl m-4"
+        >
+          View Upcoming Shows
+        </button>
+        <BandPhotos band={band} />
       </div>
     </>
   );

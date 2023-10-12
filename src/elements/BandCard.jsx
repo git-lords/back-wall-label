@@ -6,24 +6,27 @@ const BandCard = ({ bands }) => {
   const allBands = bands.map((band) => {
     if (band.bandName === "Moon Owls Mages") {
       imgSrc =
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/Mage-Goggles-500x500.jpg";
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+goggles.jpg";
     } else
       imgSrc =
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/crush+the+monster+band+img.jpeg";
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+fisheye.jpg";
     return (
-      <Link to={`/bands/${band.bandName}`} key={band.bandName}>
-        <div className="border flex items-center justify-evenly">
-          <div
-            className="h-96 w-1/3 bg-cover bg-center"
-            style={{ backgroundImage: `url('${imgSrc}')` }}
-          ></div>
-          <p>{band.bandName}</p>
+      <div className="block h-screen bg-black">
+        <div className="flex items-center justify-evenly">
+          <Link
+            to={`/bands/${band.bandName}`}
+            key={band.bandName}
+            className="my-6 w-1/2"
+          >
+            <img src={imgSrc} className="h-full w-full" />
+          </Link>
+          <h1 className="text-4xl">{band.bandName}</h1>
         </div>
-      </Link>
+      </div>
     );
   });
 
-  return <div className="border border-black flex flex-col">{allBands}</div>;
+  return <div className="border-black flex flex-col w-full">{allBands}</div>;
 };
 
 export default BandCard;

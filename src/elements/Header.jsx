@@ -32,7 +32,11 @@ export default function Header() {
       bg-mint
       dark:bg-zinc-950"
       >
-        <img className="" src="bwr-text.png" alt="bwr text logo" />
+        <img
+          className=""
+          src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
+          alt="bwr text logo"
+        />
         <button
           onClick={() => {
             setShowDropDown(!showDropDown);
@@ -47,7 +51,7 @@ export default function Header() {
         ref={dropDownRef}
         className={`dropDownMenu ${
           showDropDown ? "active" : "inactive"
-        } transition-all flex flex-col items-center bg-zinc-200 dark:bg-zinc-900 dark:text-white w-1/3 md:w-1/5`}
+        } transition-all flex flex-col items-center bg-zinc-200 dark:bg-zinc-900 dark:text-white w-1/3 md:w-1/5 h-0`}
       >
         <DropDownItem img={<Music />} text={"Bands"} />
         <DropDownItem img={<Calendar />} text={"Calendar"} />
