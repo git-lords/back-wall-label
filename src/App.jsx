@@ -8,6 +8,7 @@ import Gallery from "./pages/Gallery.jsx";
 import Header from "./elements/Header.jsx";
 import BandInfo from "./pages/BandInfo.jsx";
 import Login from "./pages/Login.jsx";
+import Footer from "./elements/Footer.jsx";
 import "./index.css";
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
 
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
