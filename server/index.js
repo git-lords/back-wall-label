@@ -13,6 +13,11 @@ import userCtrl from "./Controllers/userCtrl.js";
 const { getAllOrders } = userCtrl;
 import calCtrl from "./Controllers/calCtrl.js";
 const { getAllEvents } = calCtrl;
+import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Set up app instance
 const app = express();
@@ -50,6 +55,10 @@ app.get("/getAllOrders", getAllOrders);
 
 // calendar endpoints
 app.get("/getAllEvents", getAllEvents);
+
+app.get("/calendarhtml", (req, res)=>{
+  res.sendFile(path.join(__dirname, '../src/calendar.html'))
+})
 
 // Open up door to server
 ViteExpress.listen(app, `${PORT}`, () =>

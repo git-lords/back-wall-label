@@ -8,9 +8,10 @@ import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
 import Login from './pages/Login.jsx'
 import './index.css'
+import { useState } from 'react'
 
-
-export default function App() {
+export default function App({dark}) {
+const [darkMode, setDarkMode] = useState(dark)
   return (
     <div className='dark:text-white dark:bg-zinc-700'>
       <Header/>
@@ -19,7 +20,7 @@ export default function App() {
 
         <Route path='/bands' element={<Bands/>} />
 
-        <Route path='/calendar' element={<Calendar/>} />
+        <Route path='/calendar' element={<Calendar darkMode={darkMode}/>} />
 
         <Route path='/about' element={<About/>} />
 

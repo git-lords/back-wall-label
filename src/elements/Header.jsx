@@ -10,7 +10,7 @@ let dropDownRef = useRef()
 
 useEffect(()=>{
   let handler = (e)=>{
-    if(!dropDownRef.current.contains(e.target)){
+    if(!dropDownRef?.current?.contains(e.target)){
       setShowDropDown(false)
     }
   }
