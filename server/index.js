@@ -59,7 +59,7 @@ app.post("/checkout", async (req, res) => {
   let lineItems = [];
   items.forEach((item) => {
     lineItems.push({
-      price: item.category,
+      price: item.priceId,
       quantity: item.quantity
     })
   });

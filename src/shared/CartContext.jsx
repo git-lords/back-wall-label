@@ -56,8 +56,8 @@ export function CartProvider({ children }) {
                 name: response.data.productName,
                 price: response.data.price,
                 description: response.data.description,
-                category: response.data.category
-
+                category: response.data.category,
+                priceId: response.data.priceId
             }
             setCartProducts([...cartProducts, newProduct]);
         }
