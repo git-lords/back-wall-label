@@ -63,11 +63,11 @@ app.use(
 );
 
 // auth endpoints
-app.get("/login", login);
+app.post("/login", login);
 app.post("/register", register);
 app.put("/updateUser", updateUser);
 app.get("/logout", logout);
-app.get("/getUser", getUser);
+app.post("/getUser", getUser);
 
 // band endpoints
 app.get("/getBand", getBand);
@@ -100,7 +100,7 @@ app.post("/checkout", async (req, res) => {
 
 // user endpoints
 app.get("/getAllOrders", getAllOrders);
-app.get("/getOrders", getOrders);
+app.post("/getOrders", getOrders);
 
 // calendar endpoints
 app.get("/getAllEvents", getAllEvents);

@@ -1,9 +1,11 @@
 import { User } from "../model.js";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default {
   login: (req, res) => {
     console.log("login");
-    res.send("login");
+    const { user } = useAuth0;
+    res.send(user);
   },
   register: (req, res) => {
     console.log("register");

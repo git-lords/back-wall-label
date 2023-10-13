@@ -37,6 +37,13 @@ await db.sync({ force: true }).then(async () => {
       adminStatus: false,
       bandStatus: false,
     },
+    {
+      userName: "jack",
+      email: "ball.jack2376@gmail.com",
+      password: hash,
+      adminStatus: false,
+      bandStatus: false,
+    },
   ];
 
   const products = [
@@ -46,7 +53,7 @@ await db.sync({ force: true }).then(async () => {
       price: 20,
       description: "cool shirt from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6"
+      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
     },
     {
       productName: "band hoodie 1",
@@ -54,7 +61,7 @@ await db.sync({ force: true }).then(async () => {
       price: 40,
       description: "cool hoodie from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18"
+      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
     },
     {
       productName: "band tote 1",
@@ -62,7 +69,7 @@ await db.sync({ force: true }).then(async () => {
       price: 20,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1O0S8FHrrNngtjIf8uLuENvs"
+      priceId: "price_1O0S8FHrrNngtjIf8uLuENvs",
     },
     {
       productName: "band tee 2",
@@ -70,7 +77,7 @@ await db.sync({ force: true }).then(async () => {
       price: 20,
       description: "cool shirt from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6"
+      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
     },
     {
       productName: "band hoodie 2",
@@ -78,7 +85,7 @@ await db.sync({ force: true }).then(async () => {
       price: 40,
       description: "cool hoodie from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18"
+      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
     },
     {
       productName: "Vinyl 2",
@@ -86,7 +93,7 @@ await db.sync({ force: true }).then(async () => {
       price: 50,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1Nzj7FHrrNngtjIf9fELBEXX"
+      priceId: "price_1Nzj7FHrrNngtjIf9fELBEXX",
     },
     {
       productName: "Vinyl 3",
@@ -94,7 +101,7 @@ await db.sync({ force: true }).then(async () => {
       price: 50,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j"
+      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
     },
     {
       productName: "Vinyl 3",
@@ -102,7 +109,7 @@ await db.sync({ force: true }).then(async () => {
       price: 45,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j"
+      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
     },
   ];
 
@@ -147,7 +154,7 @@ await db.sync({ force: true }).then(async () => {
     },
   ];
 
-  await Like.bulkCreate(
+  await Like.bulkCreate([
     {
       userId: 3,
       bandId: 1,
@@ -155,10 +162,10 @@ await db.sync({ force: true }).then(async () => {
     {
       userId: 4,
       bandId: 2,
-    }
-  );
+    },
+  ]);
 
-  await Order.bulkCreate(
+  const orders = [
     {
       userId: 3,
       productId: 1,
@@ -170,12 +177,21 @@ await db.sync({ force: true }).then(async () => {
     {
       userId: 4,
       productId: 2,
-    }
-  );
+    },
+    {
+      userId: 5,
+      productId: 1,
+    },
+    {
+      userId: 5,
+      productId: 2,
+    },
+  ];
 
   await User.bulkCreate(users);
   await Product.bulkCreate(products);
   await Band.bulkCreate(bands);
   await Event.bulkCreate(events);
+  await Order.bulkCreate(orders);
   await console.log("db has been successfully reset and seeded!");
 });
