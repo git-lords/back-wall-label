@@ -12,24 +12,26 @@ import { Cart } from './pages/merch/Cart.jsx'
 import CartProvider from './shared/CartContext.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
-import { useState,useEffect } from 'react'
-import Login from "./pages/Login.jsx";
+import { useState, useEffect } from 'react'
+import LoginButton from './pages/Login.jsx';
+import LogoutButton from './pages/Logout.jsx';
+import Profile from './pages/LoggedInProfile.jsx';
 import Footer from "./elements/Footer.jsx";
 import "./index.css";
 
 
 export default function App() {
-let [darkMode, setDarkMode] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches)
+  let [darkMode, setDarkMode] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches)
 
-useEffect(()=>{
-  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark')
-    setDarkMode(true)
-  } else {
-    document.documentElement.classList.remove('dark')
-    setDarkMode(false)
-  }
-},[darkMode])
+  useEffect(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+      setDarkMode(true)
+    } else {
+      document.documentElement.classList.remove('dark')
+      setDarkMode(false)
+    }
+  }, [darkMode])
 
   return (
     <div className="dark:text-white dark:bg-zinc-700">
@@ -41,7 +43,7 @@ useEffect(()=>{
           <Route path='/bands' element={<Bands />} />
           <Route path="/bands/:band" element={<BandInfo />} />
 
-        <Route path='/calendar' element={<Calendar darkMode={darkMode} setDarkMode={setDarkMode}/>} />
+          <Route path='/calendar' element={<Calendar darkMode={darkMode} setDarkMode={setDarkMode} />} />
 
           <Route path='/about' element={<About />} />
 
@@ -52,7 +54,10 @@ useEffect(()=>{
 
           <Route path='/gallery' element={<Gallery />} />
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginButton />} />
+          <Route path="/logout" element={<LogoutButton />} />
+          <Route path="/profile" element={<Profile />} />
+
         </Routes>
         <Footer />
       </CartProvider>

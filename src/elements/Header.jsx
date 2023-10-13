@@ -16,23 +16,33 @@ import {
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
+import LogoutButton from "../pages/Logout.jsx";
+import LoginButton from "../pages/Login.jsx";
+import { useNavigate } from "react-router";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
   const [showDropDown, setShowDropDown] = useState(false);
   let dropDownRef = useRef();
 
+  const navigate = useNavigate()
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  // <LoginButton />
+  //       <button onClick={() => navigate('/profile')}>Profile</button>
+
   // useEffect(() => {
   //   let handler = (e) => {
-  //     console.log(dropDownRef.current)
   //     if (!dropDownRef.current.contains(e.target)) {
   //       setShowDropDown(false);
   //     }
   //   };
   //   document.addEventListener("mousedown", handler);
-  // }, []);
+  // });
 
   return (
+
     <div className="w-full flex flex-wrap justify-end fixed">
+
       <div
         className="flex h-14 px-2 py-1 w-full justify-between
       bg-mint
@@ -44,6 +54,16 @@ export default function Header() {
           alt="bwr text logo"
           />
         </NavLink>
+        
+
+        {isAuthenticated ? (
+          <div className="text-white">
+            Welcome, {user.name}!
+          </div>
+        ) : (
+          null
+        )}
+
         <button
           onClick={() => {
             setShowDropDown(!showDropDown);
@@ -73,6 +93,16 @@ export default function Header() {
           <DropDownItem img={<Info />} text={"About"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<User />} text={"Login"} />
+
+          {isAuthenticated ? (
+            <>
+              <DropDownItem img={<User />} text={"Profile"} />
+              <button onClick={() => logout()}>Logout</button>
+            </>
+          ) : (
+            <button onClick={() => loginWithRedirect()}>Login</button>
+          )}
+
           {/* Social Links */}
           <div className="flex gap-3 mt-10">
             <NavLink
