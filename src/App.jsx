@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import Login from "./pages/Login.jsx";
 import Footer from "./elements/Footer.jsx";
 import Contact from "./pages/Contact.jsx";
+import Profile from "./pages/Profile.jsx";
 import "./index.css";
 
 export default function App() {
@@ -59,6 +60,7 @@ export default function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </CartProvider>
