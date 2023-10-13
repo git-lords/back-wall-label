@@ -1,13 +1,15 @@
 import React from "react";
 import {
   Menu,
-  ChevDown,
   Calendar,
   Info,
   Photo,
   User,
   Music,
   Bag,
+  Instagram, InstagramA,
+  Spotify, SpotifyA,
+  Youtube, YoutubeA
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
