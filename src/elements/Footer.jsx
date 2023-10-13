@@ -25,12 +25,15 @@ const Footer = () => {
         </NavLink>
         <p>Copyright © Back Wall Records 2023</p>
       </div>
-      <div className="basis-1/3 flex justify-evenly text-sm">
+      <div className="basis-1/3 flex justify-evenly text-sm target:">
         <a target="_blank" href="https://www.instagram.com/back.wall.records/">
           Instagram
         </a>
         <a target="_blank" href="https://www.youtube.com/@backwallrecords356">
           Youtube
+        </a>
+        <a href='https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1' target="_blank">
+          Spotify
         </a>
       </div>
     </div>
