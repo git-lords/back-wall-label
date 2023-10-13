@@ -4,6 +4,7 @@ const Contact = () => {
   return (
     <div className="h-screen pt-20 text-black">
       <div className="w-full md:w-96 md:max-w-full mx-auto">
+        <h1 className="text-center m-6 text-3xl">Contact Us</h1>
         <div className="p-6 border border-gray-300 sm:rounded-md">
           <form
             method="POST"
@@ -88,18 +89,7 @@ const Contact = () => {
                 Contact Us
               </button>
             </div>
-            <div>
-              <div className="mt-2 text-gray-700 text-right text-xs">
-                by
-                <a
-                  href="https://herotofu.com"
-                  className="hover:underline"
-                  target="_blank"
-                >
-                  HeroTofu
-                </a>
-              </div>
-            </div>
+            <div></div>
           </form>
         </div>
       </div>
