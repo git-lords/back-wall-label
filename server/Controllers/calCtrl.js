@@ -1,3 +1,4 @@
+
 import { Event } from "../model.js";
 import { Sequelize } from "sequelize";
 
@@ -6,6 +7,7 @@ export default {
     console.log("getAllEvents");
     res.send("getAllEvents");
   },
+
   getBandEvents: async (req, res) => {
     try {
       console.log("getBandEvents");

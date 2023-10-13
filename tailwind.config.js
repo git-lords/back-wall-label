@@ -24,6 +24,7 @@ export default {
                 'burntOrange': '#BC5F04',
                 'lightOrange': '#F0A868',
                 'mint': '#9EBC9F',
+                'darkMint': '#649066'
             }
         },
     },
