@@ -70,6 +70,9 @@ Product.init(
     description: {
       type: DataTypes.STRING,
     },
+    priceId: {
+      type: DataTypes.STRING,
+    },
     bandId: {
       type: DataTypes.INTEGER,
     },
@@ -136,7 +139,7 @@ Event.init(
       type: DataTypes.STRING,
     },
     bands: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     links: {
       type: DataTypes.STRING,

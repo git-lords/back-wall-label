@@ -1,31 +1,51 @@
-import React from 'react'
-import { Menu, Calendar, Info, Photo, User, Music, Bag, Instagram, InstagramA, Youtube, YoutubeA, Spotify, SpotifyA } from '../../icons.jsx'
-import { useState,useEffect, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
-
+import React from "react";
+import {
+  Menu,
+  ChevDown,
+  Calendar,
+  Info,
+  Photo,
+  User,
+  Music,
+  Bag,
+} from "../../icons.jsx";
+import { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 
 export default function Header() {
-const [showDropDown, setShowDropDown] = useState(false)
+  const [showDropDown, setShowDropDown] = useState(false);
+  let dropDownRef = useRef();
 
-let dropDownRef = useRef()
-
-useEffect(()=>{
-  let handler = (e)=>{
-    if(!dropDownRef?.current?.contains(e.target)){
-      setShowDropDown(false)
-    }
-  }
-  document.addEventListener("mousedown", handler)
-})
+  useEffect(() => {
+    let handler = (e) => {
+      if (!dropDownRef.current.contains(e.target)) {
+        setShowDropDown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+  });
 
   return (
-    <div className='w-full fixed flex flex-wrap justify-end'>
-      <div className='flex h-14 px-2 py-1 w-full justify-between
+    <div className="w-full flex flex-wrap justify-end fixed">
+      <div
+        className="flex h-14 px-2 py-1 w-full justify-between
       bg-mint
-      dark:bg-zinc-950'>
-        <img className='' src="bwr-text.png" alt="bwr text logo" />
-        <button onClick={()=>{setShowDropDown(!showDropDown)}} className='h-10 w-10 self-center text-black dark:text-white transition-all'><Menu/></button>
+      dark:bg-zinc-950"
+      >
+        <img
+          className=""
+          src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
+          alt="bwr text logo"
+        />
+        <button
+          onClick={() => {
+            setShowDropDown(!showDropDown);
+          }}
+          className="h-10 w-10 self-center text-black dark:text-white transition-all"
+        >
+          <Menu />
+        </button>
       </div>
       <div className='w-full flex'>
         <div className={`pageOverlay ${showDropDown? 'active' : 'inactive'} sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}></div>
@@ -68,7 +88,7 @@ useEffect(()=>{
         </div>
       </div>
     </div>
-  )
+  );
 }
 export const DropDownItem = (props) => {
   return (
@@ -87,5 +107,5 @@ export const DropDownItem = (props) => {
         <div className='focus:outline-none text-2xl sm:text-xl w-2/4 sm:w-3/4 text-start self-center'> {props.text} </div>
       </NavLink>
     </>
-  )
-}
+  );
+};
