@@ -1,5 +1,41 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faInstagram, faYoutube, faSpotify } from "@fortawesome/free-brands-svg-icons"
+
+//~TAB Brand Icons
+//? (For the brand icons, the animated version is the name + A)
+export const Instagram = () => {
+    return (
+        <FontAwesomeIcon icon={faInstagram} size="xl" style={{ color: "currentcolor", }} />
+    )
+}
+export const InstagramA = () => {
+    return (
+        <FontAwesomeIcon icon={faInstagram} flip size="xl" style={{ color: "currentcolor", }} />
+    )
+}
+export const Youtube = () => {
+    return (
+        <FontAwesomeIcon icon={faYoutube} size="xl" style={{ color: "currentcolor", }} />
+    )
+}
+export const YoutubeA = () => {
+    return (
+        <FontAwesomeIcon icon={faYoutube} flip size="xl" style={{ color: "currentcolor", }} />
+    )
+}
+export const Spotify = () => {
+    return (
+        <FontAwesomeIcon icon={faSpotify} size="xl" style={{ color: "currentcolor", }} />
+    )
+}
+export const SpotifyA = () => {
+    return (
+        <FontAwesomeIcon icon={faSpotify} flip size="xl" style={{ color: "currentcolor", }} />
+    )
+}
 
 
+//~TAB Generic Icons
 export const Menu = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -53,16 +89,16 @@ export const User = () => {
 export const Music = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
-</svg>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+        </svg>
 
     )
 }
 export const Bag = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-</svg>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+        </svg>
 
     )
 }

@@ -12,12 +12,40 @@ import { Cart } from "./pages/merch/Cart.jsx";
 import CartProvider from "./shared/CartContext.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import Header from "./elements/Header.jsx";
+import Calendar from "./pages/Calendar.jsx";
+import About from "./pages/About.jsx";
+import Merch from "./pages/merch/Merch.jsx";
+import { SuccessPage } from "./pages/merch/SuccessPage.jsx";
+import { CancelOrder } from "./pages/merch/CancelOrder.jsx";
+import { Cart } from "./pages/merch/Cart.jsx";
+import CartProvider from "./shared/CartContext.jsx";
+import Gallery from "./pages/Gallery.jsx";
+import Header from "./elements/Header.jsx";
+import { useState, useEffect } from "react";
 import Login from "./pages/Login.jsx";
 import Footer from "./elements/Footer.jsx";
 import Contact from "./pages/Contact.jsx";
 import "./index.css";
 
 export default function App() {
+  let [darkMode, setDarkMode] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+
+  useEffect(() => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setDarkMode(false);
+    }
+  }, [darkMode]);
+
   return (
     <div className="dark:text-white dark:bg-zinc-700">
       <CartProvider>
