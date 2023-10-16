@@ -4,15 +4,17 @@ import React from "react";
 const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
 
+    const displayName = isAuthenticated ? (user.name.includes('@') ? user.nickname : user.name) : null
+
     if (isLoading) {
         return <div>Loading ...</div>;
     }
-
+    
     return (
         isAuthenticated && (
             <div className="page">
                 <img src={user.picture} alt={user.name} />
-                <h2>{user.name}</h2>
+                <h2>{displayName}</h2>
                 <p>{user.email}</p>
             </div>
         )
