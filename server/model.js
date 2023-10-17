@@ -213,6 +213,40 @@ Like.init(
   }
 );
 
+class Hero extends Model {
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+Hero.init(
+  {
+    heroId: { //? Unique ID
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    imgUrl: { //? Background image for home page
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    cta: { //? (call to action)
+      type: DataTypes.STRING,
+    },
+    button: { //? (Text within button)
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    link: { //? (link for button)
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    modelName: "hero",
+    sequelize: db,
+  }
+)
+
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
   console.log("Syncing to database...");
   await db.sync();
@@ -230,8 +264,7 @@ Order.belongsTo(User, { foreignKey: "userId" });
 Product.hasMany(Order, { foreignKey: "productId" });
 Order.hasMany(Product, { foreignKey: "productId" });
 Band.hasMany(Product, { foreignKey: "bandId" });
-``;
 Product.belongsTo(Band, { foreignKey: "bandId" });
 
 //exports here
-export { User, Product, Band, Order, Like, Event };
+export { User, Product, Band, Order, Like, Event, Hero };

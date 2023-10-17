@@ -22,6 +22,9 @@ import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
+import heroCtrl from "./Controllers/heroCtrl.js";
+const {getHeros} = heroCtrl
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const { getAllEvents, getBandEvents } = calCtrl;
 import { configDotenv } from "dotenv";
@@ -105,6 +108,9 @@ app.post("/getOrders", getOrders);
 // calendar endpoints
 app.get("/getAllEvents", getAllEvents);
 app.post("/getBandEvents", getBandEvents);
+
+//hero endpoints
+app.get("/getHeros", getHeros)
 
 // S3 endpoints
 // app.get("/getImage", getImage);

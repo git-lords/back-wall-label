@@ -1,6 +1,6 @@
 import connectToDB from "./db.js";
 import bcrypt from "bcryptjs";
-import { User, Product, Band, Order, Like, Event } from "./model.js";
+import { User, Product, Band, Order, Like, Event, Hero } from "./model.js";
 
 const db = await connectToDB("postgresql:///backwalldb");
 
@@ -178,6 +178,40 @@ await db.sync({ force: true }).then(async () => {
     },
   ];
 
+  const heros = [
+    {
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
+      cta: "Moon Owl's Mages at Neurolux",
+      button: "Get Tickets",
+      link: "https://www.ticketweb.com/venue/neurolux-lounge-boise-id/18976?page=1",
+    },
+    {
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+      cta: "Latest Release - Crush The Monster",
+      button: "Listen",
+      link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
+    },
+  ];
+
+  const heros = [
+    {
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
+      cta: "Moon Owl's Mages at Neurolux",
+      button: "Get Tickets",
+      link: "https://www.ticketweb.com/venue/neurolux-lounge-boise-id/18976?page=1",
+    },
+    {
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+      cta: "Latest Release - Crush The Monster",
+      button: "Listen",
+      link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
+    },
+  ];
+
   await Like.bulkCreate([
     {
       userId: 3,
@@ -216,6 +250,7 @@ await db.sync({ force: true }).then(async () => {
   await Product.bulkCreate(products);
   await Band.bulkCreate(bands);
   await Event.bulkCreate(events);
+  await Hero.bulkCreate(heros);
   await Order.bulkCreate(orders);
   await console.log("db has been successfully reset and seeded!");
 });

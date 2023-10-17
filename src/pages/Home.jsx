@@ -1,15 +1,22 @@
+import Hero from "../elements/Hero.jsx";
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
+import { ChevRight, ChevLeft } from "../../icons.jsx";
 
 export default function Home() {
-  const { user } = useAuth0();
+  const [heros, setHeros] = useState([]);
+  const [currentHero, setCurrentHero] = useState(1);
+
   useEffect(() => {
-    if (user) {
-      axios.post("/login", user);
-    }
+    axios.get("/getHeros").then((res) => {
+      setHeros(res.data);
+    });
   }, []);
 
-  return <div className="page dark:text-[#9EBC9F]">Home</div>;
+  return (
+    <div className="page dark:text-mint px-0">
+      <Hero heros={heros} currentHero={currentHero} itemsPerPage={1} />
+    </div>
+  );
 }
