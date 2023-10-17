@@ -1,13 +1,22 @@
-import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../shared/AuthContext";
 
 const LogoutButton = () => {
-    const { logout } = useAuth0();
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    return (
-        <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-            Log Out
-        </button>
-    );
+  return (
+    <button
+      onClick={async () => {
+        logout();
+        navigate("/");
+      }}
+    >
+      Log Out
+    </button>
+  );
 };
 
 export default LogoutButton;

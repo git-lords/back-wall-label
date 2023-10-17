@@ -19,16 +19,16 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    userName: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-    },
+    // email: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   unique: true,
+    // },
     password: {
       type: DataTypes.STRING(500),
     },
@@ -154,39 +154,6 @@ Event.init(
   }
 );
 
-class Order extends Model {
-  [util.inspect.custom]() {
-    return this.toJSON();
-  }
-}
-
-Order.init(
-  {
-    orderId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-    },
-    productId: {
-      type: DataTypes.INTEGER,
-    },
-    time: {
-      type: DataTypes.TIME,
-      defaultValue: Sequelize.NOW,
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
-    },
-  },
-  {
-    modelName: "order",
-    sequelize: db,
-  }
-);
-
 class Like extends Model {
   [util.inspect.custom]() {
     return this.toJSON();
@@ -220,23 +187,28 @@ class Hero extends Model {
 }
 Hero.init(
   {
-    heroId: { //? Unique ID
+    heroId: {
+      //? Unique ID
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    imgUrl: { //? Background image for home page
+    imgUrl: {
+      //? Background image for home page
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cta: { //? (call to action)
+    cta: {
+      //? (call to action)
       type: DataTypes.STRING,
     },
-    button: { //? (Text within button)
+    button: {
+      //? (Text within button)
       type: DataTypes.STRING,
       allowNull: false,
     },
-    link: { //? (link for button)
+    link: {
+      //? (link for button)
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -245,7 +217,7 @@ Hero.init(
     modelName: "hero",
     sequelize: db,
   }
-)
+);
 
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
   console.log("Syncing to database...");
@@ -255,16 +227,10 @@ if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
 
 User.hasMany(Like, { foreignKey: "userId" });
 Like.belongsTo(User, { foreignKey: "userId" });
-User.hasMany(Order, { foreignKey: "userId" });
-Order.belongsTo(User, { foreignKey: "userId" });
 Band.hasMany(Like, { foreignKey: "bandId" });
 Like.belongsTo(Band, { foreignKey: "bandId" });
-User.hasMany(Order, { foreignKey: "userId" });
-Order.belongsTo(User, { foreignKey: "userId" });
-Product.hasMany(Order, { foreignKey: "productId" });
-Order.hasMany(Product, { foreignKey: "productId" });
 Band.hasMany(Product, { foreignKey: "bandId" });
 Product.belongsTo(Band, { foreignKey: "bandId" });
 
 //exports here
-export { User, Product, Band, Order, Like, Event, Hero };
+export { User, Product, Band, Like, Event, Hero };

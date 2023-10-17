@@ -19,24 +19,31 @@ import {
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import LogoutButton from "../pages/Logout.jsx";
-import LoginButton from "../pages/Login.jsx";
 import { useNavigate } from "react-router";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
+import { AuthContext } from "../shared/AuthContext.jsx";
 
 export default function Header() {
+  const user = JSON.parse(localStorage.getItem("userContext"));
   const [showDropDown, setShowDropDown] = useState(false);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   let dropDownRef = useRef();
 
-  const navigate = useNavigate();
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  useEffect(() => {
+    window.addEventListener("keypress", (e) => {
+      if (e.key === "`") {
+        setShowLogin(!showLogin);
+      }
+    });
+  }, [showLogin]);
 
-  const displayName = isAuthenticated
-    ? user.name.includes("@")
-      ? user.nickname
-      : user.name
-    : null;
+  useEffect(() => {
+    user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  }, []);
+
+  const navigate = useNavigate();
 
   return (
     <div className="w-full flex flex-wrap justify-end fixed">
@@ -50,10 +57,6 @@ export default function Header() {
           src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
           alt="bwr text logo"
         />
-
-        {isAuthenticated ? (
-          <div className="text-white">Welcome, {user.name}!</div>
-        ) : null}
 
         <button
           onClick={() => {
@@ -86,34 +89,17 @@ export default function Header() {
           <DropDownItem img={<Bag />} text={"Merch"} />
           <DropDownItem img={<Info />} text={"About"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
-
-          {!isAuthenticated && <LoginButton />}
-
-          {isAuthenticated && (
-            <button
-              className={`group appearance-none focus:outline-none w-full `}
-              onClick={() => {
-                setShowProfileOptions(!showProfileOptions);
-              }}
-            >
-              <DropDownItem
-                img={<User />}
-                text={"Profile"}
-                showProfileOptions={showProfileOptions}
-              />
-            </button>
+          {isLoggedIn && <NavLink to={"/Profile"}>Profile</NavLink>}
+          {!isLoggedIn && (
+            <NavLink to={"/login"} className={showLogin ? "visible" : "hidden"}>
+              Login
+            </NavLink>
           )}
-          {/* {showProfileOptions && */}
           <div
             className={`profileDrop flex flex-col transition-all duration-300 items-center w-full text-burntOrange gap-y-3 -mt-6 ${
               showProfileOptions ? "active" : "inactive"
             } sm:pl-12 sm:items-start`}
-          >
-            <LoginButton />
-            <button onClick={() => logout()} className="flex">
-              Logout
-            </button>
-          </div>
+          ></div>
           {/* } */}
 
           {/* Social Links */}

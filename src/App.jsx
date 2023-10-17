@@ -17,6 +17,7 @@ import LogoutButton from "./pages/Logout.jsx";
 import Profile from "./pages/LoggedInProfile.jsx";
 import Footer from "./elements/Footer.jsx";
 import Contact from "./pages/Contact.jsx";
+import { AuthProvider } from "./shared/AuthContext.jsx";
 import "./index.css";
 
 export default function App() {
@@ -40,35 +41,39 @@ export default function App() {
 
   return (
     <div className="dark:text-white dark:bg-zinc-700">
-      <CartProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
+      <AuthProvider>
+        <CartProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          <Route path="/bands" element={<Bands />} />
-          <Route path="/bands/:band" element={<BandInfo />} />
+            <Route path="/bands" element={<Bands />} />
+            <Route path="/bands/:band" element={<BandInfo />} />
 
-          <Route
-            path="/calendar"
-            element={<Calendar darkMode={darkMode} setDarkMode={setDarkMode} />}
-          />
+            <Route
+              path="/calendar"
+              element={
+                <Calendar darkMode={darkMode} setDarkMode={setDarkMode} />
+              }
+            />
 
-          <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About />} />
 
-          <Route path="/merch" element={<Merch />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/success" element={<SuccessPage />} />
-          <Route path="/cancelOrder" element={<CancelOrder />} />
+            <Route path="/merch" element={<Merch />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/cancelOrder" element={<CancelOrder />} />
 
-          <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery" element={<Gallery />} />
 
-          <Route path="/login" element={<LoginButton />} />
-          <Route path="/logout" element={<LogoutButton />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <Footer />
-      </CartProvider>
+            <Route path="/login" element={<LoginButton />} />
+            <Route path="/logout" element={<LogoutButton />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <Footer />
+        </CartProvider>
+      </AuthProvider>
     </div>
   );
 }

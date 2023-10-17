@@ -1,6 +1,6 @@
 import connectToDB from "./db.js";
 import bcrypt from "bcryptjs";
-import { User, Product, Band, Order, Like, Event, Hero } from "./model.js";
+import { User, Product, Band, Like, Event, Hero } from "./model.js";
 
 const db = await connectToDB("postgresql:///backwalldb");
 
@@ -10,39 +10,25 @@ await db.sync({ force: true }).then(async () => {
 
   const users = [
     {
-      userName: "admin",
-      email: "admin@test.com",
+      username: "admin",
+      // email: "admin@test.com",
       password: hash,
       adminStatus: true,
       bandStatus: false,
     },
     {
-      userName: "band1",
-      email: "band1@test.com",
+      username: "band1",
+      // email: "band1@test.com",
       password: hash,
       adminStatus: false,
       bandStatus: true,
     },
     {
-      userName: "user1",
-      email: "user1@test.com",
+      username: "jack",
+      // email: "ball.jack2376@gmail.com",
       password: hash,
-      adminStatus: false,
+      adminStatus: true,
       bandStatus: true,
-    },
-    {
-      userName: "user2",
-      email: "user2@test.com",
-      password: hash,
-      adminStatus: false,
-      bandStatus: false,
-    },
-    {
-      userName: "jack",
-      email: "ball.jack2376@gmail.com",
-      password: hash,
-      adminStatus: false,
-      bandStatus: false,
     },
   ];
 
@@ -195,23 +181,6 @@ await db.sync({ force: true }).then(async () => {
     },
   ];
 
-  const heros = [
-    {
-      imgUrl:
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
-      cta: "Moon Owl's Mages at Neurolux",
-      button: "Get Tickets",
-      link: "https://www.ticketweb.com/venue/neurolux-lounge-boise-id/18976?page=1",
-    },
-    {
-      imgUrl:
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
-      cta: "Latest Release - Crush The Monster",
-      button: "Listen",
-      link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
-    },
-  ];
-
   await Like.bulkCreate([
     {
       userId: 3,
@@ -223,34 +192,10 @@ await db.sync({ force: true }).then(async () => {
     },
   ]);
 
-  const orders = [
-    {
-      userId: 3,
-      productId: 1,
-    },
-    {
-      userId: 3,
-      productId: 3,
-    },
-    {
-      userId: 4,
-      productId: 2,
-    },
-    {
-      userId: 5,
-      productId: 1,
-    },
-    {
-      userId: 5,
-      productId: 2,
-    },
-  ];
-
   await User.bulkCreate(users);
   await Product.bulkCreate(products);
   await Band.bulkCreate(bands);
   await Event.bulkCreate(events);
   await Hero.bulkCreate(heros);
-  await Order.bulkCreate(orders);
   await console.log("db has been successfully reset and seeded!");
 });

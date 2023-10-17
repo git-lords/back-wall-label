@@ -1,4 +1,4 @@
-import { Product, Order } from "../model.js";
+import { Product } from "../model.js";
 
 export default {
   getOneProduct: async (req, res) => {
