@@ -76,9 +76,9 @@ Product.init(
     bandId: {
       type: DataTypes.INTEGER,
     },
-    // imgUrl: {
-    //     type: DataTypes.STRING,
-    // },
+    imgUrls: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
   },
   {
     modelName: "product",
@@ -171,6 +171,13 @@ Order.init(
       type: DataTypes.INTEGER,
     },
     productId: {
+      type: DataTypes.INTEGER,
+    },
+    time: {
+      type: DataTypes.TIME,
+      defaultValue: Sequelize.NOW,
+    },
+    quantity: {
       type: DataTypes.INTEGER,
     },
   },

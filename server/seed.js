@@ -54,6 +54,9 @@ await db.sync({ force: true }).then(async () => {
       description: "cool shirt from a cool band! 100% cotton",
       bandId: 1,
       priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band hoodie 1",
@@ -62,6 +65,9 @@ await db.sync({ force: true }).then(async () => {
       description: "cool hoodie from a cool band! 100% cotton",
       bandId: 1,
       priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band tote 1",
@@ -70,6 +76,9 @@ await db.sync({ force: true }).then(async () => {
       description: "nice tote for carrying items",
       bandId: 2,
       priceId: "price_1O0S8FHrrNngtjIf8uLuENvs",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band tee 2",
@@ -78,6 +87,9 @@ await db.sync({ force: true }).then(async () => {
       description: "cool shirt from a cool band! 100% cotton",
       bandId: 1,
       priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band hoodie 2",
@@ -86,6 +98,9 @@ await db.sync({ force: true }).then(async () => {
       description: "cool hoodie from a cool band! 100% cotton",
       bandId: 1,
       priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "Vinyl 2",
@@ -94,6 +109,9 @@ await db.sync({ force: true }).then(async () => {
       description: "nice tote for carrying items",
       bandId: 2,
       priceId: "price_1Nzj7FHrrNngtjIf9fELBEXX",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "Vinyl 3",
@@ -102,6 +120,9 @@ await db.sync({ force: true }).then(async () => {
       description: "nice tote for carrying items",
       bandId: 2,
       priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "Vinyl 3",
@@ -110,6 +131,9 @@ await db.sync({ force: true }).then(async () => {
       description: "nice tote for carrying items",
       bandId: 2,
       priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
   ];
 

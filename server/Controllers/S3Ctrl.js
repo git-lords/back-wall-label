@@ -1,4 +1,4 @@
-// S3 stuff, trying to get it to work but found an easier route. gonna keep this here in case i wanna revive it
+//~ S3 stuff, trying to get it to work but found an easier route. gonna keep this here in case i wanna revive it
 
 // import { client } from "../index.js";
 // import { ListObjectsV2Command } from "@aws-sdk/client-s3";

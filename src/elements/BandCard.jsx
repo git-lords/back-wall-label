@@ -11,7 +11,7 @@ const BandCard = ({ bands }) => {
       imgSrc =
         "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+fisheye.jpg";
     return (
-      <div className="block h-screen bg-black">
+      <div key={band.bandName} className="block h-screen bg-black">
         <div className="flex items-center justify-evenly">
           <Link
             to={`/bands/${band.bandName}`}

@@ -63,7 +63,7 @@ app.use(
 );
 
 // auth endpoints
-app.post("/login", login);
+app.post("/api/login", login);
 app.post("/register", register);
 app.put("/updateUser", updateUser);
 app.get("/logout", logout);

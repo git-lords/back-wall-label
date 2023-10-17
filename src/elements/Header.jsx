@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   Menu,
   Calendar,
@@ -13,6 +14,8 @@ import {
   SpotifyA,
   Youtube,
   YoutubeA,
+  ChevDown,
+  ChevUp,
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
@@ -23,21 +26,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
   const [showDropDown, setShowDropDown] = useState(false);
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
   let dropDownRef = useRef();
 
   const navigate = useNavigate();
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
-  // <LoginButton />
-  //       <button onClick={() => navigate('/profile')}>Profile</button>
 
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropDownRef.current.contains(e.target)) {
-        setShowDropDown(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-  });
+  const displayName = isAuthenticated
+    ? user.name.includes("@")
+      ? user.nickname
+      : user.name
+    : null;
 
   return (
     <div className="w-full flex flex-wrap justify-end fixed">
@@ -70,6 +69,9 @@ export default function Header() {
           className={`pageOverlay ${
             showDropDown ? "active" : "inactive"
           } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
+          onClick={() => {
+            setShowDropDown(!showDropDown);
+          }}
         ></div>
         {/* Drop Down Menu */}
         <div
@@ -85,14 +87,34 @@ export default function Header() {
           <DropDownItem img={<Info />} text={"About"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
 
-          {isAuthenticated ? (
-            <>
-              <DropDownItem img={<User />} text={"Profile"} />
-              <button onClick={() => logout()}>Logout</button>
-            </>
-          ) : (
-            <button onClick={() => loginWithRedirect()}>Login</button>
+          {!isAuthenticated && <LoginButton />}
+
+          {isAuthenticated && (
+            <button
+              className={`group appearance-none focus:outline-none w-full `}
+              onClick={() => {
+                setShowProfileOptions(!showProfileOptions);
+              }}
+            >
+              <DropDownItem
+                img={<User />}
+                text={"Profile"}
+                showProfileOptions={showProfileOptions}
+              />
+            </button>
           )}
+          {/* {showProfileOptions && */}
+          <div
+            className={`profileDrop flex flex-col transition-all duration-300 items-center w-full text-burntOrange gap-y-3 -mt-6 ${
+              showProfileOptions ? "active" : "inactive"
+            } sm:pl-12 sm:items-start`}
+          >
+            <LoginButton />
+            <button onClick={() => logout()} className="flex">
+              Logout
+            </button>
+          </div>
+          {/* } */}
 
           {/* Social Links */}
           <div className="flex gap-3">
@@ -139,13 +161,10 @@ export const DropDownItem = (props) => {
       focus-within:via-zinc-300 dark:focus-within:via-zinc-900 focus-within:via-5% 
       focus-within:to-zinc-200 dark:focus-within:to-zinc-950 focus-within:to-100%
       "
+        onClick={() => setShowDropDown(!showDropDown)}
       >
         <div className="w-1/3 sm:w-1/4 self-center flex justify-end h-6">
           {props.img}
-        </div>
-        <div className="focus:outline-none text-2xl sm:text-xl w-2/4 sm:w-3/4 text-start self-center">
-          {" "}
-          {props.text}{" "}
         </div>
       </NavLink>
     </>
