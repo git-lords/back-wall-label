@@ -23,7 +23,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import heroCtrl from "./Controllers/heroCtrl.js";
-const {getHeros} = heroCtrl
+const {getHeros, addHero, editHero, deleteHero} = heroCtrl
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const { getAllEvents, getBandEvents } = calCtrl;
@@ -106,8 +106,11 @@ app.get("/getAllOrders", getAllOrders);
 app.get("/getAllEvents", getAllEvents);
 app.post("/getBandEvents", getBandEvents);
 
-//hero endpoints
+// hero endpoints
 app.get("/getHeros", getHeros)
+app.post("/addHero", addHero)
+app.put("/editHero/:heroId", editHero)
+app.delete("/deleteHero/:heroId", deleteHero)
 
 // S3 endpoints
 // app.get("/getImage", getImage);
