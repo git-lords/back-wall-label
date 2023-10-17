@@ -1,28 +1,33 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
-import { AdminHeroForm } from "../elements/adminHeroForm";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../shared/AuthContext";
+import axios from "axios";
+import LogoutButton from "./Logout";
+import Admin from "../elements/Admin";
+import BandProfile from "../elements/BandProfile";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+  const user = JSON.parse(localStorage.getItem("userContext"));
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isBand, setIsBand] = useState(false);
+  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
 
-    const displayName = isAuthenticated ? (user.name.includes('@') ? user.nickname : user.name) : null
+  useEffect(() => {
+    axios.get("/getUser").then((res) => {
+      setUserData(res.data);
+      setIsAdmin(res.data.adminStatus);
+      setIsBand(res.data.bandStatus);
+    });
+    console.log(user.data);
+    !user.data && navigate("/");
+  }, []);
 
-    if (isLoading) {
-        return <div>Loading ...</div>;
-    }
-    
-    return (
-        isAuthenticated && (
-            <div className="page h-full w-full">
-                <img src={user.picture} alt={user.name} />
-                <h2>{displayName}</h2>
-                <p>{user.email}</p>
-                <div className=" h-1/2">
-                    <AdminHeroForm/>
-                </div>
-            </div>
-        )
-    );
+  return (
+    <div className="pt-20">
+      {isAdmin ? <Admin /> : <BandProfile />} <LogoutButton />
+    </div>
+  );
 };
 
 export default Profile;

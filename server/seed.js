@@ -1,6 +1,6 @@
 import connectToDB from "./db.js";
 import bcrypt from "bcryptjs";
-import { User, Product, Band, Order, Like, Event, Hero } from "./model.js";
+import { User, Product, Band, Like, Event, Hero } from "./model.js";
 
 const db = await connectToDB("postgresql:///backwalldb");
 
@@ -10,32 +10,25 @@ await db.sync({ force: true }).then(async () => {
 
   const users = [
     {
-      userName: "admin",
-      email: "admin@test.com",
+      username: "admin",
+      // email: "admin@test.com",
       password: hash,
       adminStatus: true,
       bandStatus: false,
     },
     {
-      userName: "band1",
-      email: "band1@test.com",
+      username: "band1",
+      // email: "band1@test.com",
       password: hash,
       adminStatus: false,
       bandStatus: true,
     },
     {
-      userName: "user1",
-      email: "user1@test.com",
+      username: "jack",
+      // email: "ball.jack2376@gmail.com",
       password: hash,
-      adminStatus: false,
+      adminStatus: true,
       bandStatus: true,
-    },
-    {
-      userName: "user2",
-      email: "user2@test.com",
-      password: hash,
-      adminStatus: false,
-      bandStatus: false,
     },
   ];
 
@@ -46,7 +39,10 @@ await db.sync({ force: true }).then(async () => {
       price: 20,
       description: "cool shirt from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6"
+      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band hoodie 1",
@@ -54,7 +50,10 @@ await db.sync({ force: true }).then(async () => {
       price: 40,
       description: "cool hoodie from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18"
+      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band tote 1",
@@ -62,7 +61,10 @@ await db.sync({ force: true }).then(async () => {
       price: 20,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1O0S8FHrrNngtjIf8uLuENvs"
+      priceId: "price_1O0S8FHrrNngtjIf8uLuENvs",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band tee 2",
@@ -70,7 +72,10 @@ await db.sync({ force: true }).then(async () => {
       price: 20,
       description: "cool shirt from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6"
+      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "band hoodie 2",
@@ -78,7 +83,10 @@ await db.sync({ force: true }).then(async () => {
       price: 40,
       description: "cool hoodie from a cool band! 100% cotton",
       bandId: 1,
-      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18"
+      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "Vinyl 2",
@@ -86,7 +94,10 @@ await db.sync({ force: true }).then(async () => {
       price: 50,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1Nzj7FHrrNngtjIf9fELBEXX"
+      priceId: "price_1Nzj7FHrrNngtjIf9fELBEXX",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "Vinyl 3",
@@ -94,7 +105,10 @@ await db.sync({ force: true }).then(async () => {
       price: 50,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j"
+      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
     {
       productName: "Vinyl 3",
@@ -102,7 +116,10 @@ await db.sync({ force: true }).then(async () => {
       price: 45,
       description: "nice tote for carrying items",
       bandId: 2,
-      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j"
+      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
+      imgUrls: [
+        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
+      ],
     },
   ];
 
@@ -149,21 +166,22 @@ await db.sync({ force: true }).then(async () => {
 
   const heros = [
     {
-      imgUrl: "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
       cta: "Moon Owl's Mages at Neurolux",
       button: "Get Tickets",
       link: "https://www.ticketweb.com/venue/neurolux-lounge-boise-id/18976?page=1",
-      
     },
     {
-      imgUrl: "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
       cta: "Latest Release - Crush The Monster",
       button: "Listen",
       link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
     },
-  ]
+  ];
 
-  await Like.bulkCreate(
+  await Like.bulkCreate([
     {
       userId: 3,
       bandId: 1,
@@ -171,23 +189,8 @@ await db.sync({ force: true }).then(async () => {
     {
       userId: 4,
       bandId: 2,
-    }
-  );
-
-  await Order.bulkCreate(
-    {
-      userId: 3,
-      productId: 1,
     },
-    {
-      userId: 3,
-      productId: 3,
-    },
-    {
-      userId: 4,
-      productId: 2,
-    }
-  );
+  ]);
 
   await User.bulkCreate(users);
   await Product.bulkCreate(products);
