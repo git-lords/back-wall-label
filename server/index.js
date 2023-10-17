@@ -22,6 +22,9 @@ import { fileURLToPath } from "url";
 import heroCtrl from "./Controllers/heroCtrl.js";
 const { getHeros } = heroCtrl;
 
+import adminCtrl from "./Controllers/adminCtrl.js";
+const { getAllUsers } = adminCtrl;
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const { getAllEvents, getBandEvents } = calCtrl;
 import { configDotenv } from "dotenv";
