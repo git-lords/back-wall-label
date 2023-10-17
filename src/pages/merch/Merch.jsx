@@ -36,7 +36,10 @@ export default function Merch() {
       <br />
       <br />
       {productCount > 0 ? (
-        <h3>Merch <button onClick={() => navigate('/cart')}>Cart ({productCount} items)</button></h3>
+        <>
+          <h3>Merch</h3>
+          <button onClick={() => navigate('/cart')}>Cart ({productCount} items)</button>
+        </>
       ) : null}
       <div>
         <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>

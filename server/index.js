@@ -4,6 +4,13 @@ import morgan from "morgan";
 import ViteExpress from "vite-express";
 import session from "express-session";
 import Stripe from "stripe";
+import { configDotenv } from "dotenv";
+import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
+import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+
 
 import authCtrl from "./Controllers/authCtrl.js";
 const { login, register, updateUser, logout } = authCtrl;
@@ -18,17 +25,16 @@ import userCtrl from "./Controllers/userCtrl.js";
 const { getAllOrders } = userCtrl;
 
 import calCtrl from "./Controllers/calCtrl.js";
-import path from "path";
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
 import heroCtrl from "./Controllers/heroCtrl.js";
-const {getHeros} = heroCtrl
+const { getHeros } = heroCtrl;
+
+import newsCtrl from "./Controllers/newsCtrl.js";
+const { getAllArticles } = newsCtrl;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const { getAllEvents, getBandEvents } = calCtrl;
-import { configDotenv } from "dotenv";
-import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
+
 // import S3ctrl from "./Controllers/S3Ctrl.js";
 // const { getImage, getList } = S3ctrl;
 
@@ -109,11 +115,15 @@ app.post("/getBandEvents", getBandEvents);
 //hero endpoints
 app.get("/getHeros", getHeros)
 
+
+// news endpoints
+app.get("/getArticles", getAllArticles)
+
 // S3 endpoints
 // app.get("/getImage", getImage);
 // app.get("/getList", getList);
 
-app.get("/calendarhtml", (req, res)=>{
+app.get("/calendarhtml", (req, res) => {
   res.sendFile(path.join(__dirname, '../src/calendar.html'))
 })
 

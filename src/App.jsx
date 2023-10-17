@@ -10,6 +10,7 @@ import { SuccessPage } from './pages/merch/SuccessPage.jsx'
 import { CancelOrder } from './pages/merch/CancelOrder.jsx'
 import { Cart } from './pages/merch/Cart.jsx'
 import CartProvider from './shared/CartContext.jsx'
+import { News } from './pages/news/News.jsx';
 import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
 import { useState, useEffect } from 'react'
@@ -51,6 +52,8 @@ export default function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/success' element={<SuccessPage />} />
           <Route path='/cancelOrder' element={<CancelOrder />} />
+
+          <Route path='/news' element={<News />} />
 
           <Route path='/gallery' element={<Gallery />} />
 
