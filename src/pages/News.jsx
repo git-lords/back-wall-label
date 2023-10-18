@@ -44,10 +44,10 @@ export const News = () => {
                 <ArticleDetails article={selectedArticle} toggleArticleOff={toggleArticleOff} />
             ) : (
                 articles.map((item) => (
-                    <div key={item.articleId} onClick={() => toggleArticleOn(item)}>
-                        <h2>{item.title}</h2>
-                        <h3>{item.date}</h3>
-                        <img src={item.imgUrl} alt="concert scene" />
+                    <div key={item.articleId} >
+                        <h2> {item.date} </h2>
+                        <h3> {item.title} </h3>
+                        <img src={item.imgUrl} alt='concert scene' onClick={() => toggleArticleOn(item)} />
                     </div>
                 ))
             )}

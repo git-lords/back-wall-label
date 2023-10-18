@@ -43,7 +43,7 @@ export default function Header() {
           />
         </NavLink>
 
-        {isAuthenticated && 
+        {isAuthenticated &&
           <div className="text-white">Welcome, {displayName}!</div>
         }
 
@@ -56,7 +56,7 @@ export default function Header() {
       </div>
       <div className="w-full flex">
         <div
-          onMouseDown={() => {setShowDropDown(false);setShowProfileOptions(false)}}
+          onMouseDown={() => { setShowDropDown(false); setShowProfileOptions(false) }}
           className={`pageOverlay ${showDropDown ? "active" : "inactive"
             } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
         ></div>
@@ -74,21 +74,21 @@ export default function Header() {
           <DropDownItem img={<Photo />} text={"Gallery"} />
 
           {!isAuthenticated &&
-            <button className=" appearance-none w-full" onClick={() => {loginWithRedirect()}}>
+            <button className=" appearance-none w-full" onClick={() => { loginWithRedirect() }}>
               <DropDownItem img={<User />} text={"Login"} />
             </button>
           }
 
           {isAuthenticated &&
-            <button className={`group appearance-none focus:outline-none w-full `} onClick={() => { setShowProfileOptions(!showProfileOptions)}}>
-              <DropDownItem img={<User />} text={"Profile"} showProfileOptions={showProfileOptions}/>
+            <button className={`group appearance-none focus:outline-none w-full `} onClick={() => { setShowProfileOptions(!showProfileOptions) }}>
+              <DropDownItem img={<User />} text={"Profile"} showProfileOptions={showProfileOptions} />
             </button>
           }
           {/* {showProfileOptions && */}
-          <div className={`profileDrop flex flex-col transition-all duration-300 items-center w-full text-burntOrange gap-y-3 -mt-6 ${showProfileOptions?'active':'inactive'} sm:pl-12 sm:items-start`}>
+          <div className={`profileDrop flex flex-col transition-all duration-300 items-center w-full text-burntOrange gap-y-3 -mt-6 ${showProfileOptions ? 'active' : 'inactive'} sm:pl-12 sm:items-start`}>
             <NavLink to={'/Profile'} className={'flex '} >View Profile</NavLink>
             <button onClick={() => logout()} className="flex">Logout</button>
-          </div> 
+          </div>
           {/* } */}
 
           {/* Social Links */}
@@ -140,7 +140,7 @@ export const DropDownItem = (props) => {
   return (
     <>
       <NavLink
-        style={{pointerEvents: (props.text === 'Profile') && 'none' }}
+        style={{ pointerEvents: (props.text === 'Profile') && 'none' }}
         to={`/${props.text}`}
         className="flex w-full p-2 text-center justify-center gap-10 sm:gap-3 text-burntOrange
       hover:mb-2
@@ -156,12 +156,12 @@ export const DropDownItem = (props) => {
         </div>
         <div className="focus:outline-none text-2xl sm:text-xl w-2/4 sm:w-3/4 text-start self-center flex justify-between">
           {props.text}
-        {props.text === "Profile" &&
-          <div className={`self-center mr-4 ${props.showProfileOptions ? 'rotate-180' : 'rotate-0'} transition-all duration-500 `}>
-            <ChevDown/>
-          </div>
-          
-        }
+          {props.text === "Profile" &&
+            <div className={`self-center mr-4 ${props.showProfileOptions ? 'rotate-180' : 'rotate-0'} transition-all duration-500 `}>
+              <ChevDown />
+            </div>
+
+          }
         </div>
       </NavLink>
     </>

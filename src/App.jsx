@@ -10,7 +10,7 @@ import { SuccessPage } from './pages/merch/SuccessPage.jsx'
 import { CancelOrder } from './pages/merch/CancelOrder.jsx'
 import { Cart } from './pages/merch/Cart.jsx'
 import CartProvider from './shared/CartContext.jsx'
-import { News } from './pages/news/News.jsx';
+import { News } from './pages/News.jsx';
 import Gallery from './pages/Gallery.jsx'
 import Header from './elements/Header.jsx'
 import { useState, useEffect } from 'react'
