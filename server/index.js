@@ -27,7 +27,7 @@ import heroCtrl from "./Controllers/heroCtrl.js";
 const { getHeros } = heroCtrl;
 
 import newsCtrl from "./Controllers/newsCtrl.js";
-const { getAllArticles } = newsCtrl;
+const { getAllArticles, addArticle, updateArticle, removeArticle } = newsCtrl;
 
 // import S3ctrl from "./Controllers/S3Ctrl.js";
 // const { getImage, getList } = S3ctrl;
@@ -123,6 +123,9 @@ app.get("/getHeros", getHeros);
 
 // news endpoints
 app.get("/getArticles", getAllArticles)
+app.post("/newArticle", addArticle)
+app.put("/editArticle/:id", updateArticle)
+app.delete("/article/:id", removeArticle)
 
 // S3 endpoints
 // app.get("/getImage", getImage);
