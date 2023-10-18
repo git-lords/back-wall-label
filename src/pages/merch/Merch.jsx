@@ -30,6 +30,7 @@ export default function Merch() {
     const fetchData = async () => {
       try {
         const response = await axios.get("getAllProducts");
+        console.log(response.data);
         setProductData(response.data);
       } catch (error) {
         console.error("Error getting products:", error);
