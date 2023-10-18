@@ -52,11 +52,13 @@ export default function Header() {
       bg-mint
       dark:bg-zinc-950"
       >
-        <img
-          className=""
+        <NavLink to={'/'}>
+          <img
+          className=" h-full"
           src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
           alt="bwr text logo"
-        />
+          />
+        </NavLink>
 
         <button
           onClick={() => {
@@ -86,7 +88,8 @@ export default function Header() {
           <DropDownItem img={<Info />} text={"About"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Music />} text={"News"} />
-          {isLoggedIn && <NavLink to={"/Profile"}>Profile</NavLink>}
+          {isLoggedIn && 
+          <NavLink to={"/Profile"}>Profile</NavLink>}
           {!isLoggedIn && (
             <NavLink to={"/login"} className={showLogin ? "visible" : "hidden"}>
               Login
@@ -99,31 +102,33 @@ export default function Header() {
           {/* } */}
 
           {/* Social Links */}
-          <div className="flex gap-3">
-            <button className="group/insta flex relative h-10 w-10">
+          <div className="flex gap-3 mt-10">
+            <NavLink to={"https://www.instagram.com/back.wall.records/"} target="_blank" className="group/insta flex relative h-10 w-10">
               <div className="text-burntOrange group-hover/insta:opacity-0 absolute top-0 right-0 left-0">
                 <Instagram />
               </div>
               <div className="peer opacity-0 absolute group-hover/insta:opacity-100 text-lightOrange top-0 right-0 left-0">
                 <InstagramA />
               </div>
-            </button>
-            <button className="group/yout flex relative h-10 w-10">
-              <div className="text-burntOrange group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
-                <Youtube />
-              </div>
-              <div className="peer opacity-0 absolute group-hover/yout:opacity-100 text-lightOrange top-0 right-0 left-0">
-                <YoutubeA />
-              </div>
-            </button>
-            <button className="group/spot flex relative h-10 w-10">
+            </NavLink>
+
+            <NavLink to={"https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1"} target="_blank" className="group/spot flex relative h-10 w-10">
               <div className="text-burntOrange group-hover/spot:opacity-0 absolute top-0 right-0 left-0">
                 <Spotify />
               </div>
               <div className="peer opacity-0 absolute group-hover/spot:opacity-100 text-lightOrange top-0 right-0 left-0">
                 <SpotifyA />
               </div>
-            </button>
+            </NavLink>
+
+            <NavLink to={"https://www.youtube.com/@backwallrecords356"} target="_blank" className="group/yout flex relative h-10 w-10">
+              <div className="text-burntOrange group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
+                <Youtube />
+              </div>
+              <div className="peer opacity-0 absolute group-hover/yout:opacity-100 text-lightOrange top-0 right-0 left-0">
+                <YoutubeA />
+              </div>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -155,7 +160,6 @@ export const DropDownItem = (props) => {
             <div className={`self-center mr-4 ${props.showProfileOptions ? 'rotate-180' : 'rotate-0'} transition-all duration-500 `}>
               <ChevDown />
             </div>
-
           }
         </div>
       </NavLink>

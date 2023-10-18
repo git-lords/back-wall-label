@@ -24,7 +24,7 @@ const { getBand, getAllBands } = bandCtrl;
 import calCtrl from "./Controllers/calCtrl.js";
 
 import heroCtrl from "./Controllers/heroCtrl.js";
-const { getHeros } = heroCtrl;
+const { getHeros, addHero, editHero, deleteHero } = heroCtrl;
 
 import newsCtrl from "./Controllers/newsCtrl.js";
 const { getAllArticles, addArticle, updateArticle, removeArticle } = newsCtrl;
@@ -119,6 +119,9 @@ app.post("/getBandEvents", getBandEvents);
 
 //hero endpoints
 app.get("/getHeros", getHeros);
+app.post("/addHero", addHero)
+app.put("/editHero/:heroId", editHero)
+app.delete("/deleteHero/:heroId", deleteHero)
 
 
 // news endpoints

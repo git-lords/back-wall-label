@@ -51,24 +51,17 @@ export default function App() {
             <Route path="/bands" element={<Bands />} />
             <Route path="/bands/:band" element={<BandInfo />} />
 
-            <Route
-              path="/calendar"
-              element={
-                <Calendar darkMode={darkMode} setDarkMode={setDarkMode} />
-              }
-            />
-
+            <Route path="/calendar"
+              element={<Calendar 
+              darkMode={darkMode} 
+              setDarkMode={setDarkMode} />}/>
             <Route path="/about" element={<About />} />
-
             <Route path="/merch" element={<Merch />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/cancelOrder" element={<CancelOrder />} />
-
             <Route path='/news' element={<News />} />
-
             <Route path='/gallery' element={<Gallery />} />
-
             <Route path="/login" element={<LoginButton />} />
             <Route path="/logout" element={<LogoutButton />} />
             <Route path="/profile" element={<Profile />} />

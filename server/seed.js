@@ -166,15 +166,13 @@ await db.sync({ force: true }).then(async () => {
 
   const heros = [
     {
-      imgUrl:
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
+      imgUrl: "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
       cta: "Moon Owl's Mages at Neurolux",
       button: "Get Tickets",
       link: "https://www.ticketweb.com/venue/neurolux-lounge-boise-id/18976?page=1",
     },
     {
-      imgUrl:
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+      imgUrl: "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
       cta: "Latest Release - Crush The Monster",
       button: "Listen",
       link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
