@@ -30,6 +30,7 @@ export const News = () => {
             try {
                 const response = await axios.get('/getArticles');
                 setArticles(response.data);
+                console.log(response.data)
             } catch (err) {
                 console.error("Error getting news articles:", err);
             }

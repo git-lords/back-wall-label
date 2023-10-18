@@ -3,13 +3,14 @@ import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="w-full flex h-60 justify-evenly p-4">
+    <div className="w-screen flex h-60 justify-evenly p-4">
       <div className="basis-1/3 flex flex-col justify-between">
         <nav className="flex justify-evenly text-sm">
           <NavLink to={"/bands"}>Bands</NavLink>
           <NavLink to={"/calendar"}>Calendar</NavLink>
           <NavLink to={"/merch"}>Merch</NavLink>
           <NavLink to={"/about"}>About Us</NavLink>
+          <NavLink to={"/contact"}>Contact</NavLink>
           <NavLink to={"/gallery"}>Gallery</NavLink>
           <NavLink to={"/login"}>Login</NavLink>
         </nav>
