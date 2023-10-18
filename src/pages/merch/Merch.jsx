@@ -15,7 +15,10 @@ export default function Merch() {
   );
 
   useEffect(() => {
-    stripe.products.list().then((res) => console.log(res.data));
+    stripe.products.list().then((res) => {
+      setProductData(res.data);
+      console.log(res.data);
+    });
   }, []);
 
   const cart = useContext(CartContext);
@@ -26,19 +29,19 @@ export default function Merch() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("getAllProducts");
-        console.log(response.data);
-        setProductData(response.data);
-      } catch (error) {
-        console.error("Error getting products:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get("getAllProducts");
+  //       console.log(response.data);
+  //       setProductData(response.data);
+  //     } catch (error) {
+  //       console.error("Error getting products:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const filteredProducts =
     selectedCategory === "--filter by category--"
@@ -98,29 +101,31 @@ export default function Merch() {
           ))}
         </>
       ) : (
-        <>
-          {productData.map((product) => (
-            <div
-              key={product.productId}
-              style={{ border: "1px solid black", height: "100%" }}
-            >
-              <img
-                src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png"
-                alt="clothing-product"
-                height={150}
-                width={150}
-              />
-              <Product
-                initialDetails={{
-                  productId: product.productId,
-                  productName: product.productName,
-                  price: product.price,
-                  description: product.description,
-                  category: product.category,
-                }}
-              />
-            </div>
-          ))}
+        <key>
+          {productData.map((product) => {
+            console.log(product);
+            return (
+              <div
+                key={product.productId}
+                style={{ border: "1px solid black", height: "100%" }}
+              >
+                <img
+                  src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png"
+                  alt="clothing-product"
+                  height={150}
+                  width={150}
+                />
+                <Product
+                  initialDetails={{
+                    productId: product.id,
+                    productName: product.name,
+                    description: product.description,
+                    // category: product.features[0].name,
+                  }}
+                />
+              </div>
+            );
+          })}
         </>
       )}
     </>
