@@ -85,6 +85,7 @@ export default function Header() {
           <DropDownItem img={<Bag />} text={"Merch"} />
           <DropDownItem img={<Info />} text={"About"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
+          <DropDownItem img={<Music />} text={"News"} />
           {isLoggedIn && <NavLink to={"/Profile"}>Profile</NavLink>}
           {!isLoggedIn && (
             <NavLink to={"/login"} className={showLogin ? "visible" : "hidden"}>
