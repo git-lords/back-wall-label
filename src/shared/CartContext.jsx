@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import Stripe from "stripe";
 
 //Context ( cart, addToCart, removeCart, deleteCart, getTotal, getQuantity )
 //Provider - gives app access to all things in context
@@ -16,19 +17,15 @@ export const CartContext = createContext({
 export function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
   const [productData, setProductData] = useState([]);
+  const stripe = Stripe(
+    "sk_test_51IRnJgK0mJ6IuZSRS1BZnXo3qpugm5CjPSZ6TULycYHtkBElg38SOGsPNrLf9Lg7o3S2ucxtANTVl0JGcftJxPM300GAjhhSIq"
+  );
 
-  //Code for get products
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("getAllProducts");
-        setProductData(response.data);
-      } catch (error) {
-        console.error("Error getting products:", error);
-      }
-    };
-
-    fetchData();
+    stripe.products.list().then((res) => {
+      setProductData(res.data);
+      console.log(res.data);
+    });
   }, []);
 
   function getProductQuantity(id) {
@@ -52,16 +49,17 @@ export function CartProvider({ children }) {
         )
       );
     } else {
-      const response = await axios.get(`/getProduct/${id}`);
+      const response = await stripe.products.retrieve(id);
+      const amount = await stripe.prices.retrieve(response.default_price);
 
       const newProduct = {
         id: id,
         quantity: 1,
-        name: response.data.productName,
-        price: response.data.price,
-        description: response.data.description,
-        category: response.data.category,
-        priceId: response.data.priceId,
+        name: response.name,
+        price: amount.unit_amount / 100,
+        description: response.description,
+        category: response.features[0].name,
+        image: response.images[0],
       };
       setCartProducts([...cartProducts, newProduct]);
     }
@@ -92,18 +90,11 @@ export function CartProvider({ children }) {
   }
 
   function getTotalCost() {
-    let totalCost = 0;
-    if (productData) {
-      cartProducts.forEach((cartItem) => {
-        const productInCart = productData.find(
-          (product) => product.productId === cartItem.id
-        );
-        if (productInCart) {
-          totalCost += productInCart.price * cartItem.quantity;
-        }
-      });
-    }
-    return totalCost;
+    if (cartProducts) {
+      return cartProducts.reduce((acc, product) => {
+        return acc + product.price * product.quantity;
+      }, 0);
+    } else return 0;
   }
 
   const contextValue = {

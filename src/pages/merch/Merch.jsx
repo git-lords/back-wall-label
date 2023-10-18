@@ -29,33 +29,20 @@ export default function Merch() {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("getAllProducts");
-  //       console.log(response.data);
-  //       setProductData(response.data);
-  //     } catch (error) {
-  //       console.error("Error getting products:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   const filteredProducts =
     selectedCategory === "--filter by category--"
       ? productData
-      : productData.filter((product) => product.category === selectedCategory);
+      : productData.filter(
+          (product) =>
+            product.features[0].name.toLowerCase() ===
+            selectedCategory.toLowerCase()
+        );
 
   return (
-    <>
-      <br />
-      <br />
-      <br />
+    <div className="pt-20 border">
       {productCount > 0 ? (
         <h3>
-          Merch{" "}
+          Merch
           <button onClick={() => navigate("/cart")}>
             Cart ({productCount} items)
           </button>
@@ -101,26 +88,21 @@ export default function Merch() {
           ))}
         </>
       ) : (
-        <key>
+        <>
           {productData.map((product) => {
-            console.log(product);
             return (
               <div
                 key={product.productId}
                 style={{ border: "1px solid black", height: "100%" }}
               >
-                <img
-                  src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png"
-                  alt="clothing-product"
-                  height={150}
-                  width={150}
-                />
                 <Product
                   initialDetails={{
                     productId: product.id,
                     productName: product.name,
                     description: product.description,
-                    // category: product.features[0].name,
+                    category: product.features[0].name,
+                    price: product.default_price,
+                    image: product.images[0],
                   }}
                 />
               </div>
@@ -128,6 +110,6 @@ export default function Merch() {
           })}
         </>
       )}
-    </>
+    </div>
   );
 }
