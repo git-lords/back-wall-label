@@ -89,18 +89,12 @@ export default function Header() {
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Music />} text={"News"} />
           {isLoggedIn && 
-          <NavLink to={"/Profile"}>Profile</NavLink>}
-          {!isLoggedIn && (
-            <NavLink to={"/login"} className={showLogin ? "visible" : "hidden"}>
-              Login
-            </NavLink>
-          )}
-          <div
-            className={`profileDrop flex flex-col transition-all duration-300 items-center w-full text-burntOrange gap-y-3 -mt-6 ${showProfileOptions ? "active" : "inactive"
-              } sm:pl-12 sm:items-start`}
-          ></div>
-          {/* } */}
-
+          <DropDownItem img={<User />} text={"Profile"}/>
+          }
+          {(!isLoggedIn && showLogin) && 
+          <DropDownItem img={<User/>} text={"Login"} />
+          }
+          
           {/* Social Links */}
           <div className="flex gap-3 mt-10">
             <NavLink to={"https://www.instagram.com/back.wall.records/"} target="_blank" className="group/insta flex relative h-10 w-10">
@@ -139,7 +133,6 @@ export const DropDownItem = (props) => {
   return (
     <>
       <NavLink
-        style={{ pointerEvents: (props.text === 'Profile') && 'none' }}
         to={`/${props.text}`}
         className="flex w-full p-2 text-center justify-center first:mt-4 gap-10 sm:gap-3 text-burntOrange
       hover:mb-2
@@ -156,11 +149,6 @@ export const DropDownItem = (props) => {
         </div>
         <div className="focus:outline-none text-2xl sm:text-xl w-2/4 sm:w-3/4 text-start self-center flex justify-between">
           {props.text}
-          {props.text === "Profile" &&
-            <div className={`self-center mr-4 ${props.showProfileOptions ? 'rotate-180' : 'rotate-0'} transition-all duration-500 `}>
-              <ChevDown />
-            </div>
-          }
         </div>
       </NavLink>
     </>
