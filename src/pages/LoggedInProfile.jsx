@@ -22,7 +22,7 @@ const Profile = () => {
     console.log(user.data);
     !user.data && navigate("/");
   }, []);
-
+console.log(isAdmin)
   return (
     <div className="pt-20">
       {isAdmin ? <Admin /> : <BandProfile />} <LogoutButton />

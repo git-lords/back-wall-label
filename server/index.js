@@ -4,6 +4,13 @@ import morgan from "morgan";
 import ViteExpress from "vite-express";
 import session from "express-session";
 import Stripe from "stripe";
+import { configDotenv } from "dotenv";
+import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
+import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+
 
 import authCtrl from "./Controllers/authCtrl.js";
 const { login, register, updateUser, logout, getUser } = authCtrl;
@@ -15,20 +22,21 @@ import bandCtrl from "./Controllers/bandCrtl.js";
 const { getBand, getAllBands } = bandCtrl;
 
 import calCtrl from "./Controllers/calCtrl.js";
-import path from "path";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 
 import heroCtrl from "./Controllers/heroCtrl.js";
-const { getHeros } = heroCtrl;
+const { getHeros, addHero, editHero, deleteHero } = heroCtrl;
 
+import newsCtrl from "./Controllers/newsCtrl.js";
+const { getAllArticles, addArticle, updateArticle, removeArticle } = newsCtrl;
+
+// import S3ctrl from "./Controllers/S3Ctrl.js";
+// const { getImage, getList } = S3ctrl;
 import adminCtrl from "./Controllers/adminCtrl.js";
 const { getAllUsers } = adminCtrl;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const { getAllEvents, getBandEvents } = calCtrl;
-import { configDotenv } from "dotenv";
-import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
+
 
 // configures dotenv
 configDotenv();
@@ -111,6 +119,16 @@ app.post("/getBandEvents", getBandEvents);
 
 //hero endpoints
 app.get("/getHeros", getHeros);
+app.post("/addHero", addHero)
+app.put("/editHero/:heroId", editHero)
+app.delete("/deleteHero/:heroId", deleteHero)
+
+
+// news endpoints
+app.get("/getArticles", getAllArticles)
+app.post("/newArticle", addArticle)
+app.put("/editArticle/:id", updateArticle)
+app.delete("/article/:id", removeArticle)
 
 // S3 endpoints
 // app.get("/getImage", getImage);

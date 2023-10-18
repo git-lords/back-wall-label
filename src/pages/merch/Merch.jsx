@@ -41,12 +41,12 @@ export default function Merch() {
   return (
     <div className="pt-20 border">
       {productCount > 0 ? (
-        <h3>
-          Merch
+        <>
+          <h3>Merch</h3>
           <button onClick={() => navigate("/cart")}>
             Cart ({productCount} items)
           </button>
-        </h3>
+        </>
       ) : null}
       <div>
         <select
