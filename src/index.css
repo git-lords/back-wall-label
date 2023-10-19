@@ -9,6 +9,11 @@
     @apply h-screen pt-14 bg-zinc-200 bg-gradient-to-t from-zinc-300 dark:bg-zinc-900 dark:from-zinc-950 overflow-x-hidden
 }
 
+.heroButton {
+    filter:drop-shadow(2px,2px,5px,5px, green);
+    
+}
+
 .profileDrop.active{
     opacity: 1;
     visibility: visible;

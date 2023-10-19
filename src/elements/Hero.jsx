@@ -3,17 +3,19 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { ChevRight, ChevLeft } from '../../icons.jsx';
+import { Transition } from '@headlessui/react';
+import { useTimeoutFn } from 'react-use';
+
 
 
 export default function Hero({ heros, currentHero, itemsPerPage }) {
-    const [paused, setPaused] = useState(false)
+    
     const [currentPage, setCurrentPage] = useState(0)
+    const [show, setShow] = useState(false)
+    let [, , resetIsShowing] = useTimeoutFn(() => setShow(false), 7200)
 
     const totalPages = (heros.length -1)
-    // const indexOfLastItem = currentPage * itemsPerPage
-    // const indexOfFirstItem = indexOfLastItem - itemsPerPage
-    // const currentItems = heros.slice(indexOfFirstItem, indexOfLastItem)
-
+    
     const paginate = pageNumber => setCurrentPage(pageNumber)
 
     const previousPage = () => {
@@ -24,7 +26,6 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
         }
     }
     const nextPage = () => {
-        
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         } else if(currentPage >= totalPages){
@@ -32,15 +33,26 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
         }
     }
     useEffect(()=> {
+        
         const end = heros.length === 0 ? 1 : totalPages
         const next = currentPage+1 > end ? 0 : (currentPage + 1) 
-        const id = setTimeout(()=> setCurrentPage(next),7000)
-        return () => clearTimeout(id)}, [currentPage])
+        const id = setTimeout(()=> {setCurrentPage(next)},8000)
+        return () => {setShow(true),clearTimeout(id), resetIsShowing()}}, [currentPage])
 
 
     return (
-        heros[currentPage] && <div className='h-[70vh] w-full text-white flex '>
-            
+        heros[currentPage] && 
+        <Transition
+            appear={currentPage}
+            show={show}
+            enter="transition ease-out duration-500 transform"
+            enterFrom="translate-x-full"
+            enterTo="translate-x-0 "
+            leave="transition ease-in delay-200 duration-500 transform"
+            leaveFrom=" translate-x-0"
+            leaveTo="-translate-x-full"
+            >
+            <div className='h-[70vh] w-full text-white flex '>
                 <div key={heros[currentPage].heroId} >
                     
                     <div className={`w-screen bg-cover bg-center px-2 flex flex-col`} style={{ backgroundImage: `url(${heros[currentPage].imgUrl})`, height: "90vh" }}>
@@ -48,7 +60,7 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
                         {/* Page select arrows */}
                         <div className="flex w-full justify-between px-2 h-1/2 items-end ">
                             <button className='hover:text-darkMint' onClick={previousPage} ><ChevLeft /></button>
-                            <button className='hover:text-darkMint' onClick={nextPage}><ChevRight /></button>
+                            <button className='hover:text-darkMint ' onClick={nextPage}><ChevRight /></button>
                         </div>
 
                         <div className='h-[40%] flex flex-col p-4 justify-end gap-6 ml-10 items-start'>
@@ -61,7 +73,7 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
                         <div className='h-[10%] flex justify-center gap-6 items-center'>
                             {Array.from({ length: totalPages + 1 }).map((_, index) => (
                                 <div key={index}>
-                                    <button className={`shadow-xl shadow-black rounded-full bg-zinc-200 h-4 w-4 ${index + 1 === currentPage ? 'text-mint' : ''}`} onClick={() => paginate(index + 1)}>
+                                    <button className={`heroButton rounded-full bg-zinc-200 h-4 w-4 ${index + 1 === currentPage ? 'text-mint' : ''}`} onClick={() => paginate(index + 1)}>
                                         
                                     </button>
                                 </div>
@@ -69,7 +81,7 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
                         </div>
                     </div>
                 </div>
-            
-        </div>
+            </div>
+        </Transition>
     )
 }

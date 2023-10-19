@@ -57,16 +57,19 @@ export const AdminHeroForm = () => {
         <summary>Create a Hero</summary>
         <form className='flex flex-col' onSubmit={() => addHero()} >
         <label htmlFor="img url">Image URL: </label>
-          <input id='img url' className='bg-zinc-600' type="text" onChange={e=>setImgUrl(e.target.value)} />
+          <input id='img url' className='dark:bg-zinc-600' type="text" onChange={e=>setImgUrl(e.target.value)} />
+{/* FIXME when a file is uploaded Chrome will block it. Error: not allowed to load local resource */}
+        {/* <label htmlFor="img file">or </label>
+          <input id='img file' className='dark:bg-zinc-600' type="file" onChange={e=>setImgUrl(e.target.value)} /> */}
 
           <label htmlFor="title">Title: </label>
-          <input id='title' className='bg-zinc-600' type="text" onChange={e=>setCta(e.target.value)} />
+          <input id='title' className='dark:bg-zinc-600' type="text" onChange={e=>setCta(e.target.value)} />
 
           <label htmlFor="button text">Button Text: </label>
-          <input id='button text' className='bg-zinc-600' type="text" onChange={e=>setButton(e.target.value)} />
+          <input id='button text' className='dark:bg-zinc-600' type="text" onChange={e=>setButton(e.target.value)} />
 
           <label htmlFor="button link">Button Link: </label>
-          <input id='button link' className='bg-zinc-600' type="text" onChange={e=>setLink(e.target.value)} />
+          <input id='button link' className='dark:bg-zinc-600' type="text" onChange={e=>setLink(e.target.value)} />
           <button className='border border-solid m-2' onClick={() => { console.log("submit") }}>Submit</button>
         </form>
       </details>
