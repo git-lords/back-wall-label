@@ -21,7 +21,7 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
-import { AuthContext } from "../shared/AuthContext.jsx";
+import { CartContext } from "../shared/CartContext.jsx";
 
 export default function Header() {
   const user = JSON.parse(localStorage.getItem("userContext"));
@@ -30,6 +30,7 @@ export default function Header() {
   const [showLogin, setShowLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let dropDownRef = useRef();
+  const cart = useContext(CartContext);
 
   useEffect(() => {
     window.addEventListener("keypress", (e) => {
@@ -59,6 +60,12 @@ export default function Header() {
             alt="bwr text logo"
           />
         </NavLink>
+
+        {/* CART */}
+
+        {cart.items.length > 0 && (
+          <button onClick={() => navigate("/cart")}>Cart</button>
+        )}
 
         <button
           onClick={() => {

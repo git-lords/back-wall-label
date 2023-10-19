@@ -17,7 +17,6 @@ export default function Merch() {
   useEffect(() => {
     stripe.products.list().then((res) => {
       setProductData(res.data);
-      console.log(res.data);
     });
   }, []);
 
@@ -39,62 +38,32 @@ export default function Merch() {
         );
 
   return (
-    <div className="pt-20 border">
-      {productCount > 0 ? (
-        <>
-          <h3>Merch</h3>
-          <button onClick={() => navigate("/cart")}>
-            Cart ({productCount} items)
-          </button>
-        </>
-      ) : null}
-      <div>
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="--filter by category--">--filter by category--</option>
-          <option value="T-Shirt">T-Shirt</option>
-          <option value="Hoodie">Hoodie</option>
-          <option value="Tote">Tote</option>
-          <option value="Record">Record</option>
-        </select>
+    <div className="pt-20">
+      <div className="border mx-4 flex h-[5vh] items-center justify-between">
+        <h1 className="text-3xl mx-4">Merchandise</h1>
+        <span>
+          <label htmlFor="filter" className="mx-4">
+            Filter by:
+          </label>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="bg-inherit mx-4"
+            id="filter"
+          >
+            <option value="--filter by category--">All</option>
+            <option value="T-Shirt">T-Shirt</option>
+            <option value="Sticker">Sticker</option>
+            {/* <option value="Tote">Tote</option> */}
+            {/* <option value="Record">Record</option> */}
+          </select>
+        </span>
       </div>
-
-      {selectedCategory !== "--filter by category--" ? (
-        <>
-          <h3>Selected Category: {selectedCategory}</h3>
-          {filteredProducts.map((product) => (
-            <div
-              key={product.productId}
-              style={{ border: "1px solid black", height: "100%" }}
-            >
-              <img
-                src="https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png"
-                alt="clothing-product"
-                height={150}
-                width={150}
-              />
-              <Product
-                initialDetails={{
-                  productId: product.productId,
-                  productName: product.productName,
-                  price: product.price,
-                  description: product.description,
-                  category: product.category,
-                }}
-              />
-            </div>
-          ))}
-        </>
-      ) : (
-        <>
-          {productData.map((product) => {
-            return (
-              <div
-                key={product.productId}
-                style={{ border: "1px solid black", height: "100%" }}
-              >
+      <div className="border flex h-full justify-evenly flex-wrap m-4">
+        {selectedCategory !== "--filter by category--" ? (
+          <>
+            {filteredProducts.map((product) => (
+              <div key={product.productId} className="w-1/4">
                 <Product
                   initialDetails={{
                     productId: product.id,
@@ -106,10 +75,30 @@ export default function Merch() {
                   }}
                 />
               </div>
-            );
-          })}
-        </>
-      )}
+            ))}
+          </>
+        ) : (
+          <>
+            {productData.map((product) => {
+              return (
+                <div key={product.productId} className="w-1/4">
+                  <Product
+                    initialDetails={{
+                      productId: product.id,
+                      productName: product.name,
+                      description: product.description,
+                      category: product.features[0].name,
+                      price: product.default_price,
+                      image: product.images[0],
+                      band: product.features[1].name,
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </>
+        )}
+      </div>
     </div>
   );
 }

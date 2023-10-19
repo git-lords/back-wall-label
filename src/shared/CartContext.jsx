@@ -24,8 +24,11 @@ export function CartProvider({ children }) {
   useEffect(() => {
     stripe.products.list().then((res) => {
       setProductData(res.data);
-      console.log(res.data);
     });
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCartProducts(JSON.parse(savedCart));
+    }
   }, []);
 
   function getProductQuantity(id) {
@@ -54,6 +57,7 @@ export function CartProvider({ children }) {
 
       const newProduct = {
         id: id,
+        priceId: response.default_price,
         quantity: 1,
         name: response.name,
         price: amount.unit_amount / 100,
@@ -63,6 +67,7 @@ export function CartProvider({ children }) {
       };
       setCartProducts([...cartProducts, newProduct]);
     }
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
   };
 
   function removeOneFromCart(id) {
@@ -79,6 +84,7 @@ export function CartProvider({ children }) {
         )
       );
     }
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
   }
 
   function deleteFromCart(id) {
@@ -87,6 +93,7 @@ export function CartProvider({ children }) {
         return currentProduct.id !== id;
       })
     );
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
   }
 
   function getTotalCost() {
@@ -97,6 +104,11 @@ export function CartProvider({ children }) {
     } else return 0;
   }
 
+  function clearCart() {
+    setCartProducts([]);
+    localStorage.clear();
+  }
+
   const contextValue = {
     items: cartProducts,
     getProductQuantity,
@@ -104,6 +116,7 @@ export function CartProvider({ children }) {
     removeOneFromCart,
     deleteFromCart,
     getTotalCost,
+    clearCart,
   };
 
   return (

@@ -7,16 +7,11 @@ import Stripe from "stripe";
 import { configDotenv } from "dotenv";
 import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
 import path from "path";
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 import authCtrl from "./Controllers/authCtrl.js";
 const { login, register, updateUser, logout, getUser } = authCtrl;
-
-import merchCtrl from "./Controllers/merchCtrl.js";
-const { getOneProduct, getAllProducts } = merchCtrl;
 
 import bandCtrl from "./Controllers/bandCrtl.js";
 const { getBand, getAllBands } = bandCtrl;
@@ -36,7 +31,6 @@ const { getAllUsers } = adminCtrl;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const { getAllEvents, getBandEvents } = calCtrl;
-
 
 // configures dotenv
 configDotenv();
@@ -85,32 +79,32 @@ app.get("/getUser", getUser);
 app.get("/getBand", getBand);
 app.get("/getAllBands", getAllBands);
 
-// merch endpoints
-app.get("/getProduct/:id", getOneProduct);
-app.get("/getAllProducts", getAllProducts);
-
 // Admin endpoints
 app.get("/getAllUsers", getAllUsers);
 
 app.post("/checkout", async (req, res) => {
-  console.log(req.body);
-  const items = req.body.items;
-  let lineItems = [];
-  items.forEach((item) => {
-    lineItems.push({
-      price: item.priceId,
-      quantity: item.quantity,
+  try {
+    console.log("checkout");
+    const items = req.body.items;
+    let lineItems = [];
+    items.forEach((item) => {
+      lineItems.push({
+        price: item.priceId,
+        quantity: item.quantity,
+      });
     });
-  });
 
-  const stripeSession = await stripe.checkout.sessions.create({
-    line_items: lineItems,
-    mode: "payment",
-    success_url: `http://localhost:${PORT}/success`,
-    cancel_url: `http://localhost:${PORT}/cancel`,
-  });
+    const stripeSession = await stripe.checkout.sessions.create({
+      line_items: lineItems,
+      mode: "payment",
+      success_url: `http://localhost:${PORT}/success`,
+      cancel_url: `http://localhost:${PORT}/cancel`,
+    });
 
-  res.send(JSON.stringify({ url: stripeSession.url }));
+    res.send(JSON.stringify({ url: stripeSession.url }));
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // calendar endpoints
@@ -119,16 +113,15 @@ app.post("/getBandEvents", getBandEvents);
 
 //hero endpoints
 app.get("/getHeros", getHeros);
-app.post("/addHero", addHero)
-app.put("/editHero/:heroId", editHero)
-app.delete("/deleteHero/:heroId", deleteHero)
-
+app.post("/addHero", addHero);
+app.put("/editHero/:heroId", editHero);
+app.delete("/deleteHero/:heroId", deleteHero);
 
 // news endpoints
-app.get("/getArticles", getAllArticles)
-app.post("/newArticle", addArticle)
-app.put("/editArticle/:id", updateArticle)
-app.delete("/article/:id", removeArticle)
+app.get("/getArticles", getAllArticles);
+app.post("/newArticle", addArticle);
+app.put("/editArticle/:id", updateArticle);
+app.delete("/article/:id", removeArticle);
 
 // S3 endpoints
 // app.get("/getImage", getImage);
