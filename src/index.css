@@ -31,7 +31,7 @@
 .dropDownMenu.inactive{
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-30px);
+    transform: translateX(30px);
     height: 0;
 }
 .pageOverlay.active {
