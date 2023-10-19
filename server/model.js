@@ -242,7 +242,7 @@ Article.init(
       type: DataTypes.DATEONLY,
     },
     description: {
-      type: DataTypes.STRING(5000),
+      type: DataTypes.TEXT,
     },
   },
   {
