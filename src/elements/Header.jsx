@@ -21,7 +21,7 @@ import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
-import { AuthContext } from "../shared/AuthContext.jsx";
+import { CartContext } from "../shared/CartContext.jsx";
 
 export default function Header() {
   const user = JSON.parse(localStorage.getItem("userContext"));
@@ -30,6 +30,7 @@ export default function Header() {
   const [showLogin, setShowLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let dropDownRef = useRef();
+  const cart = useContext(CartContext);
 
   useEffect(() => {
     window.addEventListener("keypress", (e) => {
@@ -52,13 +53,19 @@ export default function Header() {
       bg-mint
       dark:bg-zinc-950"
       >
-        <NavLink to={'/'}>
+        <NavLink to={"/"}>
           <img
-          className=" h-full"
-          src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
-          alt="bwr text logo"
+            className=" h-full"
+            src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
+            alt="bwr text logo"
           />
         </NavLink>
+
+        {/* CART */}
+
+        {cart.items.length > 0 && (
+          <button onClick={() => navigate("/cart")}>Cart</button>
+        )}
 
         <button
           onClick={() => {
@@ -71,15 +78,20 @@ export default function Header() {
       </div>
       <div className="w-full flex">
         <div
-          onMouseDown={() => { setShowDropDown(false); setShowProfileOptions(false) }}
-          className={`pageOverlay ${showDropDown ? "active" : "inactive"
-            } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
+          onMouseDown={() => {
+            setShowDropDown(false);
+            setShowProfileOptions(false);
+          }}
+          className={`pageOverlay ${
+            showDropDown ? "active" : "inactive"
+          } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
         ></div>
         {/* Drop Down Menu */}
         <div
           ref={dropDownRef}
-          className={`dropDownMenu ${showDropDown ? "active" : "inactive"
-            } transition-all duration-300 flex flex-col gap-y-10 items-center bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
+          className={`dropDownMenu ${
+            showDropDown ? "active" : "inactive"
+          } transition-all duration-300 flex flex-col gap-y-10 items-center bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
         >
           {/* Tabs */}
           <DropDownItem img={<Music />} text={"Bands"} />
@@ -88,16 +100,18 @@ export default function Header() {
           <DropDownItem img={<Info />} text={"About"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Music />} text={"News"} />
-          {isLoggedIn && 
-          <DropDownItem img={<User />} text={"Profile"}/>
-          }
-          {(!isLoggedIn && showLogin) && 
-          <DropDownItem img={<User/>} text={"Login"} />
-          }
-          
+          {isLoggedIn && <DropDownItem img={<User />} text={"Profile"} />}
+          {!isLoggedIn && showLogin && (
+            <DropDownItem img={<User />} text={"Login"} />
+          )}
+
           {/* Social Links */}
           <div className="flex gap-3 mt-10">
-            <NavLink to={"https://www.instagram.com/back.wall.records/"} target="_blank" className="group/insta flex relative h-10 w-10">
+            <NavLink
+              to={"https://www.instagram.com/back.wall.records/"}
+              target="_blank"
+              className="group/insta flex relative h-10 w-10"
+            >
               <div className="text-burntOrange group-hover/insta:opacity-0 absolute top-0 right-0 left-0">
                 <Instagram />
               </div>
@@ -106,7 +120,13 @@ export default function Header() {
               </div>
             </NavLink>
 
-            <NavLink to={"https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1"} target="_blank" className="group/spot flex relative h-10 w-10">
+            <NavLink
+              to={
+                "https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1"
+              }
+              target="_blank"
+              className="group/spot flex relative h-10 w-10"
+            >
               <div className="text-burntOrange group-hover/spot:opacity-0 absolute top-0 right-0 left-0">
                 <Spotify />
               </div>
@@ -115,7 +135,11 @@ export default function Header() {
               </div>
             </NavLink>
 
-            <NavLink to={"https://www.youtube.com/@backwallrecords356"} target="_blank" className="group/yout flex relative h-10 w-10">
+            <NavLink
+              to={"https://www.youtube.com/@backwallrecords356"}
+              target="_blank"
+              className="group/yout flex relative h-10 w-10"
+            >
               <div className="text-burntOrange group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
                 <Youtube />
               </div>

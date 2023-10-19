@@ -2,6 +2,7 @@ import React from "react";
 import { AdminHeroForm } from "./adminHeroForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import MerchForm from "./MerchForm";
 
 const Admin = () => {
   const [userData, setUserData] = useState([]);
@@ -29,6 +30,7 @@ const Admin = () => {
       <div className="h-3/4 border w-1/2 flex flex-col items-center justify-evenly">
         <h1 className="basis-10">Admin Dashboard</h1>
         <AdminHeroForm />
+        <MerchForm />
         <div>
           <h1>Users:</h1>
           <table className="border">
