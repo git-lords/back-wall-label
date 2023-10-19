@@ -1,14 +1,16 @@
 import React from "react";
-import { AdminHeroForm } from "./adminHeroForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+import { AdminHeroForm } from "./adminHeroForm";
+import { AdminNewsForm } from "./AdminNewsForm";
 
 const Admin = () => {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     axios.get("/getAllUsers").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setUserData(res.data);
     });
   }, []);
@@ -29,6 +31,8 @@ const Admin = () => {
       <div className="h-3/4 border w-1/2 flex flex-col items-center justify-evenly">
         <h1 className="basis-10">Admin Dashboard</h1>
         <AdminHeroForm />
+
+        <AdminNewsForm />
         <div>
           <h1>Users:</h1>
           <table className="border">
