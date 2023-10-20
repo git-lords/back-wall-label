@@ -21,12 +21,18 @@ const allPhotoUrls = [
   "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+flipside.jpg",
   "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+close.jpg",
   "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+  "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+hiking.jpg",
+  "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+recording.jpeg",
+  "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+pizza.jpeg",
+  "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+album1.jpg",
+  "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+guitar.jpg",
 ];
 
 const BandPhotos = ({ band }) => {
   let currentBand = "";
   band === "Moon Owls Mages" ? (currentBand = "MOM") : null;
   band === "Crush the Monster" ? (currentBand = "CTM") : null;
+  band === "I Win I Lose" ? (currentBand = "IWIL") : null;
   const currentBandUrls = allPhotoUrls.filter((url) => {
     return url.includes(currentBand);
   });

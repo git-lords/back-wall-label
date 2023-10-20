@@ -7,11 +7,18 @@ const BandCard = ({ bands }) => {
     if (band.bandName === "Moon Owls Mages") {
       imgSrc =
         "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+goggles.jpg";
-    } else
+    } else if (band.bandName === "Crush the Monster") {
       imgSrc =
         "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+fisheye.jpg";
+    } else
+      imgSrc =
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+hiking.jpg";
+
     return (
-      <div key={band.bandName} className="block h-screen bg-black">
+      <div
+        key={band.bandName}
+        className="block h-screen bg-inherit text-inherit"
+      >
         <div className="flex items-center justify-evenly">
           <Link
             to={`/bands/${band.bandName}`}
