@@ -9,11 +9,8 @@ import {
   Music,
   Bag,
   Instagram,
-  InstagramA,
   Spotify,
-  SpotifyA,
   Youtube,
-  YoutubeA,
   ShopCart
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
@@ -48,7 +45,7 @@ export default function Header() {
   return (
     <div className="w-full flex flex-wrap justify-end fixed z-50">
       <div
-        className="flex h-14 px-2 py-1 w-full justify-between
+        className="flex h-20 px-4 py-1 w-full justify-between
       bg-darkMint
       dark:bg-zinc-950"
       >
@@ -68,6 +65,7 @@ export default function Header() {
               <ShopCart />
             </button>
           )}
+          {/* Menu Button */}
           <button
             onClick={() => {
               setShowDropDown(!showDropDown);
@@ -76,8 +74,8 @@ export default function Header() {
             <Menu />
           </button>
         </div>
-
       </div>
+      {/* Page Overlay */}
       <div className="w-full flex">
         <div
           onMouseDown={() => {
@@ -91,7 +89,7 @@ export default function Header() {
         <div
           ref={dropDownRef}
           className={`dropDownMenu ${showDropDown ? "active" : "inactive"
-            } transition-all duration-300 flex flex-col gap-y-10 items-center bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
+            } transition-all duration-300 flex flex-col gap-y-5 sm:gap-y-10 items-center bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
         >
           {/* Tabs */}
           <DropDownItem img={<Music />} text={"Bands"} />
@@ -106,17 +104,14 @@ export default function Header() {
           )}
 
           {/* Social Links */}
-          <div className="flex gap-3 mt-10">
+          <div className="flex gap-3 mt-10 w-full justify-center">
             <NavLink
               to={"https://www.instagram.com/back.wall.records/"}
               target="_blank"
-              className="group/insta flex relative h-10 w-10"
+              className="flex justify-center items-center h-10 w-10 hover:animate-rotate-y hover:animate-infinite text-burntOrange"
             >
-              <div className="text-burntOrange group-hover/insta:opacity-0 absolute top-0 right-0 left-0">
+              <div>
                 <Instagram />
-              </div>
-              <div className="peer opacity-0 absolute group-hover/insta:opacity-100 text-lightOrange top-0 right-0 left-0">
-                <InstagramA />
               </div>
             </NavLink>
 
@@ -125,26 +120,20 @@ export default function Header() {
                 "https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1"
               }
               target="_blank"
-              className="group/spot flex relative h-10 w-10"
+              className="flex justify-center items-center h-10 w-10 hover:animate-rotate-y hover:animate-infinite text-burntOrange"
             >
-              <div className="text-burntOrange group-hover/spot:opacity-0 absolute top-0 right-0 left-0">
+              <div>
                 <Spotify />
-              </div>
-              <div className="peer opacity-0 absolute group-hover/spot:opacity-100 text-lightOrange top-0 right-0 left-0">
-                <SpotifyA />
               </div>
             </NavLink>
 
             <NavLink
               to={"https://www.youtube.com/@backwallrecords356"}
               target="_blank"
-              className="group/yout flex relative h-10 w-10"
+              className="flex justify-center items-center h-10 w-10 hover:animate-rotate-y hover:animate-infinite text-burntOrange"
             >
-              <div className="text-burntOrange group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
+              <div>
                 <Youtube />
-              </div>
-              <div className="peer opacity-0 absolute group-hover/yout:opacity-100 text-lightOrange top-0 right-0 left-0">
-                <YoutubeA />
               </div>
             </NavLink>
           </div>
@@ -159,7 +148,7 @@ export const DropDownItem = (props) => {
       <NavLink
         to={`/${props.text}`}
         className="flex w-full p-2 text-center justify-center first:mt-4 gap-10 sm:gap-3 text-burntOrange
-      hover:mb-2
+      group hover:mb-2
       hover:text-[#F0A868]
       focus-within:outline-none focus-within:bg-gradient-to-l 
       focus-within:from-burntOrange focus-within:from-5% 
@@ -169,7 +158,9 @@ export const DropDownItem = (props) => {
         onClick={() => setShowDropDown(!showDropDown)}
       >
         <div className="w-1/3 sm:w-1/4 self-center flex justify-end h-6">
-          {props.img}
+          <div className="group-hover:animate-wiggle-more group-hover:animate-infinite">
+            {props.img}
+          </div>
         </div>
         <div className="focus:outline-none text-2xl sm:text-xl w-2/4 sm:w-3/4 text-start self-center flex justify-between">
           {props.text}

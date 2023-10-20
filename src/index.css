@@ -11,13 +11,8 @@
 
 
 .page {
-    min-width: 250px;
-    @apply h-screen pt-14 bg-zinc-100 bg-gradient-to-t from-zinc-200 dark:bg-zinc-900 dark:from-zinc-950 overflow-x-hidden
-}
-
-.heroButton {
-    filter:drop-shadow(2px,2px,5px,5px, green);
     
+    @apply h-screen w-full pt-20 bg-zinc-100 bg-gradient-to-t from-zinc-200 dark:bg-zinc-900 dark:from-zinc-950
 }
 
 .profileDrop.active{
@@ -31,6 +26,7 @@
     transform: translateY(-30px);
     height: 0;
 }
+
 
 .dropDownMenu.active{
     opacity: 1;

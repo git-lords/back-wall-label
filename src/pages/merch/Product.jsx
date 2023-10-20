@@ -34,7 +34,7 @@ export const Product = ({ initialDetails }) => {
             className="h-80 bg-center bg-cover border border-dashed"
           ></div>
         </Link>
-        <h2 className="text-md font-bold">{initialDetails.band}</h2>
+        <h2 className="text-md font-bold dark:text-mint">{initialDetails.band}</h2>
         <Link to={`/merch/${id}`} className="text-xl cursor-pointer">
           {productName}
         </Link>

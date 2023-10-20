@@ -38,7 +38,9 @@ export default {
             }
         },
     },
-    plugins: [plugin(function ({ matchUtilities, theme }) {
+    plugins: [
+        require('tailwindcss-animated'),
+        plugin(function ({ matchUtilities, theme }) {
         matchUtilities(
             {
                 'text-shadow': (value) => ({
@@ -47,8 +49,5 @@ export default {
             },
             { values: theme('textShadow') }
         )
-    }
-    )
-
-    ],
+    })],
 }

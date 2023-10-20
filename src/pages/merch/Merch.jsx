@@ -38,8 +38,8 @@ export default function Merch() {
         );
 
   return (
-    <div className="page pt-20">
-      <div className="border mx-4 flex h-[5vh] items-center justify-between">
+    <div className="page flex flex-col">
+      <div className="border mx-4 flex h-[10%] items-center m-4 justify-between">
         <h1 className="text-3xl mx-4">Merchandise</h1>
         <span>
           <label htmlFor="filter" className="mx-4">
@@ -59,11 +59,11 @@ export default function Merch() {
           </select>
         </span>
       </div>
-      <div className="border flex h-full justify-evenly flex-wrap m-4">
+      <div className="border flex h-[80] justify-evenly mx-8 flex-wrap overflow-y-scroll">
         {selectedCategory !== "--filter by category--" ? (
           <>
             {filteredProducts.map((product) => (
-              <div key={product.productId} className="w-1/4">
+              <div key={product.productId} className="w-1/2 md:w-1/3 lg:w-1/4">
                 <Product
                   initialDetails={{
                     productId: product.id,
@@ -81,7 +81,7 @@ export default function Merch() {
           <>
             {productData.map((product) => {
               return (
-                <div key={product.productId} className="w-1/4">
+                <div key={product.productId} className="w-1/2 md:w-1/3 lg:w-1/4">
                   <Product
                     initialDetails={{
                       productId: product.id,

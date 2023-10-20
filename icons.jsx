@@ -6,7 +6,6 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 //~TAB Brand Icons
-//? (For the brand icons, the animated version is the name + A)
 export const Instagram = () => {
   return (
     <FontAwesomeIcon
@@ -16,16 +15,7 @@ export const Instagram = () => {
     />
   );
 };
-export const InstagramA = () => {
-  return (
-    <FontAwesomeIcon
-      icon={faInstagram}
-      flip
-      size="xl"
-      style={{ color: "currentcolor" }}
-    />
-  );
-};
+
 export const Youtube = () => {
   return (
     <FontAwesomeIcon
@@ -35,16 +25,7 @@ export const Youtube = () => {
     />
   );
 };
-export const YoutubeA = () => {
-  return (
-    <FontAwesomeIcon
-      icon={faYoutube}
-      flip
-      size="xl"
-      style={{ color: "currentcolor" }}
-    />
-  );
-};
+
 export const Spotify = () => {
   return (
     <FontAwesomeIcon
@@ -54,16 +35,7 @@ export const Spotify = () => {
     />
   );
 };
-export const SpotifyA = () => {
-  return (
-    <FontAwesomeIcon
-      icon={faSpotify}
-      flip
-      size="xl"
-      style={{ color: "currentcolor" }}
-    />
-  );
-};
+
 
 //~TAB Generic Icons
 export const Menu = () => {
@@ -74,7 +46,7 @@ export const Menu = () => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-6 h-6"
+      className="w-10 h-10"
     >
       <path
         strokeLinecap="round"
