@@ -38,7 +38,7 @@ export default function Merch() {
         );
 
   return (
-    <div className="pt-20">
+    <div className="page pt-20">
       <div className="border mx-4 flex h-[5vh] items-center justify-between">
         <h1 className="text-3xl mx-4">Merchandise</h1>
         <span>

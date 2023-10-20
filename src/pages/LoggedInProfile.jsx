@@ -24,8 +24,11 @@ const Profile = () => {
   }, []);
 console.log(isAdmin)
   return (
-    <div className="pt-20">
-      {isAdmin ? <Admin /> : <BandProfile />} <LogoutButton />
+    <div className="page h-4/5 coggy bg-lightOrange dark:bg-zinc-800 ">
+      {isAdmin ? <Admin /> : <BandProfile />}
+      <div className="flex items-center justify-center">
+      <LogoutButton />
+      </div>
     </div>
   );
 };
