@@ -34,7 +34,7 @@ const ItemPage = () => {
   }, []);
 
   return (
-    <div className="h-screen pt-20">
+    <div className="page h-screen pt-20">
       <BackButton />
       <div className="border h-full flex">
         <div className="h-full w-2/3 overflow-hidden p-6">

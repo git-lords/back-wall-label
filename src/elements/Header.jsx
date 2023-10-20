@@ -14,8 +14,7 @@ import {
   SpotifyA,
   Youtube,
   YoutubeA,
-  ChevDown,
-  ChevUp,
+  ShopCart
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
@@ -50,7 +49,7 @@ export default function Header() {
     <div className="w-full flex flex-wrap justify-end fixed z-50">
       <div
         className="flex h-14 px-2 py-1 w-full justify-between
-      bg-mint
+      bg-darkMint
       dark:bg-zinc-950"
       >
         <NavLink to={"/"}>
@@ -62,19 +61,22 @@ export default function Header() {
         </NavLink>
 
         {/* CART */}
+        <div className="flex gap-3">
+          {cart.items.length > 0 && (
+            <button onClick={() => navigate("/cart")}
+            className="self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
+              <ShopCart />
+            </button>
+          )}
+          <button
+            onClick={() => {
+              setShowDropDown(!showDropDown);
+            }}
+            className="h-10 w-10 self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
+            <Menu />
+          </button>
+        </div>
 
-        {cart.items.length > 0 && (
-          <button onClick={() => navigate("/cart")}>Cart</button>
-        )}
-
-        <button
-          onClick={() => {
-            setShowDropDown(!showDropDown);
-          }}
-          className="h-10 w-10 self-center text-black dark:text-white transition-all"
-        >
-          <Menu />
-        </button>
       </div>
       <div className="w-full flex">
         <div
@@ -82,16 +84,14 @@ export default function Header() {
             setShowDropDown(false);
             setShowProfileOptions(false);
           }}
-          className={`pageOverlay ${
-            showDropDown ? "active" : "inactive"
-          } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
+          className={`pageOverlay ${showDropDown ? "active" : "inactive"
+            } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
         ></div>
         {/* Drop Down Menu */}
         <div
           ref={dropDownRef}
-          className={`dropDownMenu ${
-            showDropDown ? "active" : "inactive"
-          } transition-all duration-300 flex flex-col gap-y-10 items-center bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
+          className={`dropDownMenu ${showDropDown ? "active" : "inactive"
+            } transition-all duration-300 flex flex-col gap-y-10 items-center bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
         >
           {/* Tabs */}
           <DropDownItem img={<Music />} text={"Bands"} />

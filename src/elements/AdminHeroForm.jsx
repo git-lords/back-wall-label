@@ -52,9 +52,9 @@ export const AdminHeroForm = () => {
   useEffect(()=>{getHeros()},[])
 
   return (
-    <div className='w-fit h-fit rounded-sm border-2 p-2 flex flex-col dark:bg-zinc-700 gap-3'>
+    <div className=' min-w-[70%] h-fit rounded-sm border-2 p-2 flex flex-col bg-zinc-300 dark:bg-zinc-700 gap-3 '>
       <details title='Create a Hero'>
-        <summary>Create a Hero</summary>
+        <summary className='dark:hover:text-mint hover:text-darkMint'>Create a Hero</summary>
         <form className='flex flex-col' onSubmit={() => addHero()} >
         <label htmlFor="img url">Image URL: </label>
           <input id='img url' className='dark:bg-zinc-600' type="text" onChange={e=>setImgUrl(e.target.value)} />
@@ -70,11 +70,11 @@ export const AdminHeroForm = () => {
 
           <label htmlFor="button link">Button Link: </label>
           <input id='button link' className='dark:bg-zinc-600' type="text" onChange={e=>setLink(e.target.value)} />
-          <button className='border border-solid m-2' onClick={() => { console.log("submit") }}>Submit</button>
+          <button className='border-2 border-solid m-2 bg-zinc-200 dark:bg-zinc-600  hover:text-darkMint hover:border-mint' onClick={() => { console.log("submit") }}>Submit</button>
         </form>
       </details>
       <details>
-        <summary>Edit a Hero</summary>
+        <summary className='dark:hover:text-mint hover:text-darkMint'>Edit a Hero</summary>
         {heros.map((hero)=> (
             <div className='m-1' key={hero.heroId}>
               <button onClick={()=>{handleEdit(hero); setIsEditingHero(true)}}>Edit</button> {hero.cta}  
@@ -91,7 +91,7 @@ export const AdminHeroForm = () => {
       editHero={editHero}
       />}
       <details>
-        <summary>Remove a Hero</summary>
+        <summary className='dark:hover:text-mint hover:text-darkMint'>Remove a Hero</summary>
           {heros.map((hero)=> (
             <div className='m-1' key={hero.heroId}>
               <button onClick={()=>{setCurrentHero(hero) ; setDeleteWindow(true)}}>delete</button> {hero.cta}  
@@ -108,24 +108,24 @@ export const AdminHeroForm = () => {
 
 export const EditForm = ({currentHero, setIsEditingHero, setButton, setCta, setImgUrl, setLink, editHero}) => {
   return (
-    <div className=' w-fit border border-solid flex flex-col mt-5 p-2 text-lg '>
-      <div className='text-lightOrange self-center'>
+    <div className=' w-[50vw] border border-solid flex flex-col mt-5 p-2'>
+      <div className='text-burntOrange self-center'>
       <AlertCircle/>
       </div>
-      <div >You are currently editing {currentHero.cta}</div>
+      <div className='text-center' >You are currently editing {currentHero.cta}</div>
       <form className='flex flex-col' onSubmit={() => {editHero(currentHero);setIsEditingHero(false)}} >
           <label htmlFor="img url">Image URL: </label>
-          <input id='img url' className='bg-zinc-600' type="text" defaultValue={currentHero.imgUrl} onChange={e=>setImgUrl(e.target.value)} />
+          <input id='img url' className='dark:bg-zinc-600' type="text" defaultValue={currentHero.imgUrl} onChange={e=>setImgUrl(e.target.value)} />
 
           <label htmlFor="title">Title: </label>
-          <input id='title' className='bg-zinc-600' type="text" defaultValue={currentHero.cta} onChange={e=>setCta(e.target.value)} />
+          <input id='title' className='dark:bg-zinc-600' type="text" defaultValue={currentHero.cta} onChange={e=>setCta(e.target.value)} />
 
           <label htmlFor="button text">Button Text: </label>
-          <input id='button text' className='bg-zinc-600' type="text" defaultValue={currentHero.button} onChange={e=>setButton(e.target.value)} />
+          <input id='button text' className='dark:bg-zinc-600' type="text" defaultValue={currentHero.button} onChange={e=>setButton(e.target.value)} />
 
           <label htmlFor="button link">Button Link: </label>
-          <input id='button link' className='bg-zinc-600' type="text" defaultValue={currentHero.link} onChange={e=>setLink(e.target.value)} />
-          <button className='hover:text-lightOrange' onClick={() => { console.log("submit") }}>Save</button>
+          <input id='button link' className='dark:bg-zinc-600' type="text" defaultValue={currentHero.link} onChange={e=>setLink(e.target.value)} />
+          <button className='hover:text-lightOrange mt-2' onClick={() => { console.log("submit") }}>Save</button>
         </form>
       <button className='hover:text-lightOrange' onClick={()=>setIsEditingHero(false)}>Cancel</button>
     </div>
@@ -138,13 +138,13 @@ export const EditForm = ({currentHero, setIsEditingHero, setButton, setCta, setI
 export const ConfirmDelete = ({currentHero, setDeleteWindow, deleteHero}) => {
   console.log(currentHero)
   return (
-    <div className=' w-fit border border-solid flex flex-col mt-5 p-2 text-lg '>
+    <div className=' w-[50vw] self-center border border-solid flex flex-col mt-5 p-2 text-center'>
       <div className='text-red-500 self-center'>
       <AlertCircle/>
       </div>
       <div >Are you sure you want to delete {currentHero.cta}?</div>
-      <button className='hover:text-red-500' onClick={()=>{deleteHero(currentHero);setDeleteWindow(false)}} >Confirm</button>
-      <button className='hover:text-red-500' onClick={()=>setDeleteWindow(false)}>Cancel</button>
+      <button className='hover:text-red-500 mt-2 text-lg' onClick={()=>{deleteHero(currentHero);setDeleteWindow(false)}} >Confirm</button>
+      <button className='hover:text-red-500 text-lg' onClick={()=>setDeleteWindow(false)}>Cancel</button>
     </div>
   )
 }
