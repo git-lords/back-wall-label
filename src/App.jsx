@@ -3,7 +3,7 @@ import Home from "./pages/Home.jsx";
 import Bands from "./pages/Bands.jsx";
 import BandInfo from "./pages/BandInfo.jsx";
 import Calendar from "./pages/Calendar.jsx";
-import About from "./pages/About.jsx";
+// import About from "./pages/About.jsx";
 import Merch from "./pages/merch/Merch.jsx";
 import { SuccessPage } from "./pages/merch/SuccessPage.jsx";
 import { CancelOrder } from "./pages/merch/CancelOrder.jsx";
@@ -58,7 +58,6 @@ export default function App() {
                 <Calendar darkMode={darkMode} setDarkMode={setDarkMode} />
               }
             />
-            <Route path="/about" element={<About />} />
             <Route path="/merch" element={<Merch />} />
             <Route path="/merch/:id" element={<ItemPage />} />
             <Route path="/cart" element={<Cart />} />

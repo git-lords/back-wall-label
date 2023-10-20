@@ -1,15 +1,17 @@
 import React from "react";
-import { AdminHeroForm } from "./adminHeroForm";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MerchForm from "./MerchForm";
+
+import { AdminHeroForm } from "./adminHeroForm";
+import { AdminNewsForm } from "./AdminNewsForm";
 
 const Admin = () => {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     axios.get("/getAllUsers").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setUserData(res.data);
     });
   }, []);
@@ -30,6 +32,9 @@ const Admin = () => {
       <div className="h-full border w-3/4 flex flex-col items-center justify-evenly mt-4 overflow-scroll bg-zinc-200 dark:bg-zinc-600 dark:bg-opacity-70 bg-opacity-70">
         <h1 className="basis-10 text-lg ">Admin Dashboard</h1>
         <AdminHeroForm />
+
+        <AdminNewsForm />
+
         <MerchForm />
         <div className="flex flex-col w-4/5 my-2 bg-zinc-300 border border-zinc-400">
           <h1 className="border border-zinc-400 dark:bg-zinc-700 pl-2">Users:</h1>

@@ -19,7 +19,7 @@ const Profile = () => {
       setIsAdmin(res.data.adminStatus);
       setIsBand(res.data.bandStatus);
     });
-    console.log(user.data);
+    // console.log(user.data);
     !user.data && navigate("/");
   }, []);
 console.log(isAdmin)

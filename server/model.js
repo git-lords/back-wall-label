@@ -198,10 +198,10 @@ Article.init(
       allowNull: false,
     },
     date: {
-      type: DataTypes.STRING,
+      type: DataTypes.DATEONLY,
     },
     description: {
-      type: DataTypes.STRING(5000),
+      type: DataTypes.TEXT,
     },
   },
   {

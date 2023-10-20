@@ -64,7 +64,7 @@ export default function Header() {
         <div className="flex gap-3">
           {cart.items.length > 0 && (
             <button onClick={() => navigate("/cart")}
-            className="self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
+              className="self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
               <ShopCart />
             </button>
           )}
@@ -97,7 +97,7 @@ export default function Header() {
           <DropDownItem img={<Music />} text={"Bands"} />
           <DropDownItem img={<Calendar />} text={"Calendar"} />
           <DropDownItem img={<Bag />} text={"Merch"} />
-          <DropDownItem img={<Info />} text={"About"} />
+          <DropDownItem img={<Info />} text={"Contact"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Music />} text={"News"} />
           {isLoggedIn && <DropDownItem img={<User />} text={"Profile"} />}
