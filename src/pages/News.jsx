@@ -43,13 +43,26 @@ export const News = () => {
             {showArticle ? (
                 <ArticleDetails article={selectedArticle} toggleArticleOff={toggleArticleOff} />
             ) : (
-                articles.map((item) => (
-                    <div key={item.articleId} >
-                        <h2> {item.date} </h2>
-                        <h3> {item.title} </h3>
-                        <img src={item.imgUrl} alt='concert scene' onClick={() => toggleArticleOn(item)} />
-                    </div>
-                ))
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {articles.map((item) => (
+                        <div key={item.articleId} className="relative">
+                            <div className="h-1000 w-1000 relative group">
+                                <img
+                                    src={item.imgUrl}
+                                    alt="concert scene"
+                                    onClick={() => toggleArticleOn(item)}
+                                    className="object-fill cursor-pointer transition-transform transform scale-100 group-hover:scale-105"
+                                />
+                            </div>
+                            <div className="bg-black text-white p-2 absolute top-0 left-0 w-full bg-opacity-50">
+                                <h2 className="font-bold">{item.date}</h2>
+                            </div>
+                            <div className="bg-black text-white p-2 absolute bottom-0 left-0 w-full bg-opacity-50">
+                                <h3 className="font-bold">{item.title}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );
