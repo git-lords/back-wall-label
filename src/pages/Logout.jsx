@@ -8,7 +8,7 @@ const LogoutButton = () => {
   const navigate = useNavigate();
 
   return (
-    <button
+    <button className="border-2 border-solid p-3 mt-4 bg-lightOrange dark:bg-burntOrange text-lg font-bold rounded-md"
       onClick={async () => {
         logout();
         navigate("/");

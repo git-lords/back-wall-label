@@ -6,7 +6,7 @@ export default {
     try {
       console.log("login");
       const { username, password } = req.body.userData;
-      console.log(username, password);
+
       const currentUser = await User.findOne({ where: { username } });
       if (currentUser) {
         const loggedIn = bcrypt.compareSync(password, currentUser.password);
@@ -17,7 +17,7 @@ export default {
             adminStatus: currentUser.adminStatus,
             bandStatus: currentUser.bandStatus,
           };
-          console.log(req.session.user);
+          // console.log(req.session.user);
           res.send({
             userId: currentUser.userId,
             username: currentUser.username,
@@ -53,7 +53,7 @@ export default {
       console.log("getUser");
       if (req.session.user) {
         res.send(req.session.user);
-        console.log(req.session.user);
+        // console.log(req.session.user);
       } else res.send("There is no user logged in");
     } catch (error) {
       console.log(error);

@@ -17,7 +17,7 @@ User.init(
     userId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     username: {
       type: DataTypes.STRING,
@@ -41,47 +41,6 @@ User.init(
   },
   {
     modelName: "user",
-    sequelize: db,
-  }
-);
-
-class Product extends Model {
-  [util.inspect.custom]() {
-    return this.toJSON();
-  }
-}
-
-Product.init(
-  {
-    productId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    productName: {
-      type: DataTypes.STRING,
-    },
-    category: {
-      type: DataTypes.STRING,
-    },
-    price: {
-      type: DataTypes.INTEGER,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    priceId: {
-      type: DataTypes.STRING,
-    },
-    bandId: {
-      type: DataTypes.INTEGER,
-    },
-    imgUrls: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-    },
-  },
-  {
-    modelName: "product",
     sequelize: db,
   }
 );
@@ -249,7 +208,7 @@ Article.init(
     modelName: "article",
     sequelize: db,
   }
-)
+);
 
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
   console.log("Syncing to database...");
@@ -261,8 +220,6 @@ User.hasMany(Like, { foreignKey: "userId" });
 Like.belongsTo(User, { foreignKey: "userId" });
 Band.hasMany(Like, { foreignKey: "bandId" });
 Like.belongsTo(Band, { foreignKey: "bandId" });
-Band.hasMany(Product, { foreignKey: "bandId" });
-Product.belongsTo(Band, { foreignKey: "bandId" });
 
 // exports here
-export { User, Product, Band, Like, Event, Hero, Article };
+export { User, Band, Like, Event, Hero, Article };

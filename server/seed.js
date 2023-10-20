@@ -1,6 +1,6 @@
 import connectToDB from "./db.js";
 import bcrypt from "bcryptjs";
-import { User, Product, Band, Like, Event, Hero, Article } from "./model.js";
+import { User, Band, Like, Event, Hero, Article } from "./model.js";
 
 const db = await connectToDB("postgresql:///backwalldb");
 
@@ -29,97 +29,6 @@ await db.sync({ force: true }).then(async () => {
       password: hash,
       adminStatus: true,
       bandStatus: true,
-    },
-  ];
-
-  const products = [
-    {
-      productName: "band tee 1",
-      category: "T-Shirt",
-      price: 20,
-      description: "cool shirt from a cool band! 100% cotton",
-      bandId: 1,
-      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "band hoodie 1",
-      category: "Hoodie",
-      price: 40,
-      description: "cool hoodie from a cool band! 100% cotton",
-      bandId: 1,
-      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "band tote 1",
-      category: "Tote",
-      price: 20,
-      description: "nice tote for carrying items",
-      bandId: 2,
-      priceId: "price_1O0S8FHrrNngtjIf8uLuENvs",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "band tee 2",
-      category: "T-Shirt",
-      price: 20,
-      description: "cool shirt from a cool band! 100% cotton",
-      bandId: 1,
-      priceId: "price_1O0S4BHrrNngtjIfLCJZLEB6",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "band hoodie 2",
-      category: "Hoodie",
-      price: 40,
-      description: "cool hoodie from a cool band! 100% cotton",
-      bandId: 1,
-      priceId: "price_1O0S7IHrrNngtjIfIMPOgf18",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "Vinyl 2",
-      category: "Record",
-      price: 50,
-      description: "nice tote for carrying items",
-      bandId: 2,
-      priceId: "price_1Nzj7FHrrNngtjIf9fELBEXX",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "Vinyl 3",
-      category: "Record",
-      price: 50,
-      description: "nice tote for carrying items",
-      bandId: 2,
-      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
-    },
-    {
-      productName: "Vinyl 3",
-      category: "Record",
-      price: 45,
-      description: "nice tote for carrying items",
-      bandId: 2,
-      priceId: "price_1O0Vs6HrrNngtjIfX2yp6z2j",
-      imgUrls: [
-        "https://reallygooddesigns.com/wp-content/uploads/2021/11/T-Shirt-Illustration-Design-Ideas-4.png",
-      ],
     },
   ];
 
@@ -207,7 +116,7 @@ await db.sync({ force: true }).then(async () => {
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque?"
     },
     {
-      title: "A photographer with vision",
+      title: "Come see us at The Depot!",
       imgUrl: "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Projector-Mode-10-small.jpg",
       date: "10/06/2023",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque?"
@@ -218,7 +127,7 @@ await db.sync({ force: true }).then(async () => {
       date: "10/20/2023",
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque?"
     },
-  ]
+  ];
 
   await Like.bulkCreate([
     {
@@ -232,7 +141,6 @@ await db.sync({ force: true }).then(async () => {
   ]);
 
   await User.bulkCreate(users);
-  await Product.bulkCreate(products);
   await Band.bulkCreate(bands);
   await Event.bulkCreate(events);
   await Hero.bulkCreate(heros);

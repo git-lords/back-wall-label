@@ -5,7 +5,7 @@ export default {
     try {
       console.log("getBand");
       const band = req.query.band;
-      console.log(band);
+
 
       const bandInfo = await Band.findOne({ where: { bandName: band } });
 
@@ -18,7 +18,7 @@ export default {
     try {
       console.log("getAllBands");
       const allBands = await Band.findAll();
-      console.log(allBands);
+
       res.send(allBands);
     } catch (err) {
       console.log(err);

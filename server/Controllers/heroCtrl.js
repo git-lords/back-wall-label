@@ -5,7 +5,6 @@ export default {
     try {
       console.log("getHeros");
       const allHeros = await Hero.findAll();
-      console.log(allHeros);
       res.send(allHeros);
     } catch (err) {
       console.log(err);

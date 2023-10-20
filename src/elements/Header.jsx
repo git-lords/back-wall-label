@@ -14,14 +14,13 @@ import {
   SpotifyA,
   Youtube,
   YoutubeA,
-  ChevDown,
-  ChevUp,
+  ShopCart
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
-import { AuthContext } from "../shared/AuthContext.jsx";
+import { CartContext } from "../shared/CartContext.jsx";
 
 export default function Header() {
   const user = JSON.parse(localStorage.getItem("userContext"));
@@ -30,6 +29,7 @@ export default function Header() {
   const [showLogin, setShowLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let dropDownRef = useRef();
+  const cart = useContext(CartContext);
 
   useEffect(() => {
     window.addEventListener("keypress", (e) => {
@@ -46,30 +46,44 @@ export default function Header() {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-wrap justify-end fixed">
+    <div className="w-full flex flex-wrap justify-end fixed z-50">
       <div
         className="flex h-14 px-2 py-1 w-full justify-between
-      bg-mint
+      bg-darkMint
       dark:bg-zinc-950"
       >
-        <img
-          className=""
-          src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
-          alt="bwr text logo"
-        />
+        <NavLink to={"/"}>
+          <img
+            className=" h-full"
+            src="https://bw-records-bucket.s3.us-west-1.amazonaws.com/bwr-text.png"
+            alt="bwr text logo"
+          />
+        </NavLink>
 
-        <button
-          onClick={() => {
-            setShowDropDown(!showDropDown);
-          }}
-          className="h-10 w-10 self-center text-black dark:text-white transition-all"
-        >
-          <Menu />
-        </button>
+        {/* CART */}
+        <div className="flex gap-3">
+          {cart.items.length > 0 && (
+            <button onClick={() => navigate("/cart")}
+              className="self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
+              <ShopCart />
+            </button>
+          )}
+          <button
+            onClick={() => {
+              setShowDropDown(!showDropDown);
+            }}
+            className="h-10 w-10 self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
+            <Menu />
+          </button>
+        </div>
+
       </div>
       <div className="w-full flex">
         <div
-          onMouseDown={() => { setShowDropDown(false); setShowProfileOptions(false) }}
+          onMouseDown={() => {
+            setShowDropDown(false);
+            setShowProfileOptions(false);
+          }}
           className={`pageOverlay ${showDropDown ? "active" : "inactive"
             } sm:grow bg-zinc-800 dark:bg-zinc-700 duration-0`}
         ></div>
@@ -83,47 +97,56 @@ export default function Header() {
           <DropDownItem img={<Music />} text={"Bands"} />
           <DropDownItem img={<Calendar />} text={"Calendar"} />
           <DropDownItem img={<Bag />} text={"Merch"} />
-          <DropDownItem img={<Info />} text={"About"} />
+          <DropDownItem img={<Info />} text={"Contact"} />
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Music />} text={"News"} />
-          {isLoggedIn && <NavLink to={"/Profile"}>Profile</NavLink>}
-          {!isLoggedIn && (
-            <NavLink to={"/login"} className={showLogin ? "visible" : "hidden"}>
-              Login
-            </NavLink>
+          {isLoggedIn && <DropDownItem img={<User />} text={"Profile"} />}
+          {!isLoggedIn && showLogin && (
+            <DropDownItem img={<User />} text={"Login"} />
           )}
-          <div
-            className={`profileDrop flex flex-col transition-all duration-300 items-center w-full text-burntOrange gap-y-3 -mt-6 ${showProfileOptions ? "active" : "inactive"
-              } sm:pl-12 sm:items-start`}
-          ></div>
-          {/* } */}
 
           {/* Social Links */}
-          <div className="flex gap-3">
-            <button className="group/insta flex relative h-10 w-10">
+          <div className="flex gap-3 mt-10">
+            <NavLink
+              to={"https://www.instagram.com/back.wall.records/"}
+              target="_blank"
+              className="group/insta flex relative h-10 w-10"
+            >
               <div className="text-burntOrange group-hover/insta:opacity-0 absolute top-0 right-0 left-0">
                 <Instagram />
               </div>
               <div className="peer opacity-0 absolute group-hover/insta:opacity-100 text-lightOrange top-0 right-0 left-0">
                 <InstagramA />
               </div>
-            </button>
-            <button className="group/yout flex relative h-10 w-10">
-              <div className="text-burntOrange group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
-                <Youtube />
-              </div>
-              <div className="peer opacity-0 absolute group-hover/yout:opacity-100 text-lightOrange top-0 right-0 left-0">
-                <YoutubeA />
-              </div>
-            </button>
-            <button className="group/spot flex relative h-10 w-10">
+            </NavLink>
+
+            <NavLink
+              to={
+                "https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1"
+              }
+              target="_blank"
+              className="group/spot flex relative h-10 w-10"
+            >
               <div className="text-burntOrange group-hover/spot:opacity-0 absolute top-0 right-0 left-0">
                 <Spotify />
               </div>
               <div className="peer opacity-0 absolute group-hover/spot:opacity-100 text-lightOrange top-0 right-0 left-0">
                 <SpotifyA />
               </div>
-            </button>
+            </NavLink>
+
+            <NavLink
+              to={"https://www.youtube.com/@backwallrecords356"}
+              target="_blank"
+              className="group/yout flex relative h-10 w-10"
+            >
+              <div className="text-burntOrange group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
+                <Youtube />
+              </div>
+              <div className="peer opacity-0 absolute group-hover/yout:opacity-100 text-lightOrange top-0 right-0 left-0">
+                <YoutubeA />
+              </div>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -134,7 +157,6 @@ export const DropDownItem = (props) => {
   return (
     <>
       <NavLink
-        style={{ pointerEvents: (props.text === 'Profile') && 'none' }}
         to={`/${props.text}`}
         className="flex w-full p-2 text-center justify-center first:mt-4 gap-10 sm:gap-3 text-burntOrange
       hover:mb-2
@@ -151,12 +173,6 @@ export const DropDownItem = (props) => {
         </div>
         <div className="focus:outline-none text-2xl sm:text-xl w-2/4 sm:w-3/4 text-start self-center flex justify-between">
           {props.text}
-          {props.text === "Profile" &&
-            <div className={`self-center mr-4 ${props.showProfileOptions ? 'rotate-180' : 'rotate-0'} transition-all duration-500 `}>
-              <ChevDown />
-            </div>
-
-          }
         </div>
       </NavLink>
     </>

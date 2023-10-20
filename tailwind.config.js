@@ -27,7 +27,8 @@ export default {
         },
         extend: {
             backgroundImage: {
-                'logo': "url('/public/backwallrecords-logo.jpeg')"
+                'logo': "url('/public/backwallrecords-logo.jpeg')",
+                
             },
             colors: {
                 'burntOrange': '#BC5F04',
