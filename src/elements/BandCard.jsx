@@ -6,7 +6,7 @@ const BandCard = ({ bands }) => {
   const allBands = bands.map((band) => {
     if (band.bandName === "Moon Owls Mages") {
       imgSrc =
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+goggles.jpg";
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+stretching+flipside+2023.jpg";
     } else if (band.bandName === "Crush the Monster") {
       imgSrc =
         "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+fisheye.jpg";
@@ -15,25 +15,26 @@ const BandCard = ({ bands }) => {
         "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+hiking.jpg";
 
     return (
-      <div
-        key={band.bandName}
-        className="block h-screen bg-inherit text-inherit"
-      >
-        <div className="flex items-center justify-evenly">
+      <div key={band.bandName} className="bg-inherit text-inherit">
+        <div className="flex flex-col items-center justify-evenly py-6">
           <Link
             to={`/bands/${band.bandName}`}
             key={band.bandName}
-            className="my-6 w-1/2"
+            className="p-6"
           >
-            <img src={imgSrc} className="h-full w-full" />
+            <img src={imgSrc} className="" />
           </Link>
-          <h1 className="text-4xl">{band.bandName}</h1>
+          <h1 className="text-8xl font-bold uppercase">{band.bandName}</h1>
         </div>
       </div>
     );
   });
 
-  return <div className="border-black flex flex-col w-full">{allBands}</div>;
+  return (
+    <div className="border-black flex flex-col w-full justify-evenly">
+      {allBands}
+    </div>
+  );
 };
 
 export default BandCard;

@@ -39,7 +39,7 @@ await db.sync({ force: true }).then(async () => {
     },
     {
       bandName: "Crush the Monster",
-      bio: "6 piece psych-metal from Boise",
+      bio: "Crush the Monster is a band from Boise, Idaho. We are a close group of friends that likes to explore new depths of our musicianship and what it means to be a human. Currently we are working on recording our second album, which has been a really fun process for all of us because it's alot more prog metal-stoner-psychedelic-desert rock adjacent than our first album which is really just a batch of garage jams we recorded for fun. That being said we hope you have a great time listening to our music and that all is well in your mind, body, and soul. Much Love -CTM",
     },
     {
       bandName: "I Win I Lose",

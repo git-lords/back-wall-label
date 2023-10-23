@@ -33,8 +33,8 @@ export default {
         darkMint: "#649066",
       },
       animation: {
-        marquee: "marquee 400s linear infinite",
-        marquee2: "marquee2 400s linear infinite",
+        marquee: "marquee 500s linear infinite 2s",
+        marquee2: "marquee2 500s linear infinite 2s",
       },
       keyframes: {
         marquee: {

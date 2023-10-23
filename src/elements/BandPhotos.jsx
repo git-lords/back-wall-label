@@ -47,11 +47,7 @@ const BandPhotos = ({ band }) => {
           media: [640, 768, 1024],
         }}
         render={(item, idx) => (
-          <img
-            key={idx}
-            src={item}
-            className="w-full h-auto border border-dashed"
-          />
+          <img key={idx} src={item} className="w-full h-auto" />
         )}
       />
     </div>
