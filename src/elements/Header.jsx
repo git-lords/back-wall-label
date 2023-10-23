@@ -48,7 +48,7 @@ export default function Header() {
   return (
     <div className="w-full flex flex-wrap justify-end fixed z-50">
       <div
-        className="flex h-14 px-2 py-1 w-full justify-between
+        className="flex h-20 px-2 py-1 w-full justify-between
       bg-darkMint
       dark:bg-zinc-950"
       >

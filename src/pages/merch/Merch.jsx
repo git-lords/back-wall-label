@@ -32,13 +32,13 @@ export default function Merch() {
     selectedCategory === "--filter by category--"
       ? productData
       : productData.filter(
-          (product) =>
-            product.features[0].name.toLowerCase() ===
-            selectedCategory.toLowerCase()
-        );
+        (product) =>
+          product.features[0].name.toLowerCase() ===
+          selectedCategory.toLowerCase()
+      );
 
   return (
-    <div className="page pt-20">
+    <div className="w-screen">
       <div className="border mx-4 flex h-[5vh] items-center justify-between">
         <h1 className="text-3xl mx-4">Merchandise</h1>
         <span>
