@@ -54,11 +54,11 @@ export const News = () => {
     }, []);
 
     return (
-        <div className="page">
+        <div >
             {showArticle ? (
                 <ArticleDetails article={selectedArticle} toggleArticleOff={toggleArticleOff} />
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="pt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {articles.map((item) => (
                         <div key={item.articleId} className="relative">
                             <div className="object-fill relative group flex h-full">
