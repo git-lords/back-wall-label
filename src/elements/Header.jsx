@@ -47,7 +47,7 @@ export default function Header({ handleModeChange, darkMode }) {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full flex flex-wrap justify-end fixed">
+    <div className="w-full flex flex-wrap justify-end fixed z-10">
       <div
         className="flex h-20 px-2 py-1 w-full justify-between
       bg-darkMint
