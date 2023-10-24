@@ -65,14 +65,7 @@ await db.sync({ force: true }).then(async () => {
   ];
 
   const articles = [
-    {
-      title: "This is Back Wall Records",
-      imgUrl:
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/backwallrecords-text-logo.png",
-      date: "03/17/2023",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores libero reiciendis sapiente fugit nemo non. Nisi accusantium placeat nostrum sint! Porro alias minima aliquam facilis expedita eveniet nobis, voluptatem repudiandae? Lorem ipsum dolor sit amet consectetur, adipisicing elit.Recusandae ipsam nulla quod? Sunt libero vero quasi ipsum doloremque atque harum! Officia voluptatibus voluptates provident necessitatibus explicabo quis fuga assumenda cupiditate. Lorem ipsum dolor sit amet, consectetur adipisicing elit.Corrupti, perferendis.Unde iure exercitationem repudiandae possimus doloribus magnam enim quasi laudantium voluptates, est illum pariatur inventore, nulla accusantium sapiente rerum atque?",
-    },
+    
     {
       title: "Excited for the new EP",
       imgUrl:

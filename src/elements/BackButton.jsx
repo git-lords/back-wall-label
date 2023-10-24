@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "../../icons";
 
 const BackButton = () => {
   const navigate = useNavigate();
@@ -8,9 +9,9 @@ const BackButton = () => {
     <div className="w-full h-[5vh] ml-6 mt-2">
       <button
         onClick={() => navigate(-1)}
-        className="text-l text-inherit font-semibold"
+        className="text-l font-semibold underline flex items-center"
       >
-        ← Back
+        <ArrowLeft/> Go Back
       </button>
     </div>
   );
