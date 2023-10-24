@@ -26,19 +26,19 @@ export const Product = ({ initialDetails }) => {
   const productQuantity = cart.getProductQuantity(id);
 
   return (
-    <div className="border w-full p-4 flex flex-col justify-evenly items-center">
+    <div className=" w-11/12 p-4 flex flex-col justify-evenly items-center border-2 border-mint bg-zinc-200 dark:bg-zinc-900 shadow-lg shadow-zinc-600 dark:shadow-black my-4 rounded-lg">
       <div className="w-full">
         <Link to={`/merch/${id}`}>
           <div
             style={{ backgroundImage: `url(${initialDetails.image})` }}
-            className="h-80 bg-center bg-cover border border-dashed"
+            className="h-80 bg-center bg-cover rounded-md"
           ></div>
         </Link>
-        <h2 className="text-md font-bold dark:text-mint">{initialDetails.band}</h2>
+        <h2 className="text-md font-bold text-mint">{initialDetails.band}</h2>
         <Link to={`/merch/${id}`} className="text-xl cursor-pointer">
           {productName}
         </Link>
-        <h3>${price / 100} </h3>
+        <h3 className="text-lg font-semibold" >${price / 100}.00 </h3>
       </div>
     </div>
   );

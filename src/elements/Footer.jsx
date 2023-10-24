@@ -35,9 +35,9 @@ const Footer = () => {
             <NavLink
               to={"https://www.instagram.com/back.wall.records/"}
               target="_blank"
-              className="group/insta flex relative h-10 w-10"
+              className="flex h-10 w-10"
             >
-              <div className="text-white group-hover/insta:opacity-0 absolute top-0 right-0 left-0">
+              <div className="text-white">
                 <Instagram />
               </div>
 
@@ -48,9 +48,9 @@ const Footer = () => {
                 "https://open.spotify.com/playlist/6FJXfkiQ5lZ4lWgRgm0edy?si=bbfd2f4f61444981&nd=1"
               }
               target="_blank"
-              className="group/spot flex relative h-10 w-10"
+              className="flex h-10 w-10"
             >
-              <div className="text-white group-hover/spot:opacity-0 absolute top-0 right-0 left-0">
+              <div className="text-white">
                 <Spotify />
               </div>
             </NavLink>
@@ -58,9 +58,9 @@ const Footer = () => {
             <NavLink
               to={"https://www.youtube.com/@backwallrecords356"}
               target="_blank"
-              className="group/yout flex relative h-10 w-10"
+              className="flex h-10 w-10"
             >
-              <div className="text-white group-hover/yout:opacity-0 absolute top-0 right-0 left-0">
+              <div className="text-white">
                 <Youtube />
               </div>
 
