@@ -21,51 +21,66 @@ const ItemPage = () => {
 
   useEffect(() => {
     stripe.products.retrieve(id).then((res) => {
-      console.log(res);
       setItemData(res);
       setImage(res.images[0]);
       setCategory(res.features[0].name);
       setBand(res.features[1].name);
       stripe.prices.retrieve(res.default_price).then((res) => {
-        console.log(res);
         setPrice(res.unit_amount / 100);
       });
     });
   }, []);
 
   return (
-    <div className="page h-screen pt-20">
+    <div className="min-h-screen h-full pt-20 flex flex-col items-center">
+      {/* Success Popup */}
+      <div
+        className={
+          isAdded
+            ? "h-[5vh] fixed bg-emerald-700 w-full flex justify-center items-center transition-opacity duration-300"
+            : "h-[5vh] hidden bg-emerald-700 w-full transition-opacity duration-300 opacity-0"
+        }
+      >
+        <h1>Item successfully added to cart!</h1>
+        <a href="/cart" className="underline pl-2">
+          View Cart
+        </a>
+      </div>
+
       <BackButton />
-      <div className="border h-full flex">
-        <div className="h-full w-2/3 overflow-hidden p-6">
-          <img src={image} alt="" />
+      <div className="h-full flex flex-col md:flex-row md:w-3/4">
+        <div className="basis-1/2 h-full overflow-hidden p-6 ">
+          <img src={image} alt="" className="border border-dashed p-2" />
         </div>
-        <div className="border flex flex-col p-6 w-1/2 justify-evenly h-1/2">
-          <div className="w-full flex flex-col justify-evenly">
+        <div className="basis-1/2 flex flex-col p-6 md:w-1/2 justify-evenly md:h-1/2 h-full">
+          <div className="w-full flex flex-col justify-evenly items-center md:items-start">
             <h1 className="font-bold">{band}</h1>
             <h1 className="text-6xl font-semibold underline py-2">
               {itemData.name}
             </h1>
-            <h1 className="text-xl italic py-2">{category}</h1>
           </div>
-          <div className="flex w-1/2 items-center justify-evenly">
-            <h1 className="text-xl">${price}</h1>
+          <div className="flex flex-col justify-evenly py-4 items-center md:items-start">
+            <h1 className="text-xl pb-4">${price}.00</h1>
             <button
               className={
-                !isAdded
-                  ? "border p-4 w-2/3 hover:bg-white hover:text-black duration-200"
-                  : "border p-4 w-2/3 bg-neutral-700"
+                "p-4 bg-emerald-600 hover:bg-emerald-700  duration-200 text-xl font-semibold w-full"
               }
               onClick={() => {
                 setIsAdded(true);
+                setTimeout(() => {
+                  setIsAdded(false);
+                }, 9000);
                 cart.addOneToCart(id);
                 console.log(cart.items);
               }}
             >
-              {!isAdded ? "Add To Cart" : "Add To Cart"}
+              Add To Cart
             </button>
           </div>
-          <p>{itemData.description}</p>
+          <div className="flex flex-col py-8">
+            <h1 className="text-xl md:text-2xl font-semibold">Features:</h1>
+            <p className="py-6 md:text-xl">{itemData.description}</p>
+          </div>
         </div>
       </div>
     </div>
