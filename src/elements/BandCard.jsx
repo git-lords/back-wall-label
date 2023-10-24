@@ -16,16 +16,20 @@ const BandCard = ({ bands }) => {
 
     return (
       <div key={band.bandName} className="bg-inherit text-inherit">
-        <div className="flex flex-col items-center justify-evenly py-6">
-          <Link
-            to={`/bands/${band.bandName}`}
-            key={band.bandName}
-            className="p-6"
+        <Link
+          to={`/bands/${band.bandName}`}
+          key={band.bandName}
+          className="p-6"
+        >
+          <div
+            style={{ backgroundImage: `url(${imgSrc})` }}
+            className="flex flex-col h-screen items-center justify-evenly py-6 bg-cover bg-center"
           >
-            <img src={imgSrc} className="" />
-          </Link>
-          <h1 className="text-8xl font-bold uppercase">{band.bandName}</h1>
-        </div>
+            <h1 className="text-6xl md:text-9xl font-bold uppercase text-white drop-shadow-xl">
+              {band.bandName}
+            </h1>
+          </div>
+        </Link>
       </div>
     );
   });

@@ -33,7 +33,7 @@ export const Cart = () => {
   };
 
   return (
-    <div className="pt-20 page">
+    <div className="pt-20">
       <BackButton />
       <h1 className="text-4xl">Shopping Cart</h1>
       {productCount > 0 ? (

@@ -5,7 +5,7 @@ const Contact = () => {
     <div className="h-screen pt-20">
       <div className="w-full md:w-96 md:max-w-full mx-auto">
         <h1 className="text-center m-6 text-3xl">Contact Us</h1>
-        <div className="p-6 border border-gray-300 sm:rounded-md">
+        <div className="m-6 p-6 border border-gray-300">
           <form
             method="POST"
             action="https://public.herotofu.com/v1/e340df80-694a-11ee-a03a-39e472c5760d"
@@ -16,9 +16,10 @@ const Contact = () => {
                 type="text"
                 name="name"
                 className="
-            block
             w-full
             mt-1
+            p-2
+            border
             border-gray-300
             rounded-md
             shadow-sm
@@ -37,9 +38,10 @@ const Contact = () => {
                 name="email"
                 type="email"
                 className="
-            block
             w-full
             mt-1
+            p-2
+            border
             border-gray-300
             rounded-md
             shadow-sm
@@ -58,9 +60,10 @@ const Contact = () => {
               <textarea
                 name="message"
                 className="
-            block
             w-full
             mt-1
+            p-2
+            border
             border-gray-300
             rounded-md
             shadow-sm
@@ -71,15 +74,14 @@ const Contact = () => {
             bg-inherit
           "
                 rows="3"
-                placeholder="Tell us what you're thinking..."
+                placeholder="Let's Hear It!"
               ></textarea>
             </label>
-            <div className="mb-6">
+            <div className="">
               <button
                 type="submit"
                 className="
-            h-10
-            px-5
+            p-6
             text-indigo-100
             bg-emerald-600
             rounded-lg
@@ -87,7 +89,6 @@ const Contact = () => {
             duration-150
             focus:shadow-outline
             hover:bg-emerald-800
-            
           "
               >
                 Contact Us

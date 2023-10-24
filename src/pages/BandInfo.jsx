@@ -55,7 +55,7 @@ const BandInfo = () => {
             {bandData.bandName + "  "}
           </div>
         </div>
-        <div
+        {/* <div
           className="md:h-96 md:w-3/4 md:bg-cover bg-contain bg-no-repeat h-[50vh] w-full bg-center"
           style={{
             backgroundImage: `url('${
@@ -66,12 +66,22 @@ const BandInfo = () => {
                 : "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+hiking.jpg"
             }')`,
           }}
-        ></div>
-        <div>
+        ></div> */}
+        <img
+          src={
+            band === "Moon Owls Mages"
+              ? "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+at+Flipside+Fest+2022.png"
+              : band === "Crush the Monster"
+              ? "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+sunset.jpg"
+              : "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+hiking.jpg"
+          }
+          className="md:w-1/2 p-4"
+        />
+        {/* <div>
           <a href={instaSrc} target="_blank">
             <Instagram />
           </a>
-        </div>
+        </div> */}
         <p className="text-l p-6">{bandData.bio}</p>
         <div className="w-1/2 flex flex-col items-center p-4">
           <iframe
@@ -79,7 +89,7 @@ const BandInfo = () => {
             allowFullScreen=""
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            className="p-4 w-screen h-[25rem]"
+            className="p-4 w-screen md:w-full h-[25rem]"
           ></iframe>
         </div>
         <button
