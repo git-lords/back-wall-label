@@ -23,41 +23,42 @@ import ItemPage from "./pages/merch/ItemPage.jsx";
 import "./index.css";
 
 export default function App() {
-  let [darkMode, setDarkMode] = useState(
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  );
+  let [darkMode, setDarkMode] = useState(localStorage.theme === 'dark' ? true : false);
+
+  const handleModeChange = () => {
+    if(darkMode === true){
+      document.documentElement.classList.remove("dark")
+      localStorage.theme = 'light'
+    } else {
+      document.documentElement.classList.add("dark")
+      localStorage.theme = 'dark'
+    }
+    setDarkMode(!darkMode)
+  }
 
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    if ( !darkMode
     ) {
-      document.documentElement.classList.add("dark");
-      setDarkMode(true);
-    } else {
       document.documentElement.classList.remove("dark");
-      setDarkMode(false);
+      
+    } else {
+      document.documentElement.classList.add("dark");
+      
     }
-  }, [darkMode]);
-
+  }, []);
+  console.log(document.documentElement)
   return (
     <div className="dark:text-white dark:bg-zinc-700">
       <AuthProvider>
         <CartProvider>
-          <Header />
+          <Header handleModeChange={handleModeChange} darkMode={darkMode} />
           <Routes>
             <Route path="/" element={<Home />} />
 
             <Route path="/bands" element={<Bands />} />
             <Route path="/bands/:band" element={<BandInfo />} />
 
-            <Route
-              path="/calendar"
-              element={
-                <Calendar darkMode={darkMode} setDarkMode={setDarkMode} />
-              }
-            />
+            <Route path="/calendar" element={<Calendar darkMode={darkMode}/>}/>
             <Route path="/merch" element={<Merch />} />
             <Route path="/merch/:id" element={<ItemPage />} />
             <Route path="/cart" element={<Cart />} />

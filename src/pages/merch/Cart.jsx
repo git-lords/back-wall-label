@@ -94,7 +94,7 @@ export const Cart = () => {
           </div>
           <div className="flex justify-around my-4 text-lg">
           <h4 className="font-semibold"> Total: ${cart.getTotalCost().toFixed(2)} </h4>
-          <h3 className="">Items in cart {productCount} </h3>
+          <h3 className="self-center">Items in cart: {productCount} </h3>
           </div>
           <div className="flex w-full justify-center">
           <button className="border-2 hover:bg-mint text-lg font-semibold py-1 px-2 rounded" onClick={checkout}>Check Out</button>
