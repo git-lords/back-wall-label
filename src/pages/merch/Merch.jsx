@@ -32,10 +32,10 @@ export default function Merch() {
     selectedCategory === "--filter by category--"
       ? productData
       : productData.filter(
-          (product) =>
-            product.features[0].name.toLowerCase() ===
-            selectedCategory.toLowerCase()
-        );
+        (product) =>
+          product.features[0].name.toLowerCase() ===
+          selectedCategory.toLowerCase()
+      );
 
   return (
     <div className="page flex flex-col">
