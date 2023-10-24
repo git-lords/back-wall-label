@@ -81,7 +81,8 @@ export default function Header({ handleModeChange, darkMode }) {
             onClick={() => {
               setShowDropDown(!showDropDown);
             }}
-            className="h-10 w-10 self-center dark:hover:text-burntOrange text-black dark:text-white transition-all">
+            className="h-10 w-10 self-center dark:hover:text-burntOrange text-black dark:text-white transition-all"
+          >
             <Menu />
           </button>
         </div>
@@ -110,7 +111,7 @@ export default function Header({ handleModeChange, darkMode }) {
           <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Megaphone />} text={"News"} />
           {isLoggedIn && <DropDownItem img={<User />} text={"Profile"} />}
-          {!isLoggedIn && showLogin && (
+          {showLogin && !isLoggedIn && (
             <DropDownItem img={<User />} text={"Login"} />
           )}
 

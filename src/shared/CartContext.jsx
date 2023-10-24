@@ -71,6 +71,7 @@ export function CartProvider({ children }) {
   };
 
   function removeOneFromCart(id) {
+    console.log("remove from cart");
     const quantity = getProductQuantity(id);
 
     if (quantity == 1) {
@@ -88,6 +89,7 @@ export function CartProvider({ children }) {
   }
 
   function deleteFromCart(id) {
+    console.log("delete from cart");
     setCartProducts((cartProducts) =>
       cartProducts.filter((currentProduct) => {
         return currentProduct.id !== id;

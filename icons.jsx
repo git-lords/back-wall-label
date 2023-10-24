@@ -37,6 +37,17 @@ export const Spotify = () => {
 };
 
 
+// export const BandCamp = () => {
+//   return (
+//     <FontAwesomeIcon
+//       icon={faBandcamp}
+//       flip
+//       size="xl"
+//       style={{ color: "currentcolor" }}
+//     />
+//   );
+// };
+
 //~TAB Generic Icons
 export const Menu = () => {
   return (

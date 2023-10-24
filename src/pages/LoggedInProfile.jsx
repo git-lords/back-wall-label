@@ -20,14 +20,13 @@ const Profile = () => {
       setIsBand(res.data.bandStatus);
     });
     // console.log(user.data);
-    !user.data && navigate("/");
+    !user && navigate("/");
   }, []);
-console.log(isAdmin)
   return (
     <div className="page h-4/5 coggy bg-lightOrange dark:bg-zinc-800 ">
       {isAdmin ? <Admin /> : <BandProfile />}
       <div className="flex items-center justify-center">
-      <LogoutButton />
+        <LogoutButton />
       </div>
     </div>
   );

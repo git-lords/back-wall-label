@@ -24,11 +24,6 @@ User.init(
       allowNull: false,
       unique: true,
     },
-    // email: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   unique: true,
-    // },
     password: {
       type: DataTypes.STRING(500),
     },
@@ -62,53 +57,11 @@ Band.init(
       type: DataTypes.STRING,
     },
     bio: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
   },
   {
     modelName: "band",
-    sequelize: db,
-  }
-);
-
-class Event extends Model {
-  [util.inspect.custom]() {
-    return this.toJSON();
-  }
-}
-
-Event.init(
-  {
-    eventId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    date: {
-      type: DataTypes.DATEONLY,
-    },
-    location: {
-      type: DataTypes.STRING,
-    },
-    time: {
-      type: DataTypes.TIME,
-      defaultValue: Sequelize.NOW,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    bands: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-    },
-    links: {
-      type: DataTypes.STRING,
-    },
-    isSoldOut: {
-      type: DataTypes.BOOLEAN,
-    },
-  },
-  {
-    modelName: "event",
     sequelize: db,
   }
 );
@@ -210,6 +163,29 @@ Article.init(
   }
 );
 
+class Photo extends Model {
+  [util.inspect.custom]() {
+    return this.toJSON();
+  }
+}
+
+Photo.init(
+  {
+    photoId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    url: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    modelName: "photo",
+    sequelize: db,
+  }
+);
+
 if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
   console.log("Syncing to database...");
   await db.sync();
@@ -222,4 +198,4 @@ Band.hasMany(Like, { foreignKey: "bandId" });
 Like.belongsTo(Band, { foreignKey: "bandId" });
 
 // exports here
-export { User, Band, Like, Event, Hero, Article };
+export { User, Band, Like, Hero, Article, Photo };
