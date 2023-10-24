@@ -9,14 +9,13 @@ import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { Photo } from "./model.js";
 
 import authCtrl from "./Controllers/authCtrl.js";
 const { login, register, updateUser, logout, getUser } = authCtrl;
 
 import bandCtrl from "./Controllers/bandCrtl.js";
 const { getBand, getAllBands } = bandCtrl;
-
-import calCtrl from "./Controllers/calCtrl.js";
 
 import heroCtrl from "./Controllers/heroCtrl.js";
 const { getHeros, addHero, editHero, deleteHero } = heroCtrl;
@@ -30,7 +29,6 @@ import adminCtrl from "./Controllers/adminCtrl.js";
 const { getAllUsers } = adminCtrl;
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const { getAllEvents, getBandEvents } = calCtrl;
 
 // configures dotenv
 configDotenv();
@@ -107,10 +105,6 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-// calendar endpoints
-app.get("/getAllEvents", getAllEvents);
-app.post("/getBandEvents", getBandEvents);
-
 //hero endpoints
 app.get("/getHeros", getHeros);
 app.post("/addHero", addHero);
@@ -123,9 +117,21 @@ app.post("/newArticle", addArticle);
 app.put("/editArticle/:id", updateArticle);
 app.delete("/article/:id", removeArticle);
 
-// S3 endpoints
-// app.get("/getImage", getImage);
-// app.get("/getList", getList);
+// bandPhotos
+app.get("/getBandPhotos", async (req, res) => {
+  const photos = await Photo.findAll();
+  res.send(photos);
+});
+app.post("/addBandPhoto", async (req, res) => {
+  try {
+    console.log("addBandPhoto");
+    const { url } = req.body;
+    await Photo.create({ url });
+    res.status(200).send("New Hero Added");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.get("/calendarhtml", (req, res) => {
   res.sendFile(path.join(__dirname, "../src/calendar.html"));

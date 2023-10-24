@@ -5,6 +5,7 @@ import MerchForm from "./MerchForm";
 
 import { AdminHeroForm } from "./adminHeroForm";
 import { AdminNewsForm } from "./AdminNewsForm";
+import PhotoForm from "./PhotoForm";
 
 const Admin = () => {
   const [userData, setUserData] = useState([]);
@@ -36,8 +37,11 @@ const Admin = () => {
         <AdminNewsForm />
 
         <MerchForm />
+        <PhotoForm />
         <div className="flex flex-col w-4/5 my-2 bg-zinc-300 border border-zinc-400">
-          <h1 className="border border-zinc-400 dark:bg-zinc-700 pl-2">Users:</h1>
+          <h1 className="border border-zinc-400 dark:bg-zinc-700 pl-2">
+            Users:
+          </h1>
           <table className="border border-zinc-400 dark:bg-zinc-700 ">
             <thead>
               <tr className=" border-b-2 border-zinc-400 dark:bg-zinc-700 w-full">

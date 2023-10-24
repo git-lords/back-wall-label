@@ -5,12 +5,12 @@ const BackButton = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-[5vh] ml-4">
+    <div className="w-full h-[5vh] ml-6 mt-2">
       <button
         onClick={() => navigate(-1)}
-        className="text-l font-semibold underline"
+        className="text-l text-inherit font-semibold"
       >
-        ← Go Back
+        ← Back
       </button>
     </div>
   );

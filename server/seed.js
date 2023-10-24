@@ -1,6 +1,6 @@
 import connectToDB from "./db.js";
 import bcrypt from "bcryptjs";
-import { User, Band, Like, Event, Hero, Article } from "./model.js";
+import { User, Band, Like, Photo, Hero, Article } from "./model.js";
 
 const db = await connectToDB("postgresql:///backwalldb");
 
@@ -44,36 +44,6 @@ await db.sync({ force: true }).then(async () => {
     {
       bandName: "I Win I Lose",
       bio: "Born and raised in Boise, Idaho Alex Gibson has had his fair share of wins and losses. I Win I Lose started as a way to chronicle those events, (mostly the losses) of his life. Alex joined forces with Jack Ball back in 2019 to put some stories to music. Jack helped turn those losses to wins and create something that they were both proud of. Since then they’ve both grown up a bit. They’ve lost some more and had some major wins but mostly they’ve had ups and downs of creative fervor. They are currently working on a full length album hopefully to be released in 2024 some time.",
-    },
-  ];
-
-  const events = [
-    {
-      date: "2023-12-25",
-      location: "SLC",
-      time: "20:00",
-      description: "should be a really nice time",
-      bands: ["Moon Owls Mages", "others"],
-      links: "tickets.com",
-      isSoldOut: false,
-    },
-    {
-      date: "2023-11-05",
-      location: "Seattle",
-      time: "20:00",
-      description: "should be a really nice time",
-      bands: ["Moon Owls Mages", "Crush the Monster"],
-      links: "tickets.com",
-      isSoldOut: false,
-    },
-    {
-      date: "2023-10-31",
-      location: "Boise",
-      time: "20:00",
-      description: "should be a really nice time",
-      bands: ["Crush the Monster", "Others"],
-      links: "tickets.com",
-      isSoldOut: true,
     },
   ];
 
@@ -145,6 +115,39 @@ await db.sync({ force: true }).then(async () => {
     },
   ];
 
+  const photos = [
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+wizards.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+The-Hog-15-small.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Sunflowers.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+stretching+flipside+2023.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Projector-Mode-10-small.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+leaning+in+flipside+2023.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-32.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+Inside-11-small.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+in+Everett.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+flipside+smaller.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+sunset2.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+sunset.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+shot.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+playin.jpeg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+gang.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+from+above.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+flipside.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+close.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+hiking.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+recording.jpeg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+pizza.jpeg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+album1.jpg",
+    "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+guitar.jpg",
+  ];
+
+  const photoObjs = photos.map((photoUrl) => {
+    return {
+      url: photoUrl,
+    };
+  });
+
   await Like.bulkCreate([
     {
       userId: 3,
@@ -158,8 +161,8 @@ await db.sync({ force: true }).then(async () => {
 
   await User.bulkCreate(users);
   await Band.bulkCreate(bands);
-  await Event.bulkCreate(events);
   await Hero.bulkCreate(heros);
   await Article.bulkCreate(articles);
+  await Photo.bulkCreate(photoObjs);
   await console.log("db has been successfully reset and seeded!");
 });

@@ -13,7 +13,7 @@ export default function Bands() {
   }, []);
 
   return (
-    <div className="border border-emerald-900 w-full h-full flex flex-col justify-evenly items-center pt-8 pb-20">
+    <div className="border border-emerald-900 w-full h-full flex flex-col justify-evenly items-center pt-20 pb-20">
       <BandCard bands={bands} />
     </div>
   );
