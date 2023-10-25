@@ -71,7 +71,6 @@ const ItemPage = () => {
                   setIsAdded(false);
                 }, 9000);
                 cart.addOneToCart(id);
-                console.log(cart.items);
               }}
             >
               Add To Cart

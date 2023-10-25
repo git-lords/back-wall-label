@@ -41,11 +41,11 @@ export const Cart = () => {
         <>
           <div className="w-full border-b-4">
             <div className="flex w-full border-b-4 text-center">
-                <h3  className="w-1/5 flex justify-center items-center">Product</h3>
-                <h3  className="w-1/5 flex justify-center items-center">Quantity</h3>
-                <h3  className="w-1/5 flex justify-center items-center">Price</h3>
-                <h3  className="w-1/5 flex justify-center items-center">Items Total</h3>
-                <h3  className="w-1/5 flex justify-center items-center"></h3>
+              <h3 className="w-1/5 flex justify-center items-center">Product</h3>
+              <h3 className="w-1/5 flex justify-center items-center">Quantity</h3>
+              <h3 className="w-1/5 flex justify-center items-center">Price</h3>
+              <h3 className="w-1/5 flex justify-center items-center">Items Total</h3>
+              <h3 className="w-1/5 flex justify-center items-center"></h3>
             </div>
             <div className="flex w-full flex-wrap ">
               {cart.items.map((currentProduct) => {
@@ -53,11 +53,11 @@ export const Cart = () => {
                   <div key={currentProduct.id} className="flex w-full gap-1 odd:bg-zinc-500 odd:bg-opacity-10 py-1">
                     <div className="w-1/5 flex flex-col justify-center items-center">
                       <img src={currentProduct.image} className="h-20 w-20" />
-                    <div className="flex flex-wrap justify-center text-center">
-                      <Link to={`/merch/${currentProduct.id}`}>
-                        {currentProduct.name}
-                      </Link>
-                    </div>
+                      <div className="flex flex-wrap justify-center text-center">
+                        <Link to={`/merch/${currentProduct.id}`}>
+                          {currentProduct.name}
+                        </Link>
+                      </div>
                     </div>
                     <div className="w-1/5 self-center text-lg">
                       <div className="flex flex-row-reverse justify-center">
@@ -84,7 +84,7 @@ export const Cart = () => {
                       <button className="hover:text-burntOrange"
                         onClick={() => cart.deleteFromCart(currentProduct.id)}
                       >
-                        <Trash/>
+                        <Trash />
                       </button>
                     </div>
                   </div>
@@ -93,11 +93,11 @@ export const Cart = () => {
             </div>
           </div>
           <div className="flex justify-around my-4 text-lg">
-          <h4 className="font-semibold"> Total: ${cart.getTotalCost().toFixed(2)} </h4>
-          <h3 className="self-center">Items in cart: {productCount} </h3>
+            <h4 className="font-semibold"> Total: ${cart.getTotalCost().toFixed(2)} </h4>
+            <h3 className="self-center">Items in cart: {productCount} </h3>
           </div>
           <div className="flex w-full justify-center">
-          <button className="border-2 hover:bg-mint text-lg font-semibold py-1 px-2 rounded" onClick={checkout}>Check Out</button>
+            <button className="border-2 hover:bg-mint text-lg font-semibold py-1 px-2 rounded" onClick={checkout}>Check Out</button>
           </div>
         </>
       ) : (

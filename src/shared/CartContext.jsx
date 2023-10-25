@@ -7,11 +7,11 @@ import Stripe from "stripe";
 
 export const CartContext = createContext({
   items: [],
-  getProductQuantity: () => {},
-  addOneToCart: () => {},
-  removeOneFromCart: () => {},
-  deleteFromCart: () => {},
-  getTotalCost: () => {},
+  getProductQuantity: () => { },
+  addOneToCart: () => { },
+  removeOneFromCart: () => { },
+  deleteFromCart: () => { },
+  getTotalCost: () => { },
 });
 
 export function CartProvider({ children }) {
@@ -44,13 +44,15 @@ export function CartProvider({ children }) {
   const addOneToCart = async (id) => {
     const quantity = getProductQuantity(id);
     if (quantity > 0) {
-      setCartProducts(
-        cartProducts.map((product) =>
+      setCartProducts((prevCartProducts) => {
+        const updatedProducts = prevCartProducts.map((product) =>
           product.id === id
             ? { ...product, quantity: product.quantity + 1 }
             : product
-        )
-      );
+        );
+        localStorage.setItem("cart", JSON.stringify(updatedProducts));
+        return updatedProducts;
+      });
     } else {
       const response = await stripe.products.retrieve(id);
       const amount = await stripe.prices.retrieve(response.default_price);
@@ -66,36 +68,40 @@ export function CartProvider({ children }) {
         image: response.images[0],
       };
       setCartProducts([...cartProducts, newProduct]);
+      localStorage.setItem("cart", JSON.stringify([...cartProducts, newProduct]));
     }
-    localStorage.setItem("cart", JSON.stringify(cartProducts));
   };
 
   function removeOneFromCart(id) {
-    console.log("remove from cart");
     const quantity = getProductQuantity(id);
-
     if (quantity == 1) {
       deleteFromCart(id);
     } else {
-      setCartProducts(
-        cartProducts.map((product) =>
+      setCartProducts((prevCartProducts) => {
+        const updatedProducts = prevCartProducts.map((product) =>
           product.id === id
             ? { ...product, quantity: product.quantity - 1 }
             : product
-        )
-      );
+        );
+        localStorage.setItem("cart", JSON.stringify(updatedProducts));
+
+        return updatedProducts;
+      });
     }
-    localStorage.setItem("cart", JSON.stringify(cartProducts));
   }
 
   function deleteFromCart(id) {
-    console.log("delete from cart");
     setCartProducts((cartProducts) =>
-      cartProducts.filter((currentProduct) => {
-        return currentProduct.id !== id;
-      })
+      cartProducts.filter((currentProduct) => currentProduct.id !== id)
     );
-    localStorage.setItem("cart", JSON.stringify(cartProducts));
+
+    const updatedCart = cartProducts.filter((currentProduct) => currentProduct.id !== id);
+
+    if (updatedCart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      clearCart();
+    }
   }
 
   function getTotalCost() {
@@ -108,7 +114,7 @@ export function CartProvider({ children }) {
 
   function clearCart() {
     setCartProducts([]);
-    localStorage.clear();
+    localStorage.removeItem("cart");
   }
 
   const contextValue = {
