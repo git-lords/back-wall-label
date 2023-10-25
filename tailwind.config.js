@@ -48,10 +48,25 @@ export default {
                         opacity: '1',
                         transform: 'translateX(0)',
                     },
+                },
+                'carousel': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateX(2rem)',
+                    },
+                    '20%, 80%': {
+                        opacity: '1',
+                        transform:'translateX(0)',
+                    },
+                    '100%': {
+                        opacity: '0',
+                        transform: 'translateX(-2rem)'
+                    }
                 }
             },
             animation: {
-                'fade-alert': 'fade-alert 3s both'
+                'fade-alert': 'fade-alert 3s both',
+                'carousel': 'carousel 0s both',
             }
         },
     },
