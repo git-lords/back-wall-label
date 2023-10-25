@@ -14,6 +14,10 @@ export const Cart = () => {
     0
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const checkout = async () => {
     await fetch("http://localhost:4545/checkout", {
       method: "POST",
@@ -41,16 +45,36 @@ export const Cart = () => {
         <>
           <div className="w-full border-b-4">
             <div className="flex w-full border-b-4 text-center">
-              <h3 className="w-1/5 flex justify-center items-center">Product</h3>
-              <h3 className="w-1/5 flex justify-center items-center">Quantity</h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Product
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Quantity
+              </h3>
               <h3 className="w-1/5 flex justify-center items-center">Price</h3>
-              <h3 className="w-1/5 flex justify-center items-center">Items Total</h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Items Total
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center"></h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Product
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Quantity
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center">Price</h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Items Total
+              </h3>
               <h3 className="w-1/5 flex justify-center items-center"></h3>
             </div>
             <div className="flex w-full flex-wrap ">
               {cart.items.map((currentProduct) => {
                 return (
-                  <div key={currentProduct.id} className="flex w-full gap-1 odd:bg-zinc-500 odd:bg-opacity-10 py-1">
+                  <div
+                    key={currentProduct.id}
+                    className="flex w-full gap-1 odd:bg-zinc-500 odd:bg-opacity-10 py-1"
+                  >
                     <div className="w-1/5 flex flex-col justify-center items-center">
                       <img src={currentProduct.image} className="h-20 w-20" />
                       <div className="flex flex-wrap justify-center text-center">
@@ -78,10 +102,15 @@ export const Cart = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="w-1/5 flex justify-center items-center text-lg">${currentProduct.price}</div>
-                    <div className="w-1/5 flex justify-center items-center text-lg">${currentProduct.price * currentProduct.quantity}</div>
+                    <div className="w-1/5 flex justify-center items-center text-lg">
+                      ${currentProduct.price}
+                    </div>
+                    <div className="w-1/5 flex justify-center items-center text-lg">
+                      ${currentProduct.price * currentProduct.quantity}
+                    </div>
                     <div className="w-1/5 flex justify-center items-center">
-                      <button className="hover:text-burntOrange"
+                      <button
+                        className="hover:text-burntOrange"
                         onClick={() => cart.deleteFromCart(currentProduct.id)}
                       >
                         <Trash />
@@ -93,19 +122,28 @@ export const Cart = () => {
             </div>
           </div>
           <div className="flex justify-around my-4 text-lg">
-            <h4 className="font-semibold"> Total: ${cart.getTotalCost().toFixed(2)} </h4>
+            <h4 className="font-semibold">
+              {" "}
+              Total: ${cart.getTotalCost().toFixed(2)}{" "}
+            </h4>
             <h3 className="self-center">Items in cart: {productCount} </h3>
           </div>
           <div className="flex w-full justify-center">
-            <button className="border-2 hover:bg-mint text-lg font-semibold py-1 px-2 rounded" onClick={checkout}>Check Out</button>
+            <button
+              className="border-2 hover:bg-mint text-lg font-semibold py-1 px-2 rounded"
+              onClick={checkout}
+            >
+              Check Out
+            </button>
           </div>
         </>
       ) : (
-        <div
-          className="flex flex-col w-full items-center h-full pt-10"
-        >
-          <h1>There are no items in the cart</h1>
-          <button onClick={() => navigate("/merch")}>
+        <div className="flex flex-col w-full items-center h-full pt-10">
+          <h1 className="p-4 text-xl">There are no items in your cart</h1>
+          <button
+            className="underline text-xl"
+            onClick={() => navigate("/merch")}
+          >
             Click here to check out our merch!
           </button>
         </div>

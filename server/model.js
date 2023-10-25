@@ -30,9 +30,6 @@ User.init(
     adminStatus: {
       type: DataTypes.BOOLEAN,
     },
-    bandStatus: {
-      type: DataTypes.BOOLEAN,
-    },
   },
   {
     modelName: "user",
