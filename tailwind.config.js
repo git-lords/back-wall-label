@@ -2,6 +2,7 @@
 const plugin = require("tailwindcss/plugin");
 
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
@@ -32,26 +33,13 @@ export default {
         mint: "#9EBC9F",
         darkMint: "#649066",
       },
-      animation: {
-        marquee: "marquee 300s linear infinite 2s",
-        marquee2: "marquee2 300s linear infinite 2s",
-      },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
-        },
-        marquee2: {
-          "0%": { transform: "translateX(100%)" },
-          "100%": { transform: "translateX(0%)" },
-        },
-      },
-      fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
-      },
     },
   },
+  fontFamily: {
+    roboto: ["Roboto", "sans-serif"],
+  },
   plugins: [
+    require("tailwindcss-animated"),
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {

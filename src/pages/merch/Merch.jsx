@@ -38,11 +38,13 @@ export default function Merch() {
       );
 
   return (
-    <div className="w-screen">
-      <div className="border mx-4 flex h-[5vh] items-center justify-between">
-        <h1 className="text-3xl mx-4">Merchandise</h1>
-        <span>
-          <label htmlFor="filter" className="mx-4">
+    <div className="page flex flex-col bricks dark:bg-zinc-900 overflow-y-scroll">
+      <div className="w-full">
+        <h1 className="text-3xl m-6 text-center font-bold text-shadow dark:shadow-black">Merch</h1>
+      </div>
+      <div className="px-4 flex h-[10%] items-center justify-between ">
+        <span className="dark:bg-zinc-900 bg-zinc-200 rounded-lg border-2 border-mint shadow-lg shadow-zinc-600 dark:shadow-black py-1">
+          <label htmlFor="filter" className="mx-4 ">
             Filter by:
           </label>
           <select
@@ -51,19 +53,19 @@ export default function Merch() {
             className="bg-inherit mx-4"
             id="filter"
           >
-            <option value="--filter by category--">All</option>
-            <option value="T-Shirt">T-Shirt</option>
-            <option value="Sticker">Sticker</option>
+            <option className="dark:bg-zinc-900" value="--filter by category--">All</option>
+            <option className="dark:bg-zinc-900" value="T-Shirt">T-Shirt</option>
+            <option className="dark:bg-zinc-900" value="Sticker">Sticker</option>
             {/* <option value="Tote">Tote</option> */}
             {/* <option value="Record">Record</option> */}
           </select>
         </span>
       </div>
-      <div className="border flex h-full justify-evenly flex-wrap m-4">
+      <div className="flex flex-wrap justify-evenly px-8">
         {selectedCategory !== "--filter by category--" ? (
           <>
             {filteredProducts.map((product) => (
-              <div key={product.productId} className="w-1/4">
+              <div key={product.productId} className="w-full sm:w-1/2 md:w-1/3 flex items-center justify-center">
                 <Product
                   initialDetails={{
                     productId: product.id,
@@ -81,7 +83,7 @@ export default function Merch() {
           <>
             {productData.map((product) => {
               return (
-                <div key={product.productId} className="w-1/4">
+                <div key={product.productId} className="w-full sm:w-1/2 md:w-1/3 flex items-center justify-center">
                   <Product
                     initialDetails={{
                       productId: product.id,
