@@ -23,6 +23,9 @@ const { getHeros, addHero, editHero, deleteHero } = heroCtrl;
 import newsCtrl from "./Controllers/newsCtrl.js";
 const { getAllArticles, addArticle, updateArticle, removeArticle } = newsCtrl;
 
+import photoCtrl from "./Controllers/photosCtrl.js";
+const { getBandPhotos, addBandPhoto, deleteBandPhoto } = photoCtrl;
+
 // import S3ctrl from "./Controllers/S3Ctrl.js";
 // const { getImage, getList } = S3ctrl;
 import adminCtrl from "./Controllers/adminCtrl.js";
@@ -117,21 +120,10 @@ app.post("/newArticle", addArticle);
 app.put("/editArticle/:id", updateArticle);
 app.delete("/article/:id", removeArticle);
 
-// bandPhotos
-app.get("/getBandPhotos", async (req, res) => {
-  const photos = await Photo.findAll();
-  res.send(photos);
-});
-app.post("/addBandPhoto", async (req, res) => {
-  try {
-    console.log("addBandPhoto");
-    const { url } = req.body;
-    await Photo.create({ url });
-    res.status(200).send("New Hero Added");
-  } catch (error) {
-    console.log(error);
-  }
-});
+// bandPhotos endpoints
+app.get("/getBandPhotos", getBandPhotos);
+app.post("/addBandPhoto", addBandPhoto);
+app.delete("/deleteBandPhoto/:url", deleteBandPhoto);
 
 app.get("/calendarhtml", (req, res) => {
   res.sendFile(path.join(__dirname, "../src/calendar.html"));

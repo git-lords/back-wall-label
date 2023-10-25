@@ -6,29 +6,18 @@ const db = await connectToDB("postgresql:///backwalldb");
 
 await db.sync({ force: true }).then(async () => {
   const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync("test", salt);
+  const hash = bcrypt.hashSync("backwall", salt);
 
   const users = [
     {
       username: "admin",
-      // email: "admin@test.com",
       password: hash,
       adminStatus: true,
-      bandStatus: false,
-    },
-    {
-      username: "band1",
-      // email: "band1@test.com",
-      password: hash,
-      adminStatus: false,
-      bandStatus: true,
     },
     {
       username: "jack",
-      // email: "ball.jack2376@gmail.com",
       password: hash,
       adminStatus: true,
-      bandStatus: true,
     },
   ];
 

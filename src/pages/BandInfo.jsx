@@ -34,6 +34,7 @@ const BandInfo = () => {
       (bandcampSrc = "https://iwinilose.bandcamp.com/album/i-win-i-lose"));
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios.get(`/getBand?band=${band}`).then((res) => {
       setBandData(res.data);
     });
@@ -46,14 +47,14 @@ const BandInfo = () => {
           <div className="w-full">
             <BackButton />
           </div>
-          <div className="relative overflow-hidden flex -mb-8">
-            <div className="text-white md:text-8xl inline-block text-6xl pr-4 font-bold uppercase w-full whitespace-nowrap animate-marquee tracking-tighter">
+          <div className="relative overflow-hidden flex md:-mb-12 -mb-8">
+            <div className="text-white md:text-9xl inline-block text-6xl pr-4 font-bold uppercase w-full whitespace-nowrap animate-marquee tracking-tighter">
               {bandData.bandName + "  "} {bandData.bandName + "  "}{" "}
               {bandData.bandName + "  "}
               {bandData.bandName + "  "}
               {bandData.bandName + "  "}
             </div>
-            <div className="text-white md:text-8xl inline-block absolute pr-4 text-6xl font-bold uppercase whitespace-nowrap animate-marquee2 tracking-tighter">
+            <div className="text-white md:text-9xl inline-block absolute pr-4 text-6xl font-bold uppercase whitespace-nowrap animate-marquee2 tracking-tighter">
               {bandData.bandName + "  "}
               {bandData.bandName + "  "}
               {bandData.bandName + "  "}
