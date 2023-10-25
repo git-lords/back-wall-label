@@ -43,6 +43,7 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
     return (
         heros[currentPage] && 
         <Transition
+            className={'h-full '}
             appear={currentPage}
             show={show}
             enter="transition ease-out duration-500 transform"
@@ -52,10 +53,10 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
             leaveFrom=" translate-x-0"
             leaveTo="-translate-x-full"
             >
-            <div className='h-[70vh] w-full text-white flex '>
-                <div key={heros[currentPage].heroId} >
+            <div className='h-full w-full text-white flex '>
+                <div key={heros[currentPage].heroId} className='h-full'>
                     
-                    <div className={`w-screen bg-cover bg-center px-2 flex flex-col`} style={{ backgroundImage: `url(${heros[currentPage].imgUrl})`, height: "90vh" }}>
+                    <div className={`w-screen bg-cover bg-center px-2 flex flex-col h-full`} style={{ backgroundImage: `url(${heros[currentPage].imgUrl})` }}>
                         
                         {/* Page select arrows */}
                         <div className="flex w-full justify-between px-2 h-1/2 items-end ">
@@ -73,7 +74,7 @@ export default function Hero({ heros, currentHero, itemsPerPage }) {
                         <div className='h-[10%] flex justify-center gap-6 items-center'>
                             {Array.from({ length: totalPages + 1 }).map((_, index) => (
                                 <div key={index}>
-                                    <button className={`heroButton rounded-full bg-zinc-200 h-4 w-4 ${index + 1 === currentPage ? 'text-mint' : ''}`} onClick={() => paginate(index + 1)}>
+                                    <button className={`heroButton rounded-full h-4 w-4 ${index === currentPage ? 'bg-darkMint' : 'bg-zinc-200'}`} onClick={() => paginate(index)}>
                                         
                                     </button>
                                 </div>

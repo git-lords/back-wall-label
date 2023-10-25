@@ -26,7 +26,7 @@ export const Product = ({ initialDetails }) => {
   const productQuantity = cart.getProductQuantity(id);
 
   return (
-    <div className=" w-11/12 p-4 flex flex-col justify-evenly items-center border-2 border-mint bg-zinc-200 dark:bg-zinc-900 shadow-lg shadow-zinc-600 dark:shadow-black my-4 rounded-lg cursor-pointer">
+    <div className=" w-11/12 p-4 flex flex-col justify-evenly items-center border-2 border-mint bg-zinc-200 dark:bg-zinc-900 shadow-lg shadow-zinc-600 dark:shadow-black hover:shadow-xl hover:-skew-x-2 hover:skew-y-2 m-4 rounded-lg cursor-pointer">
       <div className="w-full">
         <Link to={`/merch/${id}`}>
           <div

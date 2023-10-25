@@ -30,14 +30,14 @@ const Footer = () => {
 
           {/* </nav> */}
           {/* <p>Here's a bio ab back wall records ohhh yaaaaa</p> */}
-          <div className="flex flex-row pt-4 pl-4 md:pt-0 md:pl-0">
+          <div className="flex flex-row pt-4 pl-4 md:pt-0 md:pl-0 h-10">
 
             <NavLink
               to={"https://www.instagram.com/back.wall.records/"}
               target="_blank"
               className="insta flex relative h-10 w-10"
             >
-              <div className="text-white hover/insta:text-pink-400 absolute top-0 right-0 left-0">
+              <div className="text-white hover:text-[#cf367b]">
                 <Instagram />
               </div>
 
@@ -50,7 +50,7 @@ const Footer = () => {
               target="_blank"
               className="spot flex relative h-10 w-10"
             >
-              <div className="text-white hover/spot:text-lime-500 absolute top-0 right-0 left-0">
+              <div className="text-white hover:text-[#1dd05d]">
                 <Spotify />
               </div>
             </NavLink>
@@ -60,7 +60,7 @@ const Footer = () => {
               target="_blank"
               className="yout flex relative h-10 w-10"
             >
-              <div className="text-white hover/yout:text-red-500 absolute top-0 right-0 left-0">
+              <div className="text-white hover:text-[#f70000]">
                 <Youtube />
               </div>
 

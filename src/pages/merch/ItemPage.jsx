@@ -37,7 +37,7 @@ const ItemPage = () => {
       <div
         className={
           isAdded
-            ? "h-[5vh] fixed bg-emerald-700 w-full flex justify-center items-center transition-opacity duration-300"
+            ? "h-[5vh] fixed bg-emerald-700 w-full flex justify-center items-center transition-opacity duration-300 animate-fade-alert animate-duration-[8500ms]"
             : "h-[5vh] hidden bg-emerald-700 w-full transition-opacity duration-300 opacity-0"
         }
       >

@@ -30,16 +30,33 @@ export default {
             backgroundImage: {
                 'logo': "url('/public/backwallrecords-logo.jpeg')",
                 
+                
             },
             colors: {
                 'burntOrange': '#BC5F04',
                 'lightOrange': '#F0A868',
                 'mint': '#9EBC9F',
                 'darkMint': '#649066'
+            },
+            keyframes: {
+                'fade-alert': {
+                    '0%, 100%': {
+                        opacity: '0',
+                        transform: 'translateX(2rem)',
+                    },
+                    '20%, 80%': {
+                        opacity: '1',
+                        transform: 'translateX(0)',
+                    },
+                }
+            },
+            animation: {
+                'fade-alert': 'fade-alert 3s both'
             }
         },
     },
     plugins: [
+        require('autoprefixer'),
         require('tailwindcss-animated'),
         plugin(function ({ matchUtilities, theme }) {
         matchUtilities(
