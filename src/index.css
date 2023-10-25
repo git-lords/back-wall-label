@@ -8,7 +8,17 @@
     border-color: black;
 } */
 
+/* @layer base {
+    html {
+        font-family: 'Sometype Mono', system-ui, sans-serif;
+    }
+} */
 
+@layer base {
+    html {
+        font-family: 'DM Sans', system-ui, sans-serif;
+    }
+}
 
 .page {
     

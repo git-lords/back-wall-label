@@ -26,7 +26,7 @@ export default function App() {
   let [darkMode, setDarkMode] = useState(localStorage.theme === 'dark' ? true : false);
 
   const handleModeChange = () => {
-    if(darkMode === true){
+    if (darkMode === true) {
       document.documentElement.classList.remove("dark")
       localStorage.theme = 'light'
     } else {
@@ -37,13 +37,13 @@ export default function App() {
   }
 
   useEffect(() => {
-    if ( !darkMode
+    if (!darkMode
     ) {
       document.documentElement.classList.remove("dark");
-      
+
     } else {
       document.documentElement.classList.add("dark");
-      
+
     }
   }, []);
   return (
@@ -57,7 +57,7 @@ export default function App() {
             <Route path="/bands" element={<Bands />} />
             <Route path="/bands/:band" element={<BandInfo />} />
 
-            <Route path="/calendar" element={<Calendar darkMode={darkMode}/>}/>
+            <Route path="/calendar" element={<Calendar darkMode={darkMode} />} />
             <Route path="/merch" element={<Merch />} />
             <Route path="/merch/:id" element={<ItemPage />} />
             <Route path="/cart" element={<Cart />} />

@@ -14,7 +14,7 @@ import {
   ShopCart,
   Moon,
   Sun,
-  Megaphone
+  Megaphone,
 } from "../../icons.jsx";
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
@@ -79,7 +79,7 @@ export default function Header({ handleModeChange, darkMode }) {
               </span>
             </button>
           )}
-          
+
           {/* Menu Button */}
           <button
             onClick={() => {
@@ -98,14 +98,16 @@ export default function Header({ handleModeChange, darkMode }) {
             setShowDropDown(false);
             setShowProfileOptions(false);
           }}
-          className={`pageOverlay ${showDropDown ? "active" : "inactive"
-            } sm:grow bg-zinc-800 dark:bg-zinc-700`}
+          className={`pageOverlay ${
+            showDropDown ? "active" : "inactive"
+          } sm:grow bg-zinc-800 dark:bg-zinc-700`}
         ></div>
         {/* Drop Down Menu */}
         <div
           ref={dropDownRef}
-          className={`dropDownMenu ${showDropDown ? "active" : "inactive"
-            } flex flex-col gap-y-5 sm:gap-y-10 items-center h-screen bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
+          className={`dropDownMenu ${
+            showDropDown ? "active" : "inactive"
+          } flex flex-col gap-y-5 sm:gap-y-10 items-center h-screen bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
         >
           {/* Tabs */}
           <DropDownItem img={<Music />} text={"Bands"} />
@@ -152,9 +154,14 @@ export default function Header({ handleModeChange, darkMode }) {
               </div>
             </NavLink>
           </div>
-          
+
           {/* Dark Mode Toggle */}
-          <button className="mx-2 mt-5 sm:mt-10 hover:animate-wiggle-more hover:animate-infinite text-burntOrange justify-self-end" onClick={() => { handleModeChange() }}>
+          <button
+            className="mx-2 mt-5 sm:mt-10 hover:animate-wiggle-more hover:animate-infinite text-burntOrange justify-self-end"
+            onClick={() => {
+              handleModeChange();
+            }}
+          >
             {!darkMode ? <Sun /> : <Moon />}
           </button>
         </div>
