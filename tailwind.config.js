@@ -46,6 +46,9 @@ export default {
           "100%": { transform: "translateX(0%)" },
         },
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
     },
   },
   plugins: [
