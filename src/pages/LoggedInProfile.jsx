@@ -19,7 +19,7 @@ const Profile = () => {
     !user && navigate("/");
   }, []);
   return (
-    <div className="page h-full coggy bg-lightOrange dark:bg-zinc-800 ">
+    <div className="pt-20 min-h-screen h-full coggy bg-lightOrange dark:bg-zinc-800 ">
       <Admin />
       <div className="flex items-center justify-center">
         <LogoutButton />
