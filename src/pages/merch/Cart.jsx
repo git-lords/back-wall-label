@@ -56,6 +56,17 @@ export const Cart = () => {
                 Items Total
               </h3>
               <h3 className="w-1/5 flex justify-center items-center"></h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Product
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Quantity
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center">Price</h3>
+              <h3 className="w-1/5 flex justify-center items-center">
+                Items Total
+              </h3>
+              <h3 className="w-1/5 flex justify-center items-center"></h3>
             </div>
             <div className="flex w-full flex-wrap ">
               {cart.items.map((currentProduct) => {
