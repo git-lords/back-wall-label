@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Pencil, Trash } from "../../icons";
 
 export const AdminNewsForm = () => {
   const [date, setDate] = useState("");
@@ -91,8 +92,8 @@ export const AdminNewsForm = () => {
       <h3> News Blog: </h3>
       <div className="w-1/2 border p-2 flex flex-col bg-white dark:bg-zinc-700 gap-3">
         <details title="Create article">
+          <summary>Create article</summary>
           <div className="flex flex-col flex-nowrap">
-            <summary>Create article</summary>
             <form onSubmit={newArticle} className="flex flex-col">
               <label htmlFor="date">Date:</label>
               <input
@@ -135,13 +136,13 @@ export const AdminNewsForm = () => {
           {articles.map((article) => (
             <div key={article.articleId} className="m-1">
               <button
-                className="p-2 m-2 bg-yellow-400 hover:bg-yellow-500 duration-200"
+                className="p-2 m-2 text-yellow-500 hover:animate-wiggle-more hover:animate-infinite"
                 onClick={() => {
                   editHandler(article);
                   changeEditMode();
                 }}
               >
-                Edit
+                <Pencil/>
               </button>
               <span>{article.title}</span>
             </div>
@@ -163,11 +164,11 @@ export const AdminNewsForm = () => {
           {articles.map((el) => (
             <div key={el.articleId}>
               <button
-                className="p-2 bg-red-400 m-2"
+                className="p-2 m-2 text-red-500 hover:animate-wiggle-more hover:animate-infinite"
                 onClick={() => deleteArticle(el)}
               >
                 {" "}
-                Delete{" "}
+                <Trash/>{" "}
               </button>{" "}
               <span>{el.title}</span>
             </div>

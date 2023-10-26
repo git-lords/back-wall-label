@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
-import { AlertCircle } from "../../icons.jsx";
+import { AlertCircle, Pencil, Trash } from "../../icons.jsx";
 
 export const AdminHeroForm = () => {
   const [imgUrl, setImgUrl] = useState("");
@@ -65,7 +65,7 @@ export const AdminHeroForm = () => {
   return (
     <div className=" w-1/2 h-fit rounded-sm border-2 p-2 flex flex-col bg-white dark:bg-zinc-700 gap-3 ">
       <details title="Create a Hero">
-        <summary className="dark:hover:text-mint hover:text-darkMint">
+        <summary className="dark:hover:text-mint hover:text-darkMint cursor-pointer">
           Create a Hero
         </summary>
         <form className="flex flex-col" onSubmit={() => addHero()}>
@@ -114,19 +114,19 @@ export const AdminHeroForm = () => {
         </form>
       </details>
       <details>
-        <summary className="dark:hover:text-mint hover:text-darkMint">
+        <summary className="dark:hover:text-mint hover:text-darkMint cursor-pointer">
           Edit a Hero
         </summary>
         {heros.map((hero) => (
           <div className="m-1" key={hero.heroId}>
             <button
-              className="p-2 m-2 bg-yellow-400 hover:bg-yellow-500 duration-200"
+              className="p-2 m-2 text-yellow-500 hover:animate-wiggle-more hover:animate-infinite"
               onClick={() => {
                 handleEdit(hero);
                 setIsEditingHero(true);
               }}
             >
-              Edit
+              <Pencil/>
             </button>{" "}
             {hero.cta}
           </div>
@@ -144,19 +144,19 @@ export const AdminHeroForm = () => {
         />
       )}
       <details>
-        <summary className="dark:hover:text-mint hover:text-darkMint">
+        <summary className="dark:hover:text-mint hover:text-darkMint cursor-pointer">
           Remove a Hero
         </summary>
         {heros.map((hero) => (
           <div className="m-1" key={hero.heroId}>
             <button
-              className="p-2 m-2 bg-red-500 text-white"
+              className="p-2 m-2 text-red-500 hover:animate-wiggle-more hover:animate-infinite"
               onClick={() => {
                 setCurrentHero(hero);
                 setDeleteWindow(true);
               }}
             >
-              Delete
+              <Trash/>
             </button>{" "}
             {hero.cta}
           </div>

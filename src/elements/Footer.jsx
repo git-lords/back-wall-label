@@ -37,7 +37,7 @@ const Footer = () => {
               target="_blank"
               className="insta flex relative h-10 w-10"
             >
-              <div className="text-white hover:text-[#cf367b]">
+              <div className="text-white hover:text-[#cf367b] items-center flex">
                 <Instagram />
               </div>
 
@@ -50,7 +50,7 @@ const Footer = () => {
               target="_blank"
               className="spot flex relative h-10 w-10"
             >
-              <div className="text-white hover:text-[#1dd05d]">
+              <div className="text-white hover:text-[#1dd05d] items-center flex">
                 <Spotify />
               </div>
             </NavLink>
@@ -60,7 +60,7 @@ const Footer = () => {
               target="_blank"
               className="yout flex relative h-10 w-10"
             >
-              <div className="text-white hover:text-[#f70000]">
+              <div className="text-white hover:text-[#f70000] items-center flex">
                 <Youtube />
               </div>
 
