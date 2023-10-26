@@ -46,15 +46,28 @@ await db.sync({ force: true }).then(async () => {
     },
     {
       imgUrl:
-        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+band+img.jpeg",
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/CTM+carlsbad+album+cover.jpg",
       cta: "Latest Release - Crush The Monster",
       button: "Listen",
+      link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
+    },
+    {
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/MOM+wizards.jpg",
+      cta: "Halloween Show",
+      button: "Get Tickets",
+      link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
+    },
+    {
+      imgUrl:
+        "https://bw-records-bucket.s3.us-west-1.amazonaws.com/IWIL+guitar.jpg",
+      cta: "New Record On The Way!",
+      button: "Pre-Order",
       link: "https://open.spotify.com/album/7IzhE1aJFBUVGWVvH0gSsE?si=A2zl0qSbTdqqcKSS9NEZcg",
     },
   ];
 
   const articles = [
-    
     {
       title: "Excited for the new EP",
       imgUrl:
