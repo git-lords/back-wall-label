@@ -46,7 +46,6 @@ export default function App() {
 
     }
   }, []);
-  // console.log(document.documentElement)
   return (
     <div className="dark:text-white dark:bg-zinc-700">
       <AuthProvider>
@@ -65,7 +64,6 @@ export default function App() {
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/cancel" element={<CancelOrder />} />
             <Route path="/news" element={<News />} />
-            <Route path="/gallery" element={<Gallery />} />
             <Route path="/login" element={<LoginButton />} />
             <Route path="/logout" element={<LogoutButton />} />
             <Route path="/profile" element={<Profile />} />

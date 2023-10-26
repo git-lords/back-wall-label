@@ -31,6 +31,10 @@ export default function Header({ handleModeChange, darkMode }) {
 
   let dropDownRef = useRef();
   const cart = useContext(CartContext);
+  const productCount = cart.items.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
 
   useEffect(() => {
     window.addEventListener("keypress", (e) => {
@@ -63,16 +67,14 @@ export default function Header({ handleModeChange, darkMode }) {
 
         <div className="flex gap-3">
           {/* CART */}
-          {cart.items.length > 0 && (
-            <button
-              onClick={() => navigate("/cart")}
-              className="group self-center mx-2 relative dark:hover:text-darkMint text-black dark:text-white transition-all"
-            >
+          {productCount > 0 && (
+            <button onClick={() => navigate("/cart")}
+              className="group self-center mx-2 relative dark:hover:text-darkMint text-black dark:text-white hover:animate-wiggle-more hover:animate-infinite">
               {/* <div className="absolute top-0 rounded-full bg-darkMint h-2 p-2"></div> */}
-              <ShopCart />
-              <span class="absolute inset-0 object-right-top -mr-6 -mt-3">
-                <div class="inline-flex items-center px-[5px] rounded-full text-xs font-semibold bg-opacity-60 dark:bg-opacity-60 group-hover:bg-opacity-100 bg-mint dark:bg-darkMint text-white">
-                  {cart.items.length}
+              <ShopCart/>
+              <span className="absolute inset-0 object-right-top -mr-6 -mt-3">
+                <div className="inline-flex items-center px-[5px] rounded-full text-xs font-semibold bg-opacity-60 dark:bg-opacity-60 group-hover:bg-opacity-100 bg-mint dark:bg-darkMint text-white">
+                  {productCount}
                 </div>
               </span>
             </button>
@@ -112,7 +114,6 @@ export default function Header({ handleModeChange, darkMode }) {
           <DropDownItem img={<Calendar />} text={"Calendar"} />
           <DropDownItem img={<Bag />} text={"Merch"} />
           <DropDownItem img={<Info />} text={"Contact"} />
-          <DropDownItem img={<Photo />} text={"Gallery"} />
           <DropDownItem img={<Megaphone />} text={"News"} />
           {isLoggedIn && <DropDownItem img={<User />} text={"Profile"} />}
           {showLogin && !isLoggedIn && (
@@ -174,7 +175,7 @@ export const DropDownItem = (props) => {
       <NavLink
         to={`/${props.text}`}
         className="flex w-full p-2 text-center justify-center first:mt-4 gap-10 sm:gap-3 text-burntOrange
-      group hover:mb-2
+      group
       hover:text-[#F0A868]
       focus-within:outline-none focus-within:bg-gradient-to-l 
       focus-within:from-burntOrange focus-within:from-5% 

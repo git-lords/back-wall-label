@@ -36,7 +36,6 @@ export const Cart = () => {
       });
     cart.clearCart();
   };
-
   return (
     <div className="page w-full px-2 overflow-y-auto">
       <BackButton />
@@ -86,14 +85,14 @@ export const Cart = () => {
                     <div className="w-1/5 self-center text-lg">
                       <div className="flex flex-row-reverse justify-center">
                         <button
-                          className="border rounded flex w-6 h-6 text-center self-center justify-center items-center text-lg font-semibold active:bg-zinc-600"
+                          className="border rounded flex w-6 h-6 text-center self-center justify-center items-center text-lg font-semibold active:bg-zinc-600  hover:bg-mint"
                           onClick={() => cart.addOneToCart(currentProduct.id)}
                         >
                           +
                         </button>
                         <div className="p-2">{currentProduct.quantity}</div>
                         <button
-                          className="border rounded flex w-6 h-6 text-center self-center justify-center items-center text-lg font-semibold active:bg-zinc-600"
+                          className="border rounded flex w-6 h-6 text-center self-center justify-center items-center text-lg font-semibold active:bg-zinc-600 hover:bg-mint"
                           onClick={() =>
                             cart.removeOneFromCart(currentProduct.id)
                           }

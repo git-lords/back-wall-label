@@ -40,6 +40,7 @@ export default {
     animation: {
       marquee: "marquee 300s linear infinite 2s",
       marquee2: "marquee2 300s linear infinite 2s",
+      'fade-alert': 'fade-alert 3s both'
     },
     keyframes: {
       marquee: {
@@ -50,10 +51,21 @@ export default {
         "0%": { transform: "translateX(100%)" },
         "100%": { transform: "translateX(0%)" },
       },
+      'fade-alert': {
+        '0%, 100%': {
+            opacity: '0',
+            transform: 'translateX(2rem)',
+        },
+        '20%, 80%': {
+            opacity: '1',
+            transform: 'translateX(0)',
+        },
+    }
     },
   },
   plugins: [
     require("tailwindcss-animated"),
+    require('autoprefixer'),
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {

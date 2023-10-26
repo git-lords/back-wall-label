@@ -15,7 +15,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="page dark:text-mint px-0">
+    <div className="page dark:text-mint">
       <Hero heros={heros} currentHero={currentHero} itemsPerPage={1} />
     </div>
   );
