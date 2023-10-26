@@ -34,7 +34,6 @@ export const Cart = () => {
           window.location.assign(response.url);
         }
       });
-    cart.clearCart();
   };
   return (
     <div className="page w-full px-2 overflow-y-auto">
