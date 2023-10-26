@@ -22,11 +22,11 @@ const Footer = () => {
 
           {/* </div> */}
           {/* <nav className="flex justify-evenly text-sm"> */}
-          <NavLink to={"/bands"} className="text-lg md:font-semibold md:text-xl">Bands</NavLink>
-          <NavLink to={"/calendar"} className="text-lg md:font-semibold md:text-xl">Calendar</NavLink>
-          <NavLink to={"/merch"} className="text-lg md:font-semibold md:text-xl">Merch</NavLink>
-          <NavLink to={"/contact"} className="text-lg md:font-semibold md:text-xl">Contact</NavLink>
-          {/* <NavLink to={"/gallery"}>Gallery</NavLink> */}
+          <NavLink to={"/bands"} className="text-white text-lg md:font-semibold md:text-xl">Bands</NavLink>
+          <NavLink to={"/calendar"} className="text-white text-lg md:font-semibold md:text-xl">Calendar</NavLink>
+          <NavLink to={"/merch"} className="text-white text-lg md:font-semibold md:text-xl">Merch</NavLink>
+          <NavLink to={"/contact"} className="text-white text-lg md:font-semibold md:text-xl">Contact</NavLink>
+          <NavLink to={"/blog"} className="text-white text-lg md:font-semibold md:text-xl">Blog</NavLink>
 
           {/* </nav> */}
           {/* <p>Here's a bio ab back wall records ohhh yaaaaa</p> */}

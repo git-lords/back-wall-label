@@ -9,7 +9,7 @@ import { SuccessPage } from "./pages/merch/SuccessPage.jsx";
 import { CancelOrder } from "./pages/merch/CancelOrder.jsx";
 import { Cart } from "./pages/merch/Cart.jsx";
 import CartProvider from "./shared/CartContext.jsx";
-import { News } from "./pages/News.jsx";
+import { Blog } from "./pages/Blog.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import Header from "./elements/Header.jsx";
 import { useState, useEffect } from "react";
@@ -63,7 +63,7 @@ export default function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/cancel" element={<CancelOrder />} />
-            <Route path="/news" element={<News />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/login" element={<LoginButton />} />
             <Route path="/logout" element={<LogoutButton />} />
             <Route path="/profile" element={<Profile />} />
