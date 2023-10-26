@@ -71,7 +71,7 @@ export default function Header({ handleModeChange, darkMode }) {
             <button onClick={() => navigate("/cart")}
               className="group self-center mx-2 relative dark:hover:text-darkMint text-black dark:text-white hover:animate-wiggle-more hover:animate-infinite">
               {/* <div className="absolute top-0 rounded-full bg-darkMint h-2 p-2"></div> */}
-              <ShopCart/>
+              <ShopCart />
               <span className="absolute inset-0 object-right-top -mr-6 -mt-3">
                 <div className="inline-flex items-center px-[5px] rounded-full text-xs font-semibold bg-opacity-60 dark:bg-opacity-60 group-hover:bg-opacity-100 bg-mint dark:bg-darkMint text-white">
                   {productCount}
@@ -98,23 +98,21 @@ export default function Header({ handleModeChange, darkMode }) {
             setShowDropDown(false);
             setShowProfileOptions(false);
           }}
-          className={`pageOverlay ${
-            showDropDown ? "active" : "inactive"
-          } sm:grow bg-zinc-800 dark:bg-zinc-700`}
+          className={`pageOverlay ${showDropDown ? "active" : "inactive"
+            } sm:grow bg-zinc-800 dark:bg-zinc-700`}
         ></div>
         {/* Drop Down Menu */}
         <div
           ref={dropDownRef}
-          className={`dropDownMenu ${
-            showDropDown ? "active" : "inactive"
-          } flex flex-col gap-y-5 sm:gap-y-10 items-center h-screen bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
+          className={`dropDownMenu ${showDropDown ? "active" : "inactive"
+            } flex flex-col gap-y-5 sm:gap-y-10 items-center h-screen bg-zinc-200 dark:bg-zinc-950 dark:text-white w-screen sm:w-1/3 md:w-1/5 xl:w-[250px] `}
         >
           {/* Tabs */}
           <DropDownItem img={<Music />} text={"Bands"} />
           <DropDownItem img={<Calendar />} text={"Calendar"} />
           <DropDownItem img={<Bag />} text={"Merch"} />
           <DropDownItem img={<Info />} text={"Contact"} />
-          <DropDownItem img={<Megaphone />} text={"News"} />
+          <DropDownItem img={<Megaphone />} text={"Blog"} />
           {isLoggedIn && <DropDownItem img={<User />} text={"Profile"} />}
           {showLogin && !isLoggedIn && (
             <DropDownItem img={<User />} text={"Login"} />

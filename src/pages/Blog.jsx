@@ -26,7 +26,7 @@ const ArticleDetails = ({ article, toggleArticleOff }) => (
     </div>
 );
 
-export const News = () => {
+export const Blog = () => {
     const [showArticle, setShowArticle] = useState(false);
     const [selectedArticle, setSelectedArticle] = useState(null);
     const [articles, setArticles] = useState([]);
